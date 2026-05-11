@@ -1,0 +1,60 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Build JSON data for the static site
+        env:
+          STATCHECK_ELO_URL: ${{ secrets.STATCHECK_ELO_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p site/data
+
+          if [ -f bcp-matches.json ]; then
+            go run ./cmd/local-elo -matches bcp-matches.json -out-json site/data/leaderboard.json
+          elif [ -f testdata/sample-matches.json ]; then
+            go run ./cmd/local-elo -matches testdata/sample-matches.json -out-json site/data/leaderboard.json
+          else
+            printf '%s\n' '{"as_of":"","players":[]}' > site/data/leaderboard.json
+          fi
+
+          set +e
+          go run ./cmd/statcheck-elo-leaderboard -quiet -out-json site/data/statcheck.json
+          sc=$?
+          set -e
+          if [ "$sc" -ne 0 ]; then
+            printf '%s\n' '{"source":"stat-check","loaded_from":"","fetched_at_rfc3339":"","players":[]}' > site/data/statcheck.json
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stat-Check Elo</title>
+    <link rel="stylesheet" href="../css/site.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Stat-Check Elo</h1>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="local-elo.html">Local match Elo</a>
+        <a href="statcheck.html">Stat-Check Elo</a>
+      </nav>
+    </header>
+    <main>
+      <p class="muted" id="meta"></p>
+      <div class="panel">
+        <label for="filter">Filter by player name</label>
+        <input type="search" id="filter" placeholder="Type to narrow the table…" autocomplete="off" />
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th class="num">Elo</th>
+              <th class="num">Games</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </main>
+    <footer>
+      Snapshot from deploy — configure <code>STATCHECK_ELO_URL</code> or <code>STATCHECK_ELO_FILE</code> in Actions. Same
+      feed as <code>statcheck-elo-leaderboard</code>.
+    </footer>
+    <script defer src="../js/elo-table.js"></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
+        window.mountEloTable("../data/statcheck.json", {
+          metaEl: document.getElementById("meta"),
+          tbodyEl: document.getElementById("rows"),
+          filterInput: document.getElementById("filter"),
+          rankCol: false,
+          nameKey: "player_name",
+          eloKey: "elo",
+          gamesKey: null,
+        });
+      });
+    </script>
+  </body>
+</html>

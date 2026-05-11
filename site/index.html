@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Boltermore Elo tools</title>
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Boltermore Elo tools</h1>
+      <nav>
+        <a href="tools/local-elo.html">Local match Elo</a>
+        <a href="tools/statcheck.html">Stat-Check Elo</a>
+      </nav>
+    </header>
+    <main>
+      <section class="panel">
+        <h2>What’s here</h2>
+        <p>
+          Static views for leaderboard data built in CI from this repo. These pages do
+          <strong>not</strong> include BCP roster lookup (<code>elo-roster</code>)—that still needs the CLI and a Best
+          Coast Pairings event id.
+        </p>
+        <ul class="muted">
+          <li><strong>Local match Elo</strong> — rankings from your exported matches JSON (same rules as <code>local-elo</code>).</li>
+          <li>
+            <strong>Stat-Check Elo</strong> — snapshot of the global Stat-Check feed exported at deploy time (same source as <code>statcheck-elo-leaderboard</code>).
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer>Deployed with GitHub Actions — data files live under <code>data/</code>.</footer>
+  </body>
+</html>
