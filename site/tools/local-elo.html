@@ -2,51 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Local match Elo</title>
-    <link rel="stylesheet" href="../css/site.css" />
+    <meta http-equiv="refresh" content="0; url=../index.html" />
+    <title>Redirect</title>
+    <link rel="canonical" href="../index.html" />
   </head>
   <body>
-    <header>
-      <h1>Local match Elo</h1>
-      <nav>
-        <a href="../index.html">Home</a>
-        <a href="local-elo.html">Local match Elo</a>
-        <a href="statcheck.html">Stat-Check Elo</a>
-      </nav>
-    </header>
-    <main>
-      <p class="muted" id="meta"></p>
-      <div class="panel">
-        <label for="filter">Filter by player name</label>
-        <input type="search" id="filter" placeholder="Type to narrow the table…" autocomplete="off" />
-        <table>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Player</th>
-              <th class="num">Elo</th>
-              <th class="num">Games</th>
-            </tr>
-          </thead>
-          <tbody id="rows"></tbody>
-        </table>
-      </div>
-    </main>
-    <footer>Data file produced by <code>local-elo -out-json</code> in CI.</footer>
-    <script defer src="../js/elo-table.js"></script>
-    <script defer>
-      document.addEventListener("DOMContentLoaded", () => {
-        window.mountEloTable("../data/leaderboard.json", {
-          metaEl: document.getElementById("meta"),
-          tbodyEl: document.getElementById("rows"),
-          filterInput: document.getElementById("filter"),
-          rankCol: true,
-          nameKey: "name",
-          eloKey: "elo",
-          gamesKey: "games",
-        });
-      });
-    </script>
+    <p><a href="../index.html">Local leaderboard is now the home page.</a></p>
   </body>
 </html>

@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	"fortyk/eloevent/internal/bcp"
 	"fortyk/eloevent/internal/elo40k"
 )
 
@@ -15,13 +16,24 @@ type LeaderboardFile struct {
 	Players     []LeaderboardRow `json:"players"`
 }
 
+// RecentGameWire is one game for JSON consumers (GitHub Pages, APIs).
+type RecentGameWire struct {
+	Time     string   `json:"time"`
+	Result   string   `json:"result"`
+	Opponent string   `json:"opponent"`
+	AsA      bool     `json:"as_a"`
+	EventID  string   `json:"event_id,omitempty"`
+	DeltaElo *float64 `json:"delta_elo,omitempty"`
+}
+
 // LeaderboardRow is one rated player after full replay + optional FinalizeDecay.
 type LeaderboardRow struct {
-	Rank  int     `json:"rank"`
-	Name  string  `json:"name"`
-	Key   string  `json:"key"`
-	Elo   float64 `json:"elo"`
-	Games int     `json:"games"`
+	Rank        int              `json:"rank"`
+	Name        string           `json:"name"`
+	Key         string           `json:"key"`
+	Elo         float64          `json:"elo"`
+	Games       int              `json:"games"`
+	RecentGames []RecentGameWire `json:"recent_games,omitempty"`
 }
 
 // WriteLeaderboardJSON writes snapshot from the Elo engine (caller runs FinalizeDecay first as desired).
@@ -34,6 +46,53 @@ func WriteLeaderboardJSON(path string, asOf time.Time, players []elo40k.Player) 
 			Key:   elo40k.PlayerKey(p.DisplayName),
 			Elo:   p.Rating,
 			Games: p.Games,
+		})
+	}
+	f := LeaderboardFile{
+		AsOfRFC3339: asOf.UTC().Format(time.RFC3339),
+		Players:     rows,
+	}
+	raw, err := json.MarshalIndent(f, "", "  ")
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, raw, 0o644)
+}
+
+// WriteLeaderboardWebJSON writes the same leaderboard as WriteLeaderboardJSON plus recent_games per player,
+// using the same delta rules as player-history.
+func WriteLeaderboardWebJSON(path string, asOf time.Time, snap []elo40k.Player, matchRows []bcp.MatchFileRow, recentN int) error {
+	byPairing, byLine, err := ComputeMatchDeltas(matchRows)
+	if err != nil {
+		return err
+	}
+	rows := make([]LeaderboardRow, 0, len(snap))
+	for i, p := range snap {
+		rep, err := PlayerLookupWithDeltas(matchRows, p.DisplayName, false, recentN, byPairing, byLine)
+		if err != nil {
+			return fmt.Errorf("%s: %w", p.DisplayName, err)
+		}
+		var recent []RecentGameWire
+		if rep != nil {
+			recent = make([]RecentGameWire, len(rep.Games))
+			for j, g := range rep.Games {
+				recent[j] = RecentGameWire{
+					Time:     g.Time.UTC().Format(time.RFC3339),
+					Result:   string([]byte{g.Result}),
+					Opponent: g.Opponent,
+					AsA:      g.AsA,
+					EventID:  g.EventID,
+					DeltaElo: g.DeltaElo,
+				}
+			}
+		}
+		rows = append(rows, LeaderboardRow{
+			Rank:        i + 1,
+			Name:        p.DisplayName,
+			Key:         elo40k.PlayerKey(p.DisplayName),
+			Elo:         p.Rating,
+			Games:       p.Games,
+			RecentGames: recent,
 		})
 	}
 	f := LeaderboardFile{

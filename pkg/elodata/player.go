@@ -31,6 +31,22 @@ type PlayerReport struct {
 // PlayerLookup filters match rows for one player, recomputes Elo deltas from the full pool, and returns stats.
 // lastN caps how many games are returned in Games (0 = all). Games are newest-first.
 func PlayerLookup(rows []bcp.MatchFileRow, query string, contains bool, lastN int) (*PlayerReport, error) {
+	byPairing, byLine, err := ComputeMatchDeltas(rows)
+	if err != nil {
+		return nil, err
+	}
+	return playerReportWithDeltas(rows, query, contains, lastN, byPairing, byLine)
+}
+
+// PlayerLookupWithDeltas is like PlayerLookup but reuses delta maps computed once via ComputeMatchDeltas.
+func PlayerLookupWithDeltas(rows []bcp.MatchFileRow, query string, contains bool, lastN int, byPairing map[string]PairDeltas, byLine map[string]PairDeltas) (*PlayerReport, error) {
+	if byPairing == nil || byLine == nil {
+		return nil, fmt.Errorf("nil delta maps")
+	}
+	return playerReportWithDeltas(rows, query, contains, lastN, byPairing, byLine)
+}
+
+func playerReportWithDeltas(rows []bcp.MatchFileRow, query string, contains bool, lastN int, byPairing map[string]PairDeltas, byLine map[string]PairDeltas) (*PlayerReport, error) {
 	games, displayName, err := collectPlayedGames(rows, query, contains)
 	if err != nil {
 		return nil, err
@@ -64,11 +80,6 @@ func PlayerLookup(rows []bcp.MatchFileRow, query string, contains bool, lastN in
 	if total > 0 {
 		winPct = 100.0 * float64(w) / float64(total)
 		ptsPct = 100.0 * (float64(w) + 0.5*float64(d)) / float64(total)
-	}
-
-	byPairing, byLine, err := ComputeMatchDeltas(rows)
-	if err != nil {
-		return nil, err
 	}
 
 	sort.Slice(games, func(i, j int) bool { return games[i].t.After(games[j].t) })

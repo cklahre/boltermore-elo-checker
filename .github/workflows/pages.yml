@@ -37,9 +37,9 @@ jobs:
           mkdir -p site/data
 
           if [ -f bcp-matches.json ]; then
-            go run ./cmd/local-elo -matches bcp-matches.json -out-json site/data/leaderboard.json
+            go run ./cmd/local-elo -matches bcp-matches.json -out-web-json site/data/leaderboard.json
           elif [ -f testdata/sample-matches.json ]; then
-            go run ./cmd/local-elo -matches testdata/sample-matches.json -out-json site/data/leaderboard.json
+            go run ./cmd/local-elo -matches testdata/sample-matches.json -out-web-json site/data/leaderboard.json
           else
             printf '%s\n' '{"as_of":"","players":[]}' > site/data/leaderboard.json
           fi

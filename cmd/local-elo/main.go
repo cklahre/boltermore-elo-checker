@@ -4,6 +4,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -11,6 +12,7 @@ import (
 	"strings"
 	"time"
 
+	"fortyk/eloevent/internal/bcp"
 	"fortyk/eloevent/internal/elo40k"
 	"fortyk/eloevent/pkg/elodata"
 )
@@ -20,14 +22,16 @@ func main() {
 	asOf := flag.String("as-of", "", "apply final inactivity decay through this date (2006-01-02 or RFC3339); default: now")
 	topN := flag.Int("n", 0, "if > 0, print only top N rows")
 	outJSON := flag.String("out-json", "", "if set, write full leaderboard snapshot JSON here (for bots; ignores -n)")
+	outWebJSON := flag.String("out-web-json", "", "if set, write leaderboard JSON plus recent_games per player (for static sites; ignores -n)")
+	recentN := flag.Int("recent-n", 10, "with -out-web-json, how many most recent games per player (newest first)")
 	flag.Parse()
 
 	if strings.TrimSpace(*matchesPath) == "" {
-		fmt.Fprintln(os.Stderr, "Usage: local-elo -matches games.json [-as-of DATE] [-n 50] [-out-json leaderboard.json]")
+		fmt.Fprintln(os.Stderr, "Usage: local-elo -matches games.json [-as-of DATE] [-n 50] [-out-json leaderboard.json] [-out-web-json web.json]")
 		fmt.Fprintln(os.Stderr, "")
 		fmt.Fprintln(os.Stderr, "JSON rows look like:")
 		fmt.Fprintln(os.Stderr, `  { "date": "2025-03-01", "a": "Alice Example", "b": "Bob Example", "winner": "a" }`)
-		fmt.Fprintln(os.Stderr, "Optional: -out-json leaderboard.json for Discord bot / APIs.")
+		fmt.Fprintln(os.Stderr, "Optional: -out-json for bots; -out-web-json for static sites (+ -recent-n for games per player).")
 		os.Exit(2)
 	}
 
@@ -57,11 +61,27 @@ func main() {
 	e.FinalizeDecay(cutoff)
 
 	rows := e.Snapshot()
-	if p := strings.TrimSpace(*outJSON); p != "" {
-		if err := elodata.WriteLeaderboardJSON(p, cutoff, rows); err != nil {
+	outPath := strings.TrimSpace(*outJSON)
+	webPath := strings.TrimSpace(*outWebJSON)
+	if outPath != "" {
+		if err := elodata.WriteLeaderboardJSON(outPath, cutoff, rows); err != nil {
 			log.Fatalf("out-json: %v", err)
 		}
-		fmt.Fprintf(os.Stderr, "wrote %d players → %s\n", len(rows), p)
+		fmt.Fprintf(os.Stderr, "wrote %d players → %s\n", len(rows), outPath)
+	}
+	if webPath != "" {
+		raw, err := os.ReadFile(*matchesPath)
+		if err != nil {
+			log.Fatalf("read matches for web export: %v", err)
+		}
+		var fileRows []bcp.MatchFileRow
+		if err := json.Unmarshal(raw, &fileRows); err != nil {
+			log.Fatalf("matches JSON as BCP rows for web export: %v", err)
+		}
+		if err := elodata.WriteLeaderboardWebJSON(webPath, cutoff, rows, fileRows, *recentN); err != nil {
+			log.Fatalf("out-web-json: %v", err)
+		}
+		fmt.Fprintf(os.Stderr, "wrote %d players (+ recent games) → %s\n", len(rows), webPath)
 	}
 
 	limit := len(rows)

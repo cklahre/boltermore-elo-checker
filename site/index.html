@@ -3,33 +3,47 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Boltermore Elo tools</title>
+    <title>Local match Elo</title>
     <link rel="stylesheet" href="css/site.css" />
   </head>
   <body>
     <header>
-      <h1>Boltermore Elo tools</h1>
+      <h1>Local match Elo</h1>
       <nav>
-        <a href="tools/local-elo.html">Local match Elo</a>
-        <a href="tools/statcheck.html">Stat-Check Elo</a>
+        <a href="tools/statcheck.html">Stat-Check global leaderboard</a>
       </nav>
     </header>
     <main>
-      <section class="panel">
-        <h2>What’s here</h2>
-        <p>
-          Static views for leaderboard data built in CI from this repo. These pages do
-          <strong>not</strong> include BCP roster lookup (<code>elo-roster</code>)—that still needs the CLI and a Best
-          Coast Pairings event id.
-        </p>
-        <ul class="muted">
-          <li><strong>Local match Elo</strong> — rankings from your exported matches JSON (same rules as <code>local-elo</code>).</li>
-          <li>
-            <strong>Stat-Check Elo</strong> — snapshot of the global Stat-Check feed exported at deploy time (same source as <code>statcheck-elo-leaderboard</code>).
-          </li>
-        </ul>
-      </section>
+      <p class="muted" id="meta"></p>
+      <div class="panel">
+        <label for="filter">Filter players</label>
+        <input type="search" id="filter" placeholder="Name contains…" autocomplete="off" />
+        <table>
+          <thead>
+            <tr>
+              <th class="num">Rank</th>
+              <th>Player</th>
+              <th class="num">Elo</th>
+              <th class="num">Games</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p class="muted footer-note">
+        BCP event roster lookups (<code>elo-roster</code>) are not available on this site. Player history follows the same
+        rules as the <code>player-history</code> CLI (Δ Elo applies inactivity-aware replay).
+      </p>
     </main>
-    <footer>Deployed with GitHub Actions — data files live under <code>data/</code>.</footer>
+    <script defer src="js/home.js"></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
+        window.mountHome({
+          metaEl: document.getElementById("meta"),
+          tbodyEl: document.getElementById("rows"),
+          filterEl: document.getElementById("filter"),
+        });
+      });
+    </script>
   </body>
 </html>
