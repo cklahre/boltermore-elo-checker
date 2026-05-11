@@ -52,7 +52,7 @@ function closeAllDetails(tbody) {
 
 function gamesTable(games) {
   if (!Array.isArray(games) || games.length === 0) {
-    return '<p class="muted nested-hint">No recent games listed (missing from export or CI used empty matches).</p>';
+    return '<p class="muted nested-hint">No recent games in this export.</p>';
   }
   const rowsHtml = games
     .map(
@@ -65,7 +65,8 @@ function gamesTable(games) {
       </tr>`,
     )
     .join("");
-  return `<table class="nested">
+  return `<p class="subhead muted">Recent games (newest first)</p>
+    <table class="nested">
       <thead>
         <tr>
           <th>When</th>
@@ -73,6 +74,46 @@ function gamesTable(games) {
           <th>Opponent</th>
           <th class="num">Δ Elo</th>
           <th>Event</th>
+        </tr>
+      </thead>
+      <tbody>${rowsHtml}</tbody>
+    </table>`;
+}
+
+function eventsSummary(events) {
+  if (!Array.isArray(events) || events.length === 0) {
+    return "";
+  }
+  const rowsHtml = events
+    .map((e) => {
+      const evId = escapeHtml(((e.event_id ?? "") + "").trim() || "—");
+      const day = escapeHtml(((e.last_played_rfc3339 ?? "") + "").slice(0, 10) || "—");
+      let sum = "—";
+      const dg = Number(e.delta_games) || 0;
+      if (dg > 0) {
+        sum = formatDelta(Number(e.total_delta_elo));
+      }
+      const gCt = Number(e.games) ?? 0;
+      return `<tr>
+        <td class="mono">${day}</td>
+        <td class="mono ev-id">${evId}</td>
+        <td class="num">${Number(e.wins) || 0}-${Number(e.losses) || 0}-${Number(e.draws) || 0}</td>
+        <td class="num">${gCt}</td>
+        <td class="num">${sum}</td>
+        <td class="num">${dg}/${gCt}</td>
+      </tr>`;
+    })
+    .join("");
+  return `<p class="subhead muted">Last ${events.length} distinct events</p>
+    <table class="nested events-mini">
+      <thead>
+        <tr>
+          <th>Last day</th>
+          <th>Event</th>
+          <th class="num">W-L-D</th>
+          <th class="num">Gms</th>
+          <th class="num">ΣΔ</th>
+          <th class="num">Rated</th>
         </tr>
       </thead>
       <tbody>${rowsHtml}</tbody>
@@ -137,7 +178,7 @@ function render(_metaEl, tbody, filterEl, q) {
     const td = document.createElement("td");
     td.colSpan = 4;
     td.className = "detail-cell";
-    td.innerHTML = gamesTable(p.recent_games);
+    td.innerHTML = `${eventsSummary(p.recent_events)}${gamesTable(p.recent_games)}`;
     detail.appendChild(td);
     tbody.appendChild(detail);
 
@@ -160,7 +201,7 @@ async function mountHome(config) {
     }
     leaderboardState = await res.json();
     if (metaEl && leaderboardState.as_of) {
-      metaEl.textContent = `As of ${leaderboardState.as_of} · click a name for the last exported games`;
+      metaEl.textContent = `As of ${leaderboardState.as_of} · click a name for recent events and games`;
     }
   } catch (e) {
     tbodyEl.innerHTML = `<tr><td colspan="4" class="error">Could not load leaderboard (${escapeHtml(String(e.message))}).</td></tr>`;

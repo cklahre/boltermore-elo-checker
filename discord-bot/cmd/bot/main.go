@@ -181,7 +181,29 @@ func (b *botState) handlePlayer(name string, contains bool, last int) (string, e
 	if rep.MultiNameWarning {
 		o.WriteString("_Substring matched multiple names; stats combined._\n")
 	}
-	o.WriteString("```\n")
+	if len(rep.RecentEvents) > 0 {
+		o.WriteString("**Recent events**\n```\n")
+		for _, ev := range rep.RecentEvents {
+			id := strings.TrimSpace(ev.EventID)
+			if id == "" {
+				id = "—"
+			}
+			sum := "ΣΔ —"
+			if ev.DeltaGames > 0 {
+				sum = fmt.Sprintf("ΣΔ %+.1f", ev.TotalDeltaElo)
+			}
+			o.WriteString(fmt.Sprintf("%s %s %d–%d–%d · %dg · %s · rated Δ %d/%d\n",
+				ev.LastPlayed.UTC().Format("2006-01-02"),
+				trunc(id, 26),
+				ev.Wins, ev.Losses, ev.Draws,
+				ev.Games,
+				sum,
+				ev.DeltaGames,
+				ev.Games))
+		}
+		o.WriteString("```\n")
+	}
+	o.WriteString("**Games**\n```\n")
 	for _, g := range rep.Games {
 		de := "  —"
 		if g.DeltaElo != nil {

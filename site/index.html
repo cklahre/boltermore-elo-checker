@@ -3,15 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Local match Elo</title>
+    <title>Elo leaderboard</title>
     <link rel="stylesheet" href="css/site.css" />
   </head>
   <body>
     <header>
-      <h1>Local match Elo</h1>
-      <nav>
-        <a href="tools/statcheck.html">Stat-Check global leaderboard</a>
-      </nav>
+      <h1>Elo leaderboard</h1>
     </header>
     <main>
       <p class="muted" id="meta"></p>
@@ -30,10 +27,6 @@
           <tbody id="rows"></tbody>
         </table>
       </div>
-      <p class="muted footer-note">
-        BCP event roster lookups (<code>elo-roster</code>) are not available on this site. Player history follows the same
-        rules as the <code>player-history</code> CLI (Δ Elo applies inactivity-aware replay).
-      </p>
     </main>
     <script defer src="js/home.js"></script>
     <script defer>

@@ -20,14 +20,6 @@ body {
   line-height: 1.5;
 }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-
 header {
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid var(--border);
@@ -38,15 +30,6 @@ header h1 {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
-}
-
-header nav {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-}
-
-header nav a {
-  margin-right: 1rem;
 }
 
 main {
@@ -130,14 +113,6 @@ tr:hover td {
   color: #ff8a8a;
 }
 
-footer {
-  padding: 1rem 1.5rem 2rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-align: center;
-}
-
-.mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.78rem;
   white-space: nowrap;
@@ -204,8 +179,18 @@ footer {
   margin: 0;
 }
 
-.footer-note {
-  max-width: 52rem;
-  margin-top: 1.5rem;
-  font-size: 0.8rem;
+.subhead {
+  font-size: 0.82rem;
+  margin: 0 0 0.4rem;
+  font-weight: 500;
+}
+
+.detail-cell > .nested {
+  margin-bottom: 0.85rem;
+}
+
+.detail-cell .events-mini .ev-id {
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

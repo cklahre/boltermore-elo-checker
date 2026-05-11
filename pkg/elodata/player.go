@@ -19,14 +19,31 @@ type RecentGame struct {
 	DeltaElo *float64 // nil if unavailable
 }
 
+// EventRollup is per-event stats for one player across their full history in the match pool.
+type EventRollup struct {
+	EventID    string // from pairings rows; empty if source rows omit event_id
+	LastPlayed time.Time
+	Wins       int
+	Losses     int
+	Draws      int
+	Games      int // Wins+Losses+Draws when data is consistent
+	// TotalDeltaElo sums this player’s ΔElo for games where a pairing delta was resolved.
+	TotalDeltaElo float64
+	DeltaGames    int // games included in TotalDeltaElo
+}
+
 // PlayerReport is aggregate stats plus recent games for Discord/CLI.
 type PlayerReport struct {
 	DisplayName         string
 	Wins, Losses, Draws int
 	WinPct, PointsPct   float64
 	MultiNameWarning    bool
-	Games               []RecentGame // newest first, truncated to LastN (0 = all)
+	Games               []RecentGame  // newest first, truncated to LastN (0 = all)
+	RecentEvents        []EventRollup // newest activity first; at most RecentEventSummaryCap buckets
 }
+
+// RecentEventSummaryCap is how many distinct events get attached to each PlayerReport.
+const RecentEventSummaryCap = 3
 
 // PlayerLookup filters match rows for one player, recomputes Elo deltas from the full pool, and returns stats.
 // lastN caps how many games are returned in Games (0 = all). Games are newest-first.
@@ -84,6 +101,8 @@ func playerReportWithDeltas(rows []bcp.MatchFileRow, query string, contains bool
 
 	sort.Slice(games, func(i, j int) bool { return games[i].t.After(games[j].t) })
 
+	recentEv := rollupRecentEvents(games, byPairing, byLine, RecentEventSummaryCap)
+
 	limit := len(games)
 	if lastN > 0 && lastN < limit {
 		limit = lastN
@@ -113,6 +132,7 @@ func playerReportWithDeltas(rows []bcp.MatchFileRow, query string, contains bool
 		PointsPct:        ptsPct,
 		MultiNameWarning: multi,
 		Games:            outGames,
+		RecentEvents:     recentEv,
 	}, nil
 }
 
@@ -200,4 +220,72 @@ func nameMatches(field, query string, contains bool) bool {
 		return strings.Contains(strings.ToLower(field), strings.ToLower(strings.TrimSpace(query)))
 	}
 	return strings.EqualFold(strings.TrimSpace(field), strings.TrimSpace(query))
+}
+
+// rollupRecentEvents returns up to limit distinct events: bucket key is trimmed EventID (empty merges into one bucket).
+// Events ordered by newest LastPlayed descending.
+func rollupRecentEvents(all []playedGame, byPairing map[string]PairDeltas, byLine map[string]PairDeltas, limit int) []EventRollup {
+	if limit <= 0 || len(all) == 0 {
+		return nil
+	}
+	type agg struct {
+		w, l, d    int
+		games      int
+		sumDelta   float64
+		deltaCt    int
+		lastPlayed time.Time
+	}
+	m := make(map[string]*agg)
+	for _, g := range all {
+		key := strings.TrimSpace(g.eventID)
+		a := m[key]
+		if a == nil {
+			a = &agg{}
+			m[key] = a
+		}
+		a.games++
+		switch g.outcome {
+		case 'W':
+			a.w++
+		case 'L':
+			a.l++
+		case 'D':
+			a.d++
+		}
+		if de, ok := deltaForPlayed(g, byPairing, byLine); ok {
+			a.sumDelta += de
+			a.deltaCt++
+		}
+		if g.t.After(a.lastPlayed) {
+			a.lastPlayed = g.t
+		}
+	}
+	type pair struct {
+		key string
+		a   *agg
+	}
+	pairs := make([]pair, 0, len(m))
+	for k, v := range m {
+		pairs = append(pairs, pair{key: k, a: v})
+	}
+	sort.Slice(pairs, func(i, j int) bool {
+		return pairs[i].a.lastPlayed.After(pairs[j].a.lastPlayed)
+	})
+	if len(pairs) > limit {
+		pairs = pairs[:limit]
+	}
+	out := make([]EventRollup, 0, len(pairs))
+	for _, it := range pairs {
+		out = append(out, EventRollup{
+			EventID:       it.key,
+			LastPlayed:    it.a.lastPlayed,
+			Wins:          it.a.w,
+			Losses:        it.a.l,
+			Draws:         it.a.d,
+			Games:         it.a.games,
+			TotalDeltaElo: it.a.sumDelta,
+			DeltaGames:    it.a.deltaCt,
+		})
+	}
+	return out
 }

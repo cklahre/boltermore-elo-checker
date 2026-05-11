@@ -56,6 +56,26 @@ func main() {
 	fmt.Printf("Pts %%:  %.1f%%  ((wins + ½×draws) / games; chess-style)\n", rep.PointsPct)
 	fmt.Fprintln(os.Stderr, "ΔElo: change for that game after inactivity decay at game time, same rules as local-elo (full match file replay).")
 
+	if len(rep.RecentEvents) > 0 {
+		fmt.Printf("\nLast %d events (by newest game played in each event):\n", len(rep.RecentEvents))
+		fmt.Printf("%-12s %-40s %-12s %8s %12s %-12s\n", "Last day", "Event id", "Record W-L-D", "Games", "Σ ΔElo", "Rated Δs")
+		fmt.Println(strings.Repeat("-", 106))
+		for _, ev := range rep.RecentEvents {
+			evID := strings.TrimSpace(ev.EventID)
+			if evID == "" {
+				evID = "—"
+			}
+			last := ev.LastPlayed.UTC().Format("2006-01-02")
+			sumDE := "        —"
+			if ev.DeltaGames > 0 {
+				sumDE = fmt.Sprintf("%+11.1f", ev.TotalDeltaElo)
+			}
+			fmt.Printf("%-12s %-40s %3d-%2d-%2d %8d %12s %4d/%d\n",
+				last, trunc(evID, 40),
+				ev.Wins, ev.Losses, ev.Draws,
+				ev.Games, sumDE, ev.DeltaGames, ev.Games)
+		}
+	}
 	n := len(rep.Games)
 	if *lastN > 0 {
 		fmt.Printf("\nLast %d games (newest first):\n", n)
