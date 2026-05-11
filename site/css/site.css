@@ -51,6 +51,31 @@ main {
   font-size: 1.05rem;
 }
 
+.load-status-line {
+  margin: 0.65rem 0 0;
+  font-size: 0.82rem;
+  min-height: 1.2em;
+}
+
+.load-more-wrap {
+  margin-top: 0.5rem;
+}
+
+.load-more-btn {
+  display: none;
+  font: inherit;
+  cursor: pointer;
+  color: var(--accent);
+  background: rgba(94, 184, 255, 0.1);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.45rem 0.85rem;
+}
+
+.load-more-btn:hover {
+  background: rgba(94, 184, 255, 0.2);
+}
+
 .muted {
   color: var(--muted);
   font-size: 0.85rem;

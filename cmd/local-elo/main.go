@@ -22,16 +22,18 @@ func main() {
 	asOf := flag.String("as-of", "", "apply final inactivity decay through this date (2006-01-02 or RFC3339); default: now")
 	topN := flag.Int("n", 0, "if > 0, print only top N rows")
 	outJSON := flag.String("out-json", "", "if set, write full leaderboard snapshot JSON here (for bots; ignores -n)")
-	outWebJSON := flag.String("out-web-json", "", "if set, write leaderboard JSON plus recent_games per player (for static sites; ignores -n)")
-	recentN := flag.Int("recent-n", 10, "with -out-web-json, how many most recent games per player (newest first)")
+	outWebJSON := flag.String("out-web-json", "", "if set, write one monolithic leaderboard JSON (+ recent_*); use -out-web-dir for chunked Pages export")
+	outWebDir := flag.String("out-web-dir", "", "if set, write chunked index/outline/page-* JSON files under this directory (for Pages UI)")
+	webPageSize := flag.Int("web-page-size", 50, "with -out-web-dir, rankings per chunk file")
+	recentN := flag.Int("recent-n", 10, "recent games/events per player in web exports")
 	flag.Parse()
 
 	if strings.TrimSpace(*matchesPath) == "" {
-		fmt.Fprintln(os.Stderr, "Usage: local-elo -matches games.json [-as-of DATE] [-n 50] [-out-json leaderboard.json] [-out-web-json web.json]")
+		fmt.Fprintln(os.Stderr, "Usage: local-elo -matches games.json [-as-of DATE] [-n 50] [-out-json leaderboard.json] [-out-web-json web.json|-out-web-dir dir]")
 		fmt.Fprintln(os.Stderr, "")
 		fmt.Fprintln(os.Stderr, "JSON rows look like:")
 		fmt.Fprintln(os.Stderr, `  { "date": "2025-03-01", "a": "Alice Example", "b": "Bob Example", "winner": "a" }`)
-		fmt.Fprintln(os.Stderr, "Optional: -out-json for bots; -out-web-json for static sites (+ -recent-n for games per player).")
+		fmt.Fprintln(os.Stderr, "Optional: -out-json bots; web: -out-web-json single file OR -out-web-dir chunked (+ -recent-n, -web-page-size).")
 		os.Exit(2)
 	}
 
@@ -63,13 +65,17 @@ func main() {
 	rows := e.Snapshot()
 	outPath := strings.TrimSpace(*outJSON)
 	webPath := strings.TrimSpace(*outWebJSON)
+	webDir := strings.TrimSpace(*outWebDir)
+	if webPath != "" && webDir != "" {
+		log.Fatal("use only one of -out-web-json or -out-web-dir")
+	}
 	if outPath != "" {
 		if err := elodata.WriteLeaderboardJSON(outPath, cutoff, rows); err != nil {
 			log.Fatalf("out-json: %v", err)
 		}
 		fmt.Fprintf(os.Stderr, "wrote %d players → %s\n", len(rows), outPath)
 	}
-	if webPath != "" {
+	if webPath != "" || webDir != "" {
 		raw, err := os.ReadFile(*matchesPath)
 		if err != nil {
 			log.Fatalf("read matches for web export: %v", err)
@@ -78,10 +84,18 @@ func main() {
 		if err := json.Unmarshal(raw, &fileRows); err != nil {
 			log.Fatalf("matches JSON as BCP rows for web export: %v", err)
 		}
-		if err := elodata.WriteLeaderboardWebJSON(webPath, cutoff, rows, fileRows, *recentN); err != nil {
-			log.Fatalf("out-web-json: %v", err)
+		if webPath != "" {
+			if err := elodata.WriteLeaderboardWebJSON(webPath, cutoff, rows, fileRows, *recentN); err != nil {
+				log.Fatalf("out-web-json: %v", err)
+			}
+			fmt.Fprintf(os.Stderr, "wrote %d players (+ recent games) → %s\n", len(rows), webPath)
 		}
-		fmt.Fprintf(os.Stderr, "wrote %d players (+ recent games) → %s\n", len(rows), webPath)
+		if webDir != "" {
+			if err := elodata.WriteLeaderboardWebDir(webDir, cutoff, rows, fileRows, *recentN, *webPageSize); err != nil {
+				log.Fatalf("out-web-dir: %v", err)
+			}
+			fmt.Fprintf(os.Stderr, "wrote chunked web data (%d players, page size %d) → %s\n", len(rows), *webPageSize, webDir)
+		}
 	}
 
 	limit := len(rows)

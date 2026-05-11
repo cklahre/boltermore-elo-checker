@@ -35,11 +35,12 @@ jobs:
           mkdir -p site/data
 
           if [ -f bcp-matches.json ]; then
-            go run ./cmd/local-elo -matches bcp-matches.json -out-web-json site/data/leaderboard.json
+            go run ./cmd/local-elo -matches bcp-matches.json -out-web-dir site/data -web-page-size 50
           elif [ -f testdata/sample-matches.json ]; then
-            go run ./cmd/local-elo -matches testdata/sample-matches.json -out-web-json site/data/leaderboard.json
+            go run ./cmd/local-elo -matches testdata/sample-matches.json -out-web-dir site/data -web-page-size 50
           else
-            printf '%s\n' '{"as_of":"","players":[]}' > site/data/leaderboard.json
+            printf '%s\n' '{"version":2,"as_of":"","page_size":50,"total_players":0,"page_count":0,"pages":[],"outline_file":"outline.json"}' > site/data/index.json
+            printf '%s\n' '{"as_of":"","players":[]}' > site/data/outline.json
           fi
 
       - uses: actions/upload-pages-artifact@v3

@@ -26,15 +26,21 @@
           </thead>
           <tbody id="rows"></tbody>
         </table>
+        <p id="load-status" class="muted load-status-line"></p>
+        <div class="load-more-wrap">
+          <button type="button" id="load-more" class="load-more-btn">Load more rankings</button>
+        </div>
       </div>
     </main>
     <script defer src="js/home.js"></script>
     <script defer>
       document.addEventListener("DOMContentLoaded", () => {
-        window.mountHome({
+        void window.mountHome({
           metaEl: document.getElementById("meta"),
           tbodyEl: document.getElementById("rows"),
           filterEl: document.getElementById("filter"),
+          loadStatusEl: document.getElementById("load-status"),
+          loadMoreBtn: document.getElementById("load-more"),
         });
       });
     </script>

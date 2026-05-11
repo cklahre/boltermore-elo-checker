@@ -75,15 +75,31 @@ func WriteLeaderboardJSON(path string, asOf time.Time, players []elo40k.Player) 
 // WriteLeaderboardWebJSON writes the same leaderboard as WriteLeaderboardJSON plus recent_games per player,
 // using the same delta rules as player-history.
 func WriteLeaderboardWebJSON(path string, asOf time.Time, snap []elo40k.Player, matchRows []bcp.MatchFileRow, recentN int) error {
-	byPairing, byLine, err := ComputeMatchDeltas(matchRows)
+	rows, err := buildLeaderboardWebRows(snap, matchRows, recentN)
 	if err != nil {
 		return err
+	}
+	f := LeaderboardFile{
+		AsOfRFC3339: asOf.UTC().Format(time.RFC3339),
+		Players:     rows,
+	}
+	raw, err := json.MarshalIndent(f, "", "  ")
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, raw, 0o644)
+}
+
+func buildLeaderboardWebRows(snap []elo40k.Player, matchRows []bcp.MatchFileRow, recentN int) ([]LeaderboardRow, error) {
+	byPairing, byLine, err := ComputeMatchDeltas(matchRows)
+	if err != nil {
+		return nil, err
 	}
 	rows := make([]LeaderboardRow, 0, len(snap))
 	for i, p := range snap {
 		rep, err := PlayerLookupWithDeltas(matchRows, p.DisplayName, false, recentN, byPairing, byLine)
 		if err != nil {
-			return fmt.Errorf("%s: %w", p.DisplayName, err)
+			return nil, fmt.Errorf("%s: %w", p.DisplayName, err)
 		}
 		var recent []RecentGameWire
 		var recentEv []RecentEventWire
@@ -123,15 +139,7 @@ func WriteLeaderboardWebJSON(path string, asOf time.Time, snap []elo40k.Player, 
 			RecentEvents: recentEv,
 		})
 	}
-	f := LeaderboardFile{
-		AsOfRFC3339: asOf.UTC().Format(time.RFC3339),
-		Players:     rows,
-	}
-	raw, err := json.MarshalIndent(f, "", "  ")
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, raw, 0o644)
+	return rows, nil
 }
 
 // ReadLeaderboardJSON loads a file produced by WriteLeaderboardJSON.
