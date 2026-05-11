@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2025-01-10",
+    "a": "Alpha Player",
+    "b": "Beta Player",
+    "winner": "a"
+  },
+  {
+    "date": "2025-01-14",
+    "player_a": "Beta Player",
+    "player_b": "Gamma Player",
+    "winner": "draw"
+  },
+  {
+    "date": "2025-04-01",
+    "a": "Alpha Player",
+    "b": "Gamma Player",
+    "winner": "b"
+  }
+]
