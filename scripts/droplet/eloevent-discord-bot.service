@@ -1,0 +1,20 @@
+[Unit]
+Description=Elo Discord bot (Boltermore / fortyk eloevent)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/eloevent
+EnvironmentFile=-/opt/eloevent/env/bot.env
+ExecStart=/opt/eloevent/bin/eloevent-bot \
+  -matches /opt/eloevent/data/bcp-matches.json \
+  -leaderboard /opt/eloevent/data/leaderboard.json
+Restart=on-failure
+RestartSec=5
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

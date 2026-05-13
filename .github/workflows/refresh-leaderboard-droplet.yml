@@ -1,0 +1,37 @@
+name: Refresh leaderboard on droplet
+
+on:
+  schedule:
+    # Mondays 12:00 UTC (~7 AM US Eastern Standard; ~8 AM Eastern Daylight). GitHub schedule is UTC only.
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify secrets
+        env:
+          DO_HOST: ${{ secrets.DO_HOST }}
+        run: |
+          test -n "$DO_HOST" || (echo "Secret DO_HOST is required" >&2 && exit 1)
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Add SSH known_hosts
+        env:
+          DO_HOST: ${{ secrets.DO_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$DO_HOST" >> ~/.ssh/known_hosts
+
+      - name: Refresh leaderboard on server
+        env:
+          HOST: ${{ secrets.DO_HOST }}
+          DO_SSH_USER: ${{ vars.DO_SSH_USER }}
+        run: |
+          U="${DO_SSH_USER:-root}"
+          ssh "$U@$HOST" bash /opt/eloevent/scripts/refresh-leaderboard.sh

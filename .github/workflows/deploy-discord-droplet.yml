@@ -1,0 +1,82 @@
+name: Deploy Discord bot to droplet
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "site/**"
+  workflow_dispatch:
+
+concurrency:
+  group: discord-droplet-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Verify secrets
+        env:
+          DO_HOST: ${{ secrets.DO_HOST }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        run: |
+          test -n "$DO_HOST" || (echo "Secret DO_HOST is required" >&2 && exit 1)
+          test -n "$DISCORD_BOT_TOKEN" || (echo "Secret DISCORD_BOT_TOKEN is required" >&2 && exit 1)
+          test -n "$DISCORD_GUILD_ID" || (echo "Secret DISCORD_GUILD_ID is required" >&2 && exit 1)
+
+      - name: Build Linux binaries
+        run: |
+          GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
+            go build -trimpath -ldflags="-s -w" -o eloevent-bot ./discord-bot/cmd/bot
+          GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
+            go build -trimpath -ldflags="-s -w" -o local-elo ./cmd/local-elo
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Add SSH known_hosts
+        env:
+          DO_HOST: ${{ secrets.DO_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$DO_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy and restart
+        env:
+          HOST: ${{ secrets.DO_HOST }}
+          DO_SSH_USER: ${{ vars.DO_SSH_USER }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        run: |
+          U="${DO_SSH_USER:-root}"
+          ssh "$U@$HOST" 'mkdir -p /opt/eloevent/repo /opt/eloevent/bin /opt/eloevent/data /opt/eloevent/env /opt/eloevent/scripts'
+          printf 'DISCORD_BOT_TOKEN=%s\nDISCORD_GUILD_ID=%s\n' "$DISCORD_BOT_TOKEN" "$DISCORD_GUILD_ID" \
+            | ssh "$U@$HOST" 'umask 077; cat >/opt/eloevent/env/bot.env && chmod 600 /opt/eloevent/env/bot.env'
+          rsync -avz --delete \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '.cursor/' \
+            --exclude 'bcp-matches.json' \
+            --exclude 'eloevent-bot' \
+            --exclude 'local-elo' \
+            "${GITHUB_WORKSPACE}/" "$U@$HOST:/opt/eloevent/repo/"
+          rsync -avz eloevent-bot local-elo "$U@$HOST:/opt/eloevent/bin/"
+          rsync -avz scripts/droplet/refresh-leaderboard.sh "$U@$HOST:/opt/eloevent/scripts/"
+          rsync -avz scripts/droplet/eloevent-discord-bot.service "$U@$HOST:/opt/eloevent/scripts/"
+          ssh "$U@$HOST" bash -s <<'REMOTE'
+          set -euo pipefail
+          chmod +x /opt/eloevent/bin/eloevent-bot /opt/eloevent/bin/local-elo /opt/eloevent/scripts/refresh-leaderboard.sh
+          cp /opt/eloevent/scripts/eloevent-discord-bot.service /etc/systemd/system/eloevent-discord-bot.service
+          systemctl daemon-reload
+          systemctl restart eloevent-discord-bot
+          REMOTE
