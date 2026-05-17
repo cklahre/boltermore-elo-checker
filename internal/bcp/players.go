@@ -6,6 +6,13 @@ import (
 	"strings"
 )
 
+// FactionRef is nested faction data from GET .../events/{id}/players.
+type FactionRef struct {
+	ID            string      `json:"id"`
+	Name          string      `json:"name"`
+	ParentFaction *FactionRef `json:"parentFaction,omitempty"`
+}
+
 // RosterPlayer is one active entry from GET /v1/events/{id}/players (active[]).
 type RosterPlayer struct {
 	ID              string      `json:"id"`
