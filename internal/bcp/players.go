@@ -8,10 +8,15 @@ import (
 
 // RosterPlayer is one active entry from GET /v1/events/{id}/players (active[]).
 type RosterPlayer struct {
-	ID     string     `json:"id"`
-	UserID string     `json:"userId"`
-	User   *bcpUser   `json:"user"`
-	Dropped bool      `json:"dropped"`
+	ID              string      `json:"id"`
+	UserID          string      `json:"userId"`
+	User            *bcpUser    `json:"user"`
+	Dropped         bool        `json:"dropped"`
+	ParentFactionID string      `json:"parentFactionId"`
+	FactionID       string      `json:"factionId"`
+	Faction         *FactionRef `json:"faction,omitempty"`
+	ListID          string      `json:"listId"`
+	ListURL         string      `json:"listUrl"`
 }
 
 type bcpUser struct {

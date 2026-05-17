@@ -53,9 +53,13 @@ Both workflows SSH in and expect `/opt/eloevent` dirs to exist (`install-on-drop
 
 Do **not** commit it. Typical options:
 
-1. **Copy once**, then optionally refresh manually:  
-   `rsync -avP ./bcp-matches.json root@YOUR_DROPLET:/opt/eloevent/data/`
-2. **Automate pull on the droplet**: set `UPDATE_MATCHES_CMD` in `/opt/eloevent/env/refresh.env` to `curl`/`wget` from a private URL (e.g. DigitalOcean Spaces with a scoped token), or run your existing export script after checking out tooling on the droplet.
-3. **GitHub Actions** should only run `refresh-leaderboard.sh` over SSH; do not upload gigabytes through Actions unless you add a deliberate artifact step.
+1. **Copy from your laptop, rebuild leaderboard on the droplet, restart the bot** — from repo root, with SSH working (`ssh root@YOUR_DROPLET` succeeds):  
+   `SSH_IDENTITY=~/.ssh/id_do_personal DO_HOST=YOUR_DROPLET ./scripts/droplet/sync-matches-to-droplet.sh`  
+   (Uses this repo’s `bcp-matches.json` by default; override with `MATCHES_JSON=...`. Omit `SSH_IDENTITY` when your normal `ssh` config already picks the right key.)
+2. **Manual only**:  
+   `rsync -avP ./bcp-matches.json root@YOUR_DROPLET:/opt/eloevent/data/`  
+   Then on the droplet: `/opt/eloevent/bin/local-elo -matches /opt/eloevent/data/bcp-matches.json -out-json /opt/eloevent/data/leaderboard.json` and `systemctl restart eloevent-discord-bot`.
+3. **Automate pull on the droplet** (later): set `UPDATE_MATCHES_CMD` in `/opt/eloevent/env/refresh.env` to `curl`/`wget` from a private URL (e.g. DigitalOcean Spaces with a scoped token), or run your existing export script after checking out tooling on the droplet.
+4. **GitHub Actions** should only run `refresh-leaderboard.sh` over SSH; do not upload gigabytes through Actions unless you add a deliberate artifact step.
 
-Weekly refresh runs `local-elo` **on** the droplet against the matches file already there (or fetched by `UPDATE_MATCHES_CMD`).
+When you automate weekly refresh, `refresh-leaderboard.sh` runs `local-elo` **on** the droplet against the matches file already there (or fetched by `UPDATE_MATCHES_CMD`); you can ignore that until you’re ready.

@@ -20,6 +20,10 @@ type Client struct {
 	HTTP *http.Client
 	// MinInterval, if > 0, enforces a minimum delay between completed GETs (rate limiting).
 	MinInterval time.Duration
+	// BearerToken is optional (e.g. Cognito JWT from a logged-in BCP session). Required for
+	// GET /v1/armylists/{id} which returns "unauthorized access" without it.
+	BearerToken string
+
 	lastTick    time.Time
 	throttleMu  sync.Mutex
 }
@@ -56,6 +60,9 @@ func (c *Client) get(u *url.URL) ([]byte, error) {
 		req.Header.Set("client-id", ClientID)
 		req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; fortyk-bcp-harvest/1.0)")
 		req.Header.Set("Accept", "application/json")
+		if t := strings.TrimSpace(c.BearerToken); t != "" {
+			req.Header.Set("Authorization", "Bearer "+t)
+		}
 
 		resp, err := c.httpClient().Do(req)
 		if err != nil {
