@@ -10,6 +10,8 @@ import (
 type RosterPlayer struct {
 	ID              string      `json:"id"`
 	UserID          string      `json:"userId"`
+	FirstName       string      `json:"firstName"`
+	LastName        string      `json:"lastName"`
 	User            *bcpUser    `json:"user"`
 	Dropped         bool        `json:"dropped"`
 	ParentFactionID string      `json:"parentFactionId"`
@@ -27,9 +29,12 @@ type bcpUser struct {
 
 func (p RosterPlayer) FullName() string {
 	if p.User != nil {
-		return strings.TrimSpace(p.User.FirstName + " " + p.User.LastName)
+		n := strings.TrimSpace(p.User.FirstName + " " + p.User.LastName)
+		if n != "" {
+			return n
+		}
 	}
-	return ""
+	return strings.TrimSpace(p.FirstName + " " + p.LastName)
 }
 
 type playersEnvelope struct {

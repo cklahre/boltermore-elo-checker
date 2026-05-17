@@ -53,3 +53,15 @@ func TestEngineDecayBeforeReturn(t *testing.T) {
 		t.Fatalf("Amy should have decayed from first win peak before second game, got rating %v", a.Rating)
 	}
 }
+
+func TestPlayerMatchKeyCollapsesSpaces(t *testing.T) {
+	if got, want := PlayerMatchKey("  Jack    Murphy "), "jack murphy"; got != want {
+		t.Fatalf("PlayerMatchKey: got %q want %q", got, want)
+	}
+	if got, want := PlayerMatchKey("  Jack\u00a0Murphy "), "jack murphy"; got != want {
+		t.Fatalf("PlayerMatchKey NBSP: got %q want %q", got, want)
+	}
+	if got, want := PlayerKey("Jack  Murphy"), "jack  murphy"; got != want {
+		t.Fatalf("PlayerKey preserves internal spacing: got %q want %q", got, want)
+	}
+}

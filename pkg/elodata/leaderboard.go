@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"fortyk/eloevent/internal/bcp"
@@ -162,10 +163,7 @@ func (f *LeaderboardFile) EloByKey() map[string]float64 {
 	}
 	m := make(map[string]float64, len(f.Players))
 	for _, r := range f.Players {
-		k := r.Key
-		if k == "" {
-			k = elo40k.PlayerKey(r.Name)
-		}
+		k := rowStorageKey(r)
 		m[k] = r.Elo
 	}
 	return m
@@ -178,11 +176,46 @@ func (f *LeaderboardFile) RowByKey() map[string]LeaderboardRow {
 	}
 	m := make(map[string]LeaderboardRow, len(f.Players))
 	for _, r := range f.Players {
-		k := r.Key
-		if k == "" {
-			k = elo40k.PlayerKey(r.Name)
-		}
+		k := rowStorageKey(r)
 		m[k] = r
 	}
 	return m
+}
+
+func rowStorageKey(r LeaderboardRow) string {
+	if strings.TrimSpace(r.Key) != "" {
+		return r.Key
+	}
+	return elo40k.PlayerKey(r.Name)
+}
+
+// LookupPlayerRow finds a leaderboard row for a roster or pairing display name.
+// It tries exact PlayerKey first, then matches on whitespace-normalized name/key
+// so "Jack  Murphy", "jack murphy", and "Jack Murphy" align across BCP payloads and JSON.
+func (f *LeaderboardFile) LookupPlayerRow(name string) (LeaderboardRow, bool) {
+	if f == nil {
+		return LeaderboardRow{}, false
+	}
+	if strings.TrimSpace(name) == "" || name == "(unnamed)" {
+		return LeaderboardRow{}, false
+	}
+	exact := elo40k.PlayerKey(name)
+	for _, r := range f.Players {
+		if rowStorageKey(r) == exact {
+			return r, true
+		}
+	}
+	want := elo40k.PlayerMatchKey(name)
+	if want == "" {
+		return LeaderboardRow{}, false
+	}
+	for _, r := range f.Players {
+		if elo40k.PlayerMatchKey(r.Name) == want {
+			return r, true
+		}
+		if strings.TrimSpace(r.Key) != "" && elo40k.PlayerMatchKey(r.Key) == want {
+			return r, true
+		}
+	}
+	return LeaderboardRow{}, false
 }

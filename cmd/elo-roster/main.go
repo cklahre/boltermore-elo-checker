@@ -39,22 +39,23 @@ func main() {
 		log.Fatalf("bcp roster: %v", err)
 	}
 
-	byRow := lb.RowByKey()
 	type row struct {
 		name string
 		elo  float64
 		drop bool
 	}
 	var lines []row
+
 	for _, p := range roster {
 		n := p.FullName()
 		if n == "" {
 			n = "(unnamed)"
 		}
-		k := elo40k.PlayerKey(n)
 		elo := elo40k.Baseline
-		if r, ok := byRow[k]; ok {
-			elo = r.Elo
+		if n != "(unnamed)" {
+			if r, ok := lb.LookupPlayerRow(n); ok {
+				elo = r.Elo
+			}
 		}
 		lines = append(lines, row{name: n, elo: elo, drop: p.Dropped})
 	}

@@ -46,6 +46,13 @@ func key(name string) string { return strings.ToLower(strings.TrimSpace(name)) }
 // PlayerKey is the canonical key used to merge player names (same as the Elo engine).
 func PlayerKey(name string) string { return key(name) }
 
+// PlayerMatchKey lowercases and collapses whitespace to a single space for comparing
+// pairing/roster/display strings where internal spacing differs.
+func PlayerMatchKey(name string) string {
+	name = strings.TrimSpace(strings.ReplaceAll(name, "\u00a0", " "))
+	return strings.Join(strings.Fields(strings.ToLower(name)), " ")
+}
+
 func (e *Engine) ensure(name string) *Player {
 	k := key(name)
 	p, ok := e.players[k]

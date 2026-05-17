@@ -231,8 +231,7 @@ func (b *botState) handlePlayer(name string, contains bool, last int) (string, e
 	var o strings.Builder
 	eloLead := ""
 	if lb != nil {
-		k := elo40k.PlayerKey(rep.DisplayName)
-		rrow, ok := lb.RowByKey()[k]
+		rrow, ok := lb.LookupPlayerRow(rep.DisplayName)
 		asOf := leaderboardAsOfShort(lb.AsOfRFC3339)
 		if ok {
 			eloLead = fmt.Sprintf("**%.1f Elo** (#%d) · _snapshot %s_", rrow.Elo, rrow.Rank, asOf)
@@ -323,22 +322,23 @@ func (b *botState) rosterDiscordMessages(eventID string) ([]string, error) {
 		return []string{hdr}, nil
 	}
 
-	byRow := lb.RowByKey()
 	type line struct {
 		name string
 		elo  float64
 		drop bool
 	}
 	var rows []line
+
 	for _, p := range roster {
 		n := p.FullName()
 		if n == "" {
 			n = "(unnamed)"
 		}
-		k := elo40k.PlayerKey(n)
 		el := elo40k.Baseline
-		if row, ok := byRow[k]; ok {
-			el = row.Elo
+		if n != "(unnamed)" {
+			if row, ok := lb.LookupPlayerRow(n); ok {
+				el = row.Elo
+			}
 		}
 		rows = append(rows, line{name: n, elo: el, drop: p.Dropped})
 	}
