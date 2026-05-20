@@ -4,8 +4,8 @@ set -euo pipefail
 
 ROOT="/opt/eloevent"
 REPO="${ROOT}/repo"
+# Optional fallback: cron / UPDATE_MATCHES_CMD may drop a single file into data/ — not tracked in repo.
 MATCHES_LEGACY_DATA="${ROOT}/data/bcp-matches.json"
-MATCHES_LEGACY_REPO="${REPO}/bcp-matches.json"
 MATCHES_MANIFEST_DATA="${ROOT}/data/bcp-matches.manifest"
 MATCHES_MANIFEST_REPO="${REPO}/bcp-matches.manifest"
 LEADER="${ROOT}/data/leaderboard.json"
@@ -36,14 +36,12 @@ elif [[ -f "$MATCHES_MANIFEST_REPO" ]]; then
   echo "(using manifest from repo mirror: $MATCHES_MANIFEST_REPO)"
   "$BIN" -matches-manifest "$MATCHES_MANIFEST_REPO" -out-json "$LEADER"
 elif [[ -f "$MATCHES_LEGACY_DATA" ]]; then
-  echo "(using single file: $MATCHES_LEGACY_DATA)"
+  echo "(fallback single file — prefer manifest + shards: $MATCHES_LEGACY_DATA)"
   "$BIN" -matches "$MATCHES_LEGACY_DATA" -out-json "$LEADER"
-elif [[ -f "$MATCHES_LEGACY_REPO" ]]; then
-  echo "(using single file from repo mirror: $MATCHES_LEGACY_REPO)"
-  "$BIN" -matches "$MATCHES_LEGACY_REPO" -out-json "$LEADER"
 else
-  echo "missing matches input: manifest or monolith under ${ROOT}/data/ or manifest + shards committed under ${REPO}/" >&2
-  echo "Copy your export(s) here, push them in git so deploy rsync fills ${REPO}/, or set UPDATE_MATCHES_CMD in env/refresh.env." >&2
+  echo "missing matches: need bcp-matches.manifest (+ listed shards)" >&2
+  echo "  under ${ROOT}/data/ OR ${REPO}/ (committed shards + manifest from git)." >&2
+  echo "Or set UPDATE_MATCHES_CMD / drop legacy ${MATCHES_LEGACY_DATA} from automation." >&2
   exit 1
 fi
 

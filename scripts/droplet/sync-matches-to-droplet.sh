@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
-# Copy match export JSON from your machine → droplet /opt/eloevent/data/, then run
-# /opt/eloevent/scripts/refresh-leaderboard.sh (manifest-first, matches CI droplet logic).
+# Copy bcp-matches.manifest + shards from your repo → droplet /opt/eloevent/data/, then run
+# /opt/eloevent/scripts/refresh-leaderboard.sh (same precedence as systemd / CI layout).
 #
-# Single file:
+# Default manifest: repo-root bcp-matches.manifest when MATCHES_MANIFEST is unset:
 #   DO_HOST=x.x.x.x ./scripts/droplet/sync-matches-to-droplet.sh
-# Multi-shard (paths in manifest relative to manifest's directory — see bcp-matches.manifest.example):
-#   MATCHES_MANIFEST=./scripts/droplet/foo.manifest DO_HOST=x.x.x.x ./scripts/droplet/sync-matches-to-droplet.sh
+# Explicit manifest path:
+#   MATCHES_MANIFEST=./scripts/droplet/other.manifest DO_HOST=x.x.x.x ./scripts/droplet/sync-matches-to-droplet.sh
+#
+# Optional emergency monolith ONLY when explicitly requested (drops matching manifest upload pattern):
+#   MATCHES_JSON=/path/to/one-big-file.json SYNC_MONOLITH=1 DO_HOST=... ./scripts/droplet/sync-matches-to-droplet.sh
 #
 # Optional:
-#   DO_SSH_USER=root MATCHES_JSON=/path/to/bcp-matches.json DO_HOST=x.x.x.x ...
-#   SSH_IDENTITY=~/.ssh/id_do_personal DO_HOST=x.x.x.x ...
+#   DO_SSH_USER=root SSH_IDENTITY=~/.ssh/id_do_personal DO_HOST=x.x.x.x ...
 set -euo pipefail
 
 : "${DO_HOST:?set DO_HOST to your droplet IP or hostname}"
@@ -71,21 +73,28 @@ upload_manifest_shards() {
 }
 
 upload_single_matches() {
-	local src="${MATCHES_JSON:-${REPO_ROOT}/bcp-matches.json}"
+	local src="${MATCHES_JSON:?with SYNC_MONOLITH=1 also set MATCHES_JSON to the JSON file path}"
 	if [[ ! -f "$src" ]]; then
-		echo "matches file not found: $src (set MATCHES_JSON=...)" >&2
+		echo "matches file not found: $src" >&2
 		exit 1
 	fi
-	echo "Removing stale ${REMOTE_DATA}/bcp-matches.manifest on server (so refresh uses the single upload) ..."
+	echo "Removing ${REMOTE_DATA}/bcp-matches.manifest on server (monolith overrides manifest pool) ..."
 	"${ssh_cmd[@]}" "${U}@${DO_HOST}" "rm -f ${REMOTE_DATA}/bcp-matches.manifest"
-	echo "Uploading matches → ${U}@${DO_HOST}:${REMOTE_DATA}/bcp-matches.json ..."
+	echo "Uploading monolith → ${U}@${DO_HOST}:${REMOTE_DATA}/bcp-matches.json ..."
 	rsync -avP -e "$(rsync_rsh)" "$src" "${U}@${DO_HOST}:${REMOTE_DATA}/bcp-matches.json"
 }
 
-if [[ -n "${MATCHES_MANIFEST:-}" ]]; then
-	upload_manifest_shards "${MATCHES_MANIFEST}"
-else
+if [[ "${SYNC_MONOLITH:-}" == "1" ]]; then
 	upload_single_matches
+elif [[ -n "${MATCHES_MANIFEST:-}" ]]; then
+	upload_manifest_shards "${MATCHES_MANIFEST}"
+elif [[ -f "${REPO_ROOT}/bcp-matches.manifest" ]]; then
+	upload_manifest_shards "${REPO_ROOT}/bcp-matches.manifest"
+else
+	echo "No MATCHES_MANIFEST and no ${REPO_ROOT}/bcp-matches.manifest." >&2
+	echo "Use dated shards listed in your manifest at repo root, or MATCHES_MANIFEST=/path/to/your.manifest" >&2
+	echo "Emergency only: SYNC_MONOLITH=1 MATCHES_JSON=/path/to/file.json ./scripts/droplet/sync-matches-to-droplet.sh ..." >&2
+	exit 1
 fi
 
 echo "Running refresh-leaderboard on server ..."

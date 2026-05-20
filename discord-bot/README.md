@@ -7,14 +7,13 @@ This folder stays **separate from the CLI tools** but lives in the **same Go mod
 
 ## Data files
 
-1. **Matches** — same JSON as `bcp-export-matches`; keep one monolith **or** several dated shards merged at load via `-matches-manifest` (see `scripts/droplet/bcp-matches.manifest.example`). Manifest mode is exclusive with repeating `-matches` flags.
+1. **Matches** — same JSON as `bcp-export-matches`; use **dated shards** merged via **`-matches-manifest`** at repo root (see `bcp-matches.manifest`). Manifest mode is exclusive with repeating `-matches` flags.
 2. **Leaderboard cache** — generate with `local-elo` (full pool; no need to recompute in the bot):
 
 ```bash
-go run ./cmd/local-elo -matches bcp-matches.json -as-of 2026-05-06 -out-json leaderboard.json
-
-# shards (newline manifest of JSON paths):
 go run ./cmd/local-elo -matches-manifest bcp-matches.manifest -as-of 2026-05-06 -out-json leaderboard.json
+
+# legacy monolith (optional): go run ./cmd/local-elo -matches bcp-matches.json ...
 ```
 
 After shard or leaderboard updates, `/elo-player`, `/elo-roster`, and `/elo-leaderboard` reload from disk when those files change. Match the pool `refresh-leaderboard.sh` uses (e.g. `bcp-matches.manifest`) in the bot systemd ExecStart via `-matches-manifest`, not only a stale monolithic `-matches` path — otherwise games/ΔElo can disagree with `leaderboard.json`.
@@ -37,20 +36,20 @@ export DISCORD_GUILD_ID="your_server_snowflake_id"
 
 go run ./discord-bot/cmd/bot \
   -guild "$DISCORD_GUILD_ID" \
-  -matches bcp-matches.json \
+  -matches-manifest bcp-matches.manifest \
   -leaderboard leaderboard.json \
   -reload 5m \
   -announce-leaderboard-channel elo-hell
 
-# multi-shard (manifest only in this Exec line; omit -matches for same pool):
+# legacy single file (explicit -matches — no implicit default pool path):
 # go run ./discord-bot/cmd/bot -guild "$DISCORD_GUILD_ID" \
-#   -matches-manifest bcp-matches.manifest -leaderboard leaderboard.json
+#   -matches path/to/monolith.json -leaderboard leaderboard.json
 ```
 
 Optional env (defaults shown):
 
-- `ELO_MATCHES_JSON` → fallback path when `-matches`/`-matches-manifest` are omitted (`bcp-matches.json`).
-- `ELO_MATCHES_MANIFEST` → default for `-matches-manifest` when the flag is not passed (`bot.env`).
+- `ELO_MATCHES_MANIFEST` → default `-matches-manifest` when the CLI flag is omitted (shard workflows).
+- `ELO_MATCHES_JSON` → **optional** path used **only when** `-matches`/`-matches-manifest` are omitted; leave unset when you rely entirely on manifests.
 - `ELO_LEADERBOARD_JSON` → `leaderboard.json`
 - `ELO_LEADERBOARD_ANNOUNCE_CHANNEL` → optional channel snowflake **or** name (needs **`‑guild`** for names); announces when leaderboard `as_of` changes after reload.
 

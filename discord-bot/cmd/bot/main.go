@@ -42,7 +42,7 @@ func main() {
 	announceChan := flag.String("announce-leaderboard-channel", getenvDefault("ELO_LEADERBOARD_ANNOUNCE_CHANNEL", ""), "channel ID or #elo-hell: post when leaderboard as_of changes (-guild required to resolve names)")
 	flag.Parse()
 
-	sources, err := bcp.ResolveMatchShardPaths(*matchesManifest, matchesShards, getenvDefault("ELO_MATCHES_JSON", "bcp-matches.json"))
+	sources, err := bcp.ResolveMatchShardPaths(*matchesManifest, matchesShards, getenvDefault("ELO_MATCHES_JSON", ""))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(2)
@@ -51,7 +51,7 @@ func main() {
 	if strings.TrimSpace(*token) == "" {
 		fmt.Fprintln(os.Stderr, "Need DISCORD_BOT_TOKEN (or -token). Example:")
 		fmt.Fprintln(os.Stderr, "  DISCORD_BOT_TOKEN=... go run ./discord-bot/cmd/bot -guild YOUR_GUILD_ID \\")
-		fmt.Fprintln(os.Stderr, "    -matches bcp-matches.json -leaderboard leaderboard.json")
+		fmt.Fprintln(os.Stderr, "    -matches-manifest bcp-matches.manifest -leaderboard leaderboard.json")
 		fmt.Fprintln(os.Stderr, "See discord-bot/README.md.")
 		os.Exit(2)
 	}

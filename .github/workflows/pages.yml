@@ -34,7 +34,9 @@ jobs:
           set -euo pipefail
           mkdir -p site/data
 
-          if [ -f bcp-matches.json ]; then
+          if [ -f bcp-matches.manifest ]; then
+            go run ./cmd/local-elo -matches-manifest bcp-matches.manifest -out-web-dir site/data -web-page-size 50
+          elif [ -f bcp-matches.json ]; then
             go run ./cmd/local-elo -matches bcp-matches.json -out-web-dir site/data -web-page-size 50
           elif [ -f testdata/sample-matches.json ]; then
             go run ./cmd/local-elo -matches testdata/sample-matches.json -out-web-dir site/data -web-page-size 50
