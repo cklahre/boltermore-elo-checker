@@ -72,13 +72,14 @@ jobs:
             "${GITHUB_WORKSPACE}/" "$U@$HOST:/opt/eloevent/repo/"
           rsync -avz eloevent-bot local-elo "$U@$HOST:/opt/eloevent/bin/"
           rsync -avz scripts/droplet/refresh-leaderboard.sh \
+            scripts/droplet/start-eloevent-discord-bot.sh \
             scripts/droplet/eloevent-refresh-leaderboard.service \
             scripts/droplet/eloevent-refresh-leaderboard.timer \
             "$U@$HOST:/opt/eloevent/scripts/"
           rsync -avz scripts/droplet/eloevent-discord-bot.service "$U@$HOST:/opt/eloevent/scripts/"
           ssh "$U@$HOST" bash -s <<'REMOTE'
           set -euo pipefail
-          chmod +x /opt/eloevent/bin/eloevent-bot /opt/eloevent/bin/local-elo /opt/eloevent/scripts/refresh-leaderboard.sh
+          chmod +x /opt/eloevent/bin/eloevent-bot /opt/eloevent/bin/local-elo /opt/eloevent/scripts/refresh-leaderboard.sh /opt/eloevent/scripts/start-eloevent-discord-bot.sh
           chmod 644 /opt/eloevent/scripts/eloevent-discord-bot.service \
             /opt/eloevent/scripts/eloevent-refresh-leaderboard.service \
             /opt/eloevent/scripts/eloevent-refresh-leaderboard.timer

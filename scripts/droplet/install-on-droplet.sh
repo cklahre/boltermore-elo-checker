@@ -29,6 +29,8 @@ chmod 644 /etc/systemd/system/eloevent-refresh-leaderboard.service /etc/systemd/
 
 cp "${SCRIPT_DIR}/refresh-leaderboard.sh" "${ROOT}/scripts/refresh-leaderboard.sh"
 chmod 755 "${ROOT}/scripts/refresh-leaderboard.sh"
+cp "${SCRIPT_DIR}/start-eloevent-discord-bot.sh" "${ROOT}/scripts/start-eloevent-discord-bot.sh"
+chmod 755 "${ROOT}/scripts/start-eloevent-discord-bot.sh"
 
 systemctl daemon-reload
 systemctl enable eloevent-discord-bot.service
@@ -36,7 +38,7 @@ systemctl enable --now eloevent-refresh-leaderboard.timer
 
 echo "Next:"
 echo "  1. Fill in ${ROOT}/env/bot.env (chmod 600)"
-echo "  2. Put match exports under ${ROOT}/data/: either bcp-matches.json or bcp-matches.manifest + shards (see scripts/droplet/bcp-matches.manifest.example)"
+echo "  2. Match exports: ${ROOT}/data/ **or**, if committed in git, ${ROOT}/repo/ after CI deploy — start-eloevent-discord-bot.sh mirrors refresh precedence (data wins)"
 echo "  3. Optional: ${ROOT}/env/refresh.env from env/refresh.env.example (UPDATE_MATCHES_CMD runs before each timer/refresh)"
 echo "  4. systemd runs refresh daily (eloevent-refresh-leaderboard.timer); or: ${ROOT}/scripts/refresh-leaderboard.sh"
 echo "  5. systemctl start eloevent-discord-bot"

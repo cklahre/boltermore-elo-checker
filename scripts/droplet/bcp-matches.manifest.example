@@ -1,0 +1,8 @@
+# List JSON shards for local-elo / eloevent-bot (newline-separated paths).
+# Relative paths are resolved against THIS manifest file's directory (# comments allowed).
+#
+# Typical workflow: rename an old export to include the pull date, export only new events
+# into a smaller file, then stack them oldest → newest (dedupe pairing_id keeps the first).
+#
+bcp-matches-2026-03-01.json
+bcp-matches-new-events.json

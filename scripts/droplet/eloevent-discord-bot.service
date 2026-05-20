@@ -16,10 +16,8 @@ EnvironmentFile=-/opt/eloevent/env/bot.env
 #   -leaderboard /opt/eloevent/data/leaderboard.json \
 #   -reload 5m \
 #   -announce-leaderboard-channel elo-hell
-# Or single-file + periodic reload:
-ExecStart=/opt/eloevent/bin/eloevent-bot \
-  -matches /opt/eloevent/data/bcp-matches.json \
-  -leaderboard /opt/eloevent/data/leaderboard.json
+# Launcher picks data/bcp-matches.* first, then repo mirror (GitHub Actions rsync checkout).
+ExecStart=/opt/eloevent/scripts/start-eloevent-discord-bot.sh
 Restart=on-failure
 RestartSec=5
 
