@@ -3,7 +3,8 @@
 set -euo pipefail
 
 ROOT="/opt/eloevent"
-MATCHES="${ROOT}/data/bcp-matches.json"
+MATCHES_LEGACY="${ROOT}/data/bcp-matches.json"
+MATCHES_MANIFEST="${ROOT}/data/bcp-matches.manifest"
 LEADER="${ROOT}/data/leaderboard.json"
 BIN="${ROOT}/bin/local-elo"
 
@@ -24,14 +25,18 @@ if [[ -n "${UPDATE_MATCHES_CMD:-}" ]]; then
   bash -c "$UPDATE_MATCHES_CMD"
 fi
 
-if [[ ! -f "$MATCHES" ]]; then
-  echo "missing matches file: $MATCHES" >&2
-  echo "Copy your export here or set UPDATE_MATCHES_CMD in env/refresh.env (e.g. curl from Spaces)." >&2
+echo "Regenerating leaderboard from matches ..."
+if [[ -f "$MATCHES_MANIFEST" ]]; then
+  echo "(using manifest: $MATCHES_MANIFEST)"
+  "$BIN" -matches-manifest "$MATCHES_MANIFEST" -out-json "$LEADER"
+elif [[ -f "$MATCHES_LEGACY" ]]; then
+  echo "(using single file: $MATCHES_LEGACY)"
+  "$BIN" -matches "$MATCHES_LEGACY" -out-json "$LEADER"
+else
+  echo "missing matches input: either $MATCHES_MANIFEST (multi-shard list) or $MATCHES_LEGACY" >&2
+  echo "Copy your export(s) here or set UPDATE_MATCHES_CMD in env/refresh.env (e.g. curl from Spaces)." >&2
   exit 1
 fi
-
-echo "Regenerating leaderboard from matches ..."
-"$BIN" -matches "$MATCHES" -out-json "$LEADER"
 
 echo "Restarting discord bot ..."
 systemctl restart eloevent-discord-bot

@@ -2,7 +2,6 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -14,25 +13,36 @@ import (
 	"fortyk/eloevent/pkg/elodata"
 )
 
+type matchPathsFlag []string
+
+func (m *matchPathsFlag) String() string { return strings.Join([]string(*m), ", ") }
+func (m *matchPathsFlag) Set(v string) error {
+	*m = append(*m, strings.TrimSpace(v))
+	return nil
+}
+
 func main() {
-	matchesPath := flag.String("matches", "", "JSON from bcp-export-matches (or same shape)")
+	matchesManifest := flag.String("matches-manifest", "", "same format as local-elo: newline paths to shards")
+	var matchShards matchPathsFlag
+	flag.Var(&matchShards, "matches", "matches JSON shard (repeat for multi-file)")
 	playerQuery := flag.String("player", "", "player name (see -contains)")
 	contains := flag.Bool("contains", false, "match if name contains -player (substring, case-insensitive)")
 	lastN := flag.Int("last", 10, "show this many most recent games (0 = all, newest first)")
 	flag.Parse()
 
-	if strings.TrimSpace(*matchesPath) == "" || strings.TrimSpace(*playerQuery) == "" {
-		fmt.Fprintln(os.Stderr, "Usage: player-history -matches games.json -player \"Player Name\" [-contains] [-last 10]")
+	paths, err := bcp.ResolveMatchShardPaths(*matchesManifest, matchShards, "")
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Usage: player-history [-matches-manifest list.txt | -matches a.json -matches b.json ...] -player \"Name\" [-contains] [-last 10]")
+		os.Exit(2)
+	}
+	if strings.TrimSpace(*playerQuery) == "" {
+		fmt.Fprintln(os.Stderr, "Usage: player-history [-matches-manifest list.txt | -matches a.json -matches b.json ...] -player \"Name\" [-contains] [-last 10]")
 		os.Exit(2)
 	}
 
-	body, err := os.ReadFile(*matchesPath)
+	rows, err := bcp.MergeMatchFiles(paths, true)
 	if err != nil {
 		log.Fatal(err)
-	}
-	var rows []bcp.MatchFileRow
-	if err := json.Unmarshal(body, &rows); err != nil {
-		log.Fatalf("matches JSON: %v", err)
 	}
 
 	rep, err := elodata.PlayerLookup(rows, *playerQuery, *contains, *lastN)

@@ -7,6 +7,9 @@ Wants=network-online.target
 Type=simple
 WorkingDirectory=/opt/eloevent
 EnvironmentFile=-/opt/eloevent/env/bot.env
+# Single-file deploy (default): -matches ...
+# Multi-shard deploy: swap to `-matches-manifest /opt/eloevent/data/bcp-matches.manifest`
+# OR set only ELO_MATCHES_MANIFEST in bot.env — do not mix `-matches-manifest` AND `-matches` for the same pool.
 ExecStart=/opt/eloevent/bin/eloevent-bot \
   -matches /opt/eloevent/data/bcp-matches.json \
   -leaderboard /opt/eloevent/data/leaderboard.json

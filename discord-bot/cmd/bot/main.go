@@ -3,7 +3,6 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -23,13 +22,29 @@ import (
 	"fortyk/eloevent/pkg/elodata"
 )
 
+type matchPathsFlag []string
+
+func (m *matchPathsFlag) String() string { return strings.Join([]string(*m), ", ") }
+func (m *matchPathsFlag) Set(v string) error {
+	*m = append(*m, strings.TrimSpace(v))
+	return nil
+}
+
 func main() {
 	token := flag.String("token", os.Getenv("DISCORD_BOT_TOKEN"), "bot token (or env DISCORD_BOT_TOKEN)")
 	guildID := flag.String("guild", os.Getenv("DISCORD_GUILD_ID"), "optional guild id for instant slash registration")
-	matchesPath := flag.String("matches", getenvDefault("ELO_MATCHES_JSON", "bcp-matches.json"), "exported pairings JSON")
+	matchesManifest := flag.String("matches-manifest", getenvDefault("ELO_MATCHES_MANIFEST", ""), "when non-empty, load ONLY this manifest (see refresh-leaderboard / local-elo); systemd/bot.env: omit -matches for same pool")
+	var matchesShards matchPathsFlag
+	flag.Var(&matchesShards, "matches", "exported pairings JSON shard (repeat for multi-file)")
 	leaderPath := flag.String("leaderboard", getenvDefault("ELO_LEADERBOARD_JSON", "leaderboard.json"), "from local-elo -out-json")
 	reloadEvery := flag.Duration("reload", 0, "reload JSON files from disk on this interval (0 = only at startup)")
 	flag.Parse()
+
+	sources, err := bcp.ResolveMatchShardPaths(*matchesManifest, matchesShards, getenvDefault("ELO_MATCHES_JSON", "bcp-matches.json"))
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(2)
+	}
 
 	if strings.TrimSpace(*token) == "" {
 		fmt.Fprintln(os.Stderr, "Need DISCORD_BOT_TOKEN (or -token). Example:")
@@ -40,8 +55,8 @@ func main() {
 	}
 
 	bot := &botState{
-		matchesPath: *matchesPath,
-		leaderPath:  *leaderPath,
+		matchShardPaths: sources,
+		leaderPath:      *leaderPath,
 		bcpClient: &bcp.Client{
 			MinInterval: 400 * time.Millisecond,
 			BearerToken: strings.TrimSpace(os.Getenv("BCP_BEARER_TOKEN")),
@@ -93,22 +108,18 @@ func getenvDefault(key, def string) string {
 type botState struct {
 	mu sync.RWMutex
 
-	matchesPath string
-	leaderPath  string
-	rows        []bcp.MatchFileRow
-	lb          *elodata.LeaderboardFile
+	matchShardPaths []string
+	leaderPath      string
+	rows            []bcp.MatchFileRow
+	lb              *elodata.LeaderboardFile
 
 	bcpClient *bcp.Client
 }
 
 func (b *botState) reload() error {
-	raw, err := os.ReadFile(b.matchesPath)
+	rows, err := bcp.MergeMatchFiles(b.matchShardPaths, true)
 	if err != nil {
-		return fmt.Errorf("matches: %w", err)
-	}
-	var rows []bcp.MatchFileRow
-	if err := json.Unmarshal(raw, &rows); err != nil {
-		return fmt.Errorf("matches json: %w", err)
+		return fmt.Errorf("matches merge: %w", err)
 	}
 	lb, err := elodata.ReadLeaderboardJSON(b.leaderPath)
 	if err != nil {
@@ -118,7 +129,7 @@ func (b *botState) reload() error {
 	b.rows = rows
 	b.lb = lb
 	b.mu.Unlock()
-	log.Printf("loaded %d match rows, %d leaderboard entries", len(rows), len(lb.Players))
+	log.Printf("loaded %d match rows (%d shards), %d leaderboard entries", len(rows), len(b.matchShardPaths), len(lb.Players))
 	return nil
 }
 

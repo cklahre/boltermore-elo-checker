@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Copy bcp-matches.json from your machine → droplet, rebuild leaderboard.json, restart the bot.
+# Copy match export JSON from your machine → droplet /opt/eloevent/data/ (usually bcp-matches.json).
+# Multi-shard: rsync shards + /opt/eloevent/data/bcp-matches.manifest, then ssh runs refresh-leaderboard.
 # Prerequisites: SSH access (same user/key you use for the droplet), binaries already deployed by CI.
 #
 # Usage (from repo root):

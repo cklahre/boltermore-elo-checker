@@ -31,7 +31,7 @@ systemctl enable eloevent-discord-bot.service
 
 echo "Next:"
 echo "  1. Fill in ${ROOT}/env/bot.env (chmod 600)"
-echo "  2. Put bcp-matches.json at ${ROOT}/data/bcp-matches.json (large file; keep out of git)"
+echo "  2. Put match exports under ${ROOT}/data/: either bcp-matches.json or bcp-matches.manifest + shards (see scripts/droplet/bcp-matches.manifest.example)"
 echo "  3. Optional: ${ROOT}/env/refresh.env from env/refresh.env.example (UPDATE_MATCHES_CMD for weekly refresh)"
 echo "  4. ${ROOT}/scripts/refresh-leaderboard.sh"
 echo "  5. systemctl start eloevent-discord-bot"

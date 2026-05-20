@@ -4,7 +4,6 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -17,8 +16,19 @@ import (
 	"fortyk/eloevent/pkg/elodata"
 )
 
+type matchPathsFlag []string
+
+func (m *matchPathsFlag) String() string { return strings.Join([]string(*m), ", ") }
+
+func (m *matchPathsFlag) Set(v string) error {
+	*m = append(*m, strings.TrimSpace(v))
+	return nil
+}
+
 func main() {
-	matchesPath := flag.String("matches", "", "path to JSON array of games (see internal/elo40k/matches_json.go)")
+	matchesManifest := flag.String("matches-manifest", "", "when non-empty, load ONLY these newline paths (# comments ok); ignores repeated -matches flags")
+	var matchShards matchPathsFlag
+	flag.Var(&matchShards, "matches", "matches JSON shard (repeat for multiple files, merged oldest→newest recommended)")
 	asOf := flag.String("as-of", "", "apply final inactivity decay through this date (2006-01-02 or RFC3339); default: now")
 	topN := flag.Int("n", 0, "if > 0, print only top N rows")
 	outJSON := flag.String("out-json", "", "if set, write full leaderboard snapshot JSON here (for bots; ignores -n)")
@@ -26,20 +36,32 @@ func main() {
 	outWebDir := flag.String("out-web-dir", "", "if set, write chunked index/outline/page-* JSON files under this directory (for Pages UI)")
 	webPageSize := flag.Int("web-page-size", 50, "with -out-web-dir, rankings per chunk file")
 	recentN := flag.Int("recent-n", 10, "recent games/events per player in web exports")
+	noMergeDedupe := flag.Bool("no-merge-dedupe", false, "when merging multiple -matches shards: skip pairing dedupe (overlap not recommended)")
 	flag.Parse()
 
-	if strings.TrimSpace(*matchesPath) == "" {
-		fmt.Fprintln(os.Stderr, "Usage: local-elo -matches games.json [-as-of DATE] [-n 50] [-out-json leaderboard.json] [-out-web-json web.json|-out-web-dir dir]")
+	paths, err := bcp.ResolveMatchShardPaths(*matchesManifest, matchShards, "")
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Usage: local-elo -matches games.json [-as-of DATE ...] | -matches shard1.json -matches shard2.json | -matches-manifest list.txt ...")
 		fmt.Fprintln(os.Stderr, "")
 		fmt.Fprintln(os.Stderr, "JSON rows look like:")
 		fmt.Fprintln(os.Stderr, `  { "date": "2025-03-01", "a": "Alice Example", "b": "Bob Example", "winner": "a" }`)
-		fmt.Fprintln(os.Stderr, "Optional: -out-json bots; web: -out-web-json single file OR -out-web-dir chunked (+ -recent-n, -web-page-size).")
-		os.Exit(2)
+		fmt.Fprintln(os.Stderr, "Multiple shards concatenate then dedupe by pairing_id; list archived shards before fresh exports in manifests.")
+		log.Fatal(err)
 	}
 
-	ms, err := elo40k.LoadMatchesJSON(*matchesPath)
+	dedupe := !*noMergeDedupe
+	fileRows, err := bcp.MergeMatchFiles(paths, dedupe)
 	if err != nil {
-		log.Fatalf("matches: %v", err)
+		log.Fatalf("matches merge: %v", err)
+	}
+
+	ms := make([]elo40k.Match, 0, len(fileRows))
+	for i := range fileRows {
+		m, err := elodata.RowToMatch(&fileRows[i])
+		if err != nil {
+			log.Fatalf("row %d: %v", i, err)
+		}
+		ms = append(ms, m)
 	}
 
 	e := elo40k.NewEngine()
@@ -76,14 +98,6 @@ func main() {
 		fmt.Fprintf(os.Stderr, "wrote %d players → %s\n", len(rows), outPath)
 	}
 	if webPath != "" || webDir != "" {
-		raw, err := os.ReadFile(*matchesPath)
-		if err != nil {
-			log.Fatalf("read matches for web export: %v", err)
-		}
-		var fileRows []bcp.MatchFileRow
-		if err := json.Unmarshal(raw, &fileRows); err != nil {
-			log.Fatalf("matches JSON as BCP rows for web export: %v", err)
-		}
 		if webPath != "" {
 			if err := elodata.WriteLeaderboardWebJSON(webPath, cutoff, rows, fileRows, *recentN); err != nil {
 				log.Fatalf("out-web-json: %v", err)

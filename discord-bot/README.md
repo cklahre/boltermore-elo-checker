@@ -7,14 +7,17 @@ This folder stays **separate from the CLI tools** but lives in the **same Go mod
 
 ## Data files
 
-1. **Matches** — same JSON as `bcp-export-matches` (`bcp-matches.json`).
+1. **Matches** — same JSON as `bcp-export-matches`; keep one monolith **or** several dated shards merged at load via `-matches-manifest` (see `scripts/droplet/bcp-matches.manifest.example`). Manifest mode is exclusive with repeating `-matches` flags.
 2. **Leaderboard cache** — generate with `local-elo` (full pool; no need to recompute in the bot):
 
 ```bash
 go run ./cmd/local-elo -matches bcp-matches.json -as-of 2026-05-06 -out-json leaderboard.json
+
+# shards (newline manifest of JSON paths):
+go run ./cmd/local-elo -matches-manifest bcp-matches.manifest -as-of 2026-05-06 -out-json leaderboard.json
 ```
 
-Restart the bot (or use `-reload 5m`) after updating those files.
+Restart the bot (or use `-reload 5m`) after updating shards or leaderboard.
 
 ## Run
 
@@ -27,14 +30,19 @@ go run ./discord-bot/cmd/bot \
   -guild "$DISCORD_GUILD_ID" \
   -matches bcp-matches.json \
   -leaderboard leaderboard.json
+
+# multi-shard (manifest only in this Exec line; omit -matches for same pool):
+# go run ./discord-bot/cmd/bot -guild "$DISCORD_GUILD_ID" \
+#   -matches-manifest bcp-matches.manifest -leaderboard leaderboard.json
 ```
 
 Optional env (defaults shown):
 
-- `ELO_MATCHES_JSON` → `bcp-matches.json`
+- `ELO_MATCHES_JSON` → fallback path when `-matches`/`-matches-manifest` are omitted (`bcp-matches.json`).
+- `ELO_MATCHES_MANIFEST` → default for `-matches-manifest` when the flag is not passed (`bot.env`).
 - `ELO_LEADERBOARD_JSON` → `leaderboard.json`
 
-Flags override env.
+Flags override env. When **`ELO_MATCHES_MANIFEST`**/**`-matches-manifest`** is set it replaces the `-matches`/single-file fallback for loading the merged pool — do not list the **same games** twice via manifest and `-matches`.
 
 ## Slash commands
 
