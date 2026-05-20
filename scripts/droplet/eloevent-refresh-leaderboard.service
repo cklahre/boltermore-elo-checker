@@ -1,0 +1,13 @@
+[Unit]
+Description=Regenerate Elo leaderboard from matches and restart Discord bot
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /opt/eloevent/scripts/refresh-leaderboard.sh
+
+# Never pile up overlapping runs if a huge export takes longer than the timer cadence:
+TimeoutStartSec=2h
+
+[Install]
+WantedBy=multi-user.target

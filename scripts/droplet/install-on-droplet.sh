@@ -23,16 +23,21 @@ chmod 600 "${ROOT}/env/bot.env" 2>/dev/null || true
 
 cp "${SCRIPT_DIR}/eloevent-discord-bot.service" /etc/systemd/system/eloevent-discord-bot.service
 chmod 644 /etc/systemd/system/eloevent-discord-bot.service
+cp "${SCRIPT_DIR}/eloevent-refresh-leaderboard.service" /etc/systemd/system/eloevent-refresh-leaderboard.service
+cp "${SCRIPT_DIR}/eloevent-refresh-leaderboard.timer" /etc/systemd/system/eloevent-refresh-leaderboard.timer
+chmod 644 /etc/systemd/system/eloevent-refresh-leaderboard.service /etc/systemd/system/eloevent-refresh-leaderboard.timer
+
 cp "${SCRIPT_DIR}/refresh-leaderboard.sh" "${ROOT}/scripts/refresh-leaderboard.sh"
 chmod 755 "${ROOT}/scripts/refresh-leaderboard.sh"
 
 systemctl daemon-reload
 systemctl enable eloevent-discord-bot.service
+systemctl enable --now eloevent-refresh-leaderboard.timer
 
 echo "Next:"
 echo "  1. Fill in ${ROOT}/env/bot.env (chmod 600)"
 echo "  2. Put match exports under ${ROOT}/data/: either bcp-matches.json or bcp-matches.manifest + shards (see scripts/droplet/bcp-matches.manifest.example)"
-echo "  3. Optional: ${ROOT}/env/refresh.env from env/refresh.env.example (UPDATE_MATCHES_CMD for weekly refresh)"
-echo "  4. ${ROOT}/scripts/refresh-leaderboard.sh"
+echo "  3. Optional: ${ROOT}/env/refresh.env from env/refresh.env.example (UPDATE_MATCHES_CMD runs before each timer/refresh)"
+echo "  4. systemd runs refresh daily (eloevent-refresh-leaderboard.timer); or: ${ROOT}/scripts/refresh-leaderboard.sh"
 echo "  5. systemctl start eloevent-discord-bot"
 echo "  (${ROOT}/repo/ is filled by GitHub Actions deploy rsync after you push to main)"

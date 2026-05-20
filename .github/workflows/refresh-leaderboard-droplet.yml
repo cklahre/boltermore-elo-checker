@@ -1,9 +1,9 @@
 name: Refresh leaderboard on droplet
 
+# Manual-only: the droplet systemd timer from deploy runs refresh-leaderboard.sh daily (~06:00 server time).
+# Use this job for an immediate refresh without opening an SSH session.
+
 on:
-  schedule:
-    # Mondays 12:00 UTC (~7 AM US Eastern Standard; ~8 AM Eastern Daylight). GitHub schedule is UTC only.
-    - cron: "0 12 * * 1"
   workflow_dispatch:
 
 jobs:
