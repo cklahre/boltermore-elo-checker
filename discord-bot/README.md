@@ -18,6 +18,16 @@ go run ./cmd/local-elo -matches-manifest bcp-matches.manifest -as-of 2026-05-06 
 ```
 
 After shard or leaderboard updates, `/elo-player`, `/elo-roster`, and `/elo-leaderboard` reload from disk when those files change. Match the pool `refresh-leaderboard.sh` uses (e.g. `bcp-matches.manifest`) in the bot systemd ExecStart via `-matches-manifest`, not only a stale monolithic `-matches` path — otherwise games/ΔElo can disagree with `leaderboard.json`.
+
+### Leaderboard channel announcements
+
+When **`ELO_LEADERBOARD_ANNOUNCE_CHANNEL`** (or **`-announce-leaderboard-channel`**) is set, the bot posts a short message whenever **`leaderboard.json`’s `as_of`** changes after a reload (periodic **`‑reload`** or slash-triggered refresh when shard/leaderboard files change on disk).
+
+- **Snowflake**: use the numeric channel ID (always works).
+- **By name**: set `elo-hell` or `#elo-hell` and also set **`DISCORD_GUILD_ID`** / **`‑guild`** so the bot can look up channels in your server.
+
+First run writes a small stamp file **`.leaderboard-announce-as_of`** next to `leaderboard.json` **without posting**, so redeploy/restart doesn’t spam the channel.
+
 ## Run
 
 ```bash
@@ -28,7 +38,9 @@ export DISCORD_GUILD_ID="your_server_snowflake_id"
 go run ./discord-bot/cmd/bot \
   -guild "$DISCORD_GUILD_ID" \
   -matches bcp-matches.json \
-  -leaderboard leaderboard.json
+  -leaderboard leaderboard.json \
+  -reload 5m \
+  -announce-leaderboard-channel elo-hell
 
 # multi-shard (manifest only in this Exec line; omit -matches for same pool):
 # go run ./discord-bot/cmd/bot -guild "$DISCORD_GUILD_ID" \
@@ -40,6 +52,7 @@ Optional env (defaults shown):
 - `ELO_MATCHES_JSON` → fallback path when `-matches`/`-matches-manifest` are omitted (`bcp-matches.json`).
 - `ELO_MATCHES_MANIFEST` → default for `-matches-manifest` when the flag is not passed (`bot.env`).
 - `ELO_LEADERBOARD_JSON` → `leaderboard.json`
+- `ELO_LEADERBOARD_ANNOUNCE_CHANNEL` → optional channel snowflake **or** name (needs **`‑guild`** for names); announces when leaderboard `as_of` changes after reload.
 
 Flags override env. When **`ELO_MATCHES_MANIFEST`**/**`-matches-manifest`** is set it replaces the `-matches`/single-file fallback for loading the merged pool — do not list the **same games** twice via manifest and `-matches`.
 

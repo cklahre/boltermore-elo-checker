@@ -38,7 +38,8 @@ func main() {
 	var matchesShards matchPathsFlag
 	flag.Var(&matchesShards, "matches", "exported pairings JSON shard (repeat for multi-file)")
 	leaderPath := flag.String("leaderboard", getenvDefault("ELO_LEADERBOARD_JSON", "leaderboard.json"), "from local-elo -out-json")
-	reloadEvery := flag.Duration("reload", 0, "reload JSON files from disk on this interval (0 = only at startup)")
+	reloadEvery := flag.Duration("reload", 0, "reload JSON from disk on this interval after connect (0 = startup + slash-triggered reload)")
+	announceChan := flag.String("announce-leaderboard-channel", getenvDefault("ELO_LEADERBOARD_ANNOUNCE_CHANNEL", ""), "channel ID or #elo-hell: post when leaderboard as_of changes (-guild required to resolve names)")
 	flag.Parse()
 
 	sources, err := bcp.ResolveMatchShardPaths(*matchesManifest, matchesShards, getenvDefault("ELO_MATCHES_JSON", "bcp-matches.json"))
@@ -56,24 +57,17 @@ func main() {
 	}
 
 	bot := &botState{
-		matchShardPaths: sources,
-		leaderPath:      *leaderPath,
+		matchShardPaths:     sources,
+		leaderPath:          *leaderPath,
+		announceGuildID:     strings.TrimSpace(*guildID),
+		announceChannelSpec: strings.TrimSpace(*announceChan),
 		bcpClient: &bcp.Client{
 			MinInterval: 400 * time.Millisecond,
 			BearerToken: strings.TrimSpace(os.Getenv("BCP_BEARER_TOKEN")),
 		},
 	}
-	if err := bot.reload(); err != nil {
+	if err := bot.reload(nil); err != nil {
 		log.Fatal(err)
-	}
-	if *reloadEvery > 0 {
-		go func() {
-			for range time.Tick(*reloadEvery) {
-				if err := bot.reload(); err != nil {
-					log.Printf("reload: %v", err)
-				}
-			}
-		}()
 	}
 
 	s, err := discordgo.New("Bot " + *token)
@@ -93,6 +87,15 @@ func main() {
 	}
 	defer s.Close()
 
+	if *reloadEvery > 0 {
+		go func(session *discordgo.Session) {
+			for range time.Tick(*reloadEvery) {
+				if err := bot.reload(session); err != nil {
+					log.Printf("reload: %v", err)
+				}
+			}
+		}(s)
+	}
 	log.Println("bot running; Ctrl+C to exit")
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
@@ -115,10 +118,15 @@ type botState struct {
 	lb              *elodata.LeaderboardFile
 	diskSig         string // stat fingerprint of leaderboard + shards; stale → reloadFromDiskIfNeeded reloads
 
+	announceGuildID     string
+	announceChannelSpec string
+	announceMu          sync.Mutex
+	resolvedAnnounceID  string
+
 	bcpClient *bcp.Client
 }
 
-func (b *botState) reload() error {
+func (b *botState) reload(announceSession *discordgo.Session) error {
 	rows, err := bcp.MergeMatchFiles(b.matchShardPaths, true)
 	if err != nil {
 		return fmt.Errorf("matches merge: %w", err)
@@ -131,18 +139,176 @@ func (b *botState) reload() error {
 	if ferr != nil {
 		return ferr
 	}
+	newAsOf := strings.TrimSpace(lb.AsOfRFC3339)
+	nPlayers := len(lb.Players)
+
 	b.mu.Lock()
 	b.rows = rows
 	b.lb = lb
 	b.diskSig = fp
 	b.mu.Unlock()
-	log.Printf("loaded %d match rows (%d shards), %d leaderboard entries", len(rows), len(b.matchShardPaths), len(lb.Players))
+	log.Printf("loaded %d match rows (%d shards), %d leaderboard entries", len(rows), len(b.matchShardPaths), nPlayers)
+
+	if announceSession != nil {
+		go b.maybeAnnounceLeaderboardUpdate(announceSession, newAsOf, nPlayers)
+	} else if strings.TrimSpace(b.announceChannelSpec) != "" {
+		b.seedLeaderboardAnnounceCursor(newAsOf)
+	}
 	return nil
+}
+
+// seedLeaderboardAnnounceCursor records the current leaderboard as_of after startup reload without
+// posting Discord (needed so the next refresh with a newer as_of triggers an announcement).
+func (b *botState) seedLeaderboardAnnounceCursor(newAsOf string) {
+	newAsOf = strings.TrimSpace(newAsOf)
+	if newAsOf == "" {
+		return
+	}
+	prev, _, err := readLeaderboardAnnounceStamp(b.leaderPath)
+	if err != nil || strings.TrimSpace(prev) != "" {
+		return
+	}
+	if err := writeLeaderboardAnnounceStamp(b.leaderPath, newAsOf); err != nil {
+		log.Printf("leaderboard announce stamp: seed write: %v", err)
+		return
+	}
+	log.Printf("leaderboard announce stamp: seeded as_of=%s (no Discord post)", newAsOf)
+}
+
+func leaderboardAnnounceStampPath(leaderJSONPath string) string {
+	dir := filepath.Dir(leaderJSONPath)
+	return filepath.Join(dir, ".leaderboard-announce-as_of")
+}
+
+func readLeaderboardAnnounceStamp(leaderJSONPath string) (asOfRFC string, emptyFile bool, err error) {
+	p := leaderboardAnnounceStampPath(leaderJSONPath)
+	raw, err := os.ReadFile(p)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return "", true, nil
+		}
+		return "", false, err
+	}
+	line := strings.TrimSpace(string(raw))
+	if line == "" {
+		return "", true, nil
+	}
+	return line, false, nil
+}
+
+func writeLeaderboardAnnounceStamp(leaderJSONPath, asOfRFC string) error {
+	p := leaderboardAnnounceStampPath(leaderJSONPath)
+	dir := filepath.Dir(p)
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		return err
+	}
+	mode := os.FileMode(0o644)
+	if st, err := os.Stat(p); err == nil {
+		mode = st.Mode()
+	}
+	return os.WriteFile(p, []byte(strings.TrimSpace(asOfRFC)+"\n"), mode)
+}
+
+func (b *botState) maybeAnnounceLeaderboardUpdate(sess *discordgo.Session, newAsOf string, nPlayers int) {
+	if sess == nil {
+		return
+	}
+	newAsOf = strings.TrimSpace(newAsOf)
+	if strings.TrimSpace(b.announceChannelSpec) == "" || newAsOf == "" {
+		return
+	}
+	prev, blankStamp, err := readLeaderboardAnnounceStamp(b.leaderPath)
+	if err != nil {
+		log.Printf("leaderboard announce stamp: read %v", err)
+		return
+	}
+	if blankStamp {
+		if err := writeLeaderboardAnnounceStamp(b.leaderPath, newAsOf); err != nil {
+			log.Printf("leaderboard announce stamp: seed: %v", err)
+			return
+		}
+		log.Printf("leaderboard announce stamp: first run; recorded as_of=%s (no post)", newAsOf)
+		return
+	}
+	prev = strings.TrimSpace(prev)
+	if prev == newAsOf {
+		return
+	}
+
+	chID, err := b.resolveAnnounceChannelID(sess)
+	if err != nil || chID == "" {
+		log.Printf("leaderboard announce: skip (%v)", err)
+		return
+	}
+	short := leaderboardAsOfShort(newAsOf)
+	body := fmt.Sprintf(
+		"📊 Leaderboard refreshed (`as_of` **%s**). **%d** players — try `/elo-leaderboard` or `/elo-player`.",
+		short, nPlayers,
+	)
+	if _, err := sess.ChannelMessageSend(chID, body); err != nil {
+		log.Printf("leaderboard announce send: %v", err)
+		return
+	}
+	if err := writeLeaderboardAnnounceStamp(b.leaderPath, newAsOf); err != nil {
+		log.Printf("leaderboard announce stamp: write after post: %v", err)
+	}
+}
+
+func discordSnowflakeString(s string) bool {
+	s = strings.TrimSpace(s)
+	if len(s) < 17 || len(s) > 22 {
+		return false
+	}
+	for _, r := range s {
+		if r < '0' || r > '9' {
+			return false
+		}
+	}
+	return true
+}
+
+func (b *botState) resolveAnnounceChannelID(s *discordgo.Session) (string, error) {
+	spec := strings.TrimSpace(strings.TrimPrefix(b.announceChannelSpec, "#"))
+	if spec == "" {
+		return "", fmt.Errorf("no announce channel configured")
+	}
+	b.announceMu.Lock()
+	defer b.announceMu.Unlock()
+	if b.resolvedAnnounceID != "" {
+		return b.resolvedAnnounceID, nil
+	}
+	if discordSnowflakeString(spec) {
+		b.resolvedAnnounceID = spec
+		log.Printf("leaderboard announcements → channel id %s", spec)
+		return b.resolvedAnnounceID, nil
+	}
+	gid := strings.TrimSpace(b.announceGuildID)
+	if gid == "" {
+		return "", fmt.Errorf("need DISCORD_GUILD_ID (or -guild) to resolve channel %q by name", spec)
+	}
+	chs, err := s.GuildChannels(gid)
+	if err != nil {
+		return "", err
+	}
+	want := strings.ToLower(spec)
+	for _, ch := range chs {
+		if ch.Type != discordgo.ChannelTypeGuildText && ch.Type != discordgo.ChannelTypeGuildNews {
+			continue
+		}
+		name := strings.ToLower(strings.TrimSpace(ch.Name))
+		if name != want {
+			continue
+		}
+		b.resolvedAnnounceID = ch.ID
+		log.Printf("leaderboard announcements → #%s (%s)", ch.Name, ch.ID)
+		return b.resolvedAnnounceID, nil
+	}
+	return "", fmt.Errorf("no text/news channel named %q in guild %s", spec, gid)
 }
 
 // reloadFromDiskIfNeeded reloads merged matches + leaderboard when any shard or leaderboard.json changes on disk.
 // Without this (and with -reload 0), Discord keeps the snapshot from process start until restart.
-func (b *botState) reloadFromDiskIfNeeded() error {
+func (b *botState) reloadFromDiskIfNeeded(sess *discordgo.Session) error {
 	fp, err := botDataFingerprint(b.matchShardPaths, b.leaderPath)
 	if err != nil {
 		return err
@@ -154,7 +320,7 @@ func (b *botState) reloadFromDiskIfNeeded() error {
 		return nil
 	}
 	log.Printf("matches/leaderboard changed on disk; reloading")
-	return b.reload()
+	return b.reload(sess)
 }
 
 func botDataFingerprint(shardPaths []string, leaderPath string) (string, error) {
@@ -194,7 +360,7 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 		var err error
 		switch data.Name {
 		case "elo-player":
-			if rerr := b.reloadFromDiskIfNeeded(); rerr != nil {
+			if rerr := b.reloadFromDiskIfNeeded(s); rerr != nil {
 				msg, err = "", rerr
 				break
 			}
@@ -206,7 +372,7 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 			}
 			msg, err = b.handlePlayer(name, contains, int(last))
 		case "elo-roster":
-			if rerr := b.reloadFromDiskIfNeeded(); rerr != nil {
+			if rerr := b.reloadFromDiskIfNeeded(s); rerr != nil {
 				em := "Error: " + rerr.Error()
 				_ = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 					Type: discordgo.InteractionResponseChannelMessageWithSource,
@@ -265,7 +431,7 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 			}
 			msg, err = b.handleFactionBreakdown(strings.TrimSpace(eid))
 		case "elo-leaderboard":
-			if rerr := b.reloadFromDiskIfNeeded(); rerr != nil {
+			if rerr := b.reloadFromDiskIfNeeded(s); rerr != nil {
 				msg, err = "", rerr
 				break
 			}
