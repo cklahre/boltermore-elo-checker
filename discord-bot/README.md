@@ -17,8 +17,7 @@ go run ./cmd/local-elo -matches bcp-matches.json -as-of 2026-05-06 -out-json lea
 go run ./cmd/local-elo -matches-manifest bcp-matches.manifest -as-of 2026-05-06 -out-json leaderboard.json
 ```
 
-Restart the bot (or use `-reload 5m`) after updating shards or leaderboard.
-
+After shard or leaderboard updates, `/elo-player`, `/elo-roster`, and `/elo-leaderboard` reload from disk when those files change. Match the pool `refresh-leaderboard.sh` uses (e.g. `bcp-matches.manifest`) in the bot systemd ExecStart via `-matches-manifest`, not only a stale monolithic `-matches` path — otherwise games/ΔElo can disagree with `leaderboard.json`.
 ## Run
 
 ```bash

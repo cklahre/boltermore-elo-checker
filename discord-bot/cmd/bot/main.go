@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"sort"
 	"strings"
 	"sync"
@@ -112,6 +113,7 @@ type botState struct {
 	leaderPath      string
 	rows            []bcp.MatchFileRow
 	lb              *elodata.LeaderboardFile
+	diskSig         string // stat fingerprint of leaderboard + shards; stale → reloadFromDiskIfNeeded reloads
 
 	bcpClient *bcp.Client
 }
@@ -125,12 +127,61 @@ func (b *botState) reload() error {
 	if err != nil {
 		return fmt.Errorf("leaderboard: %w", err)
 	}
+	fp, ferr := botDataFingerprint(b.matchShardPaths, b.leaderPath)
+	if ferr != nil {
+		return ferr
+	}
 	b.mu.Lock()
 	b.rows = rows
 	b.lb = lb
+	b.diskSig = fp
 	b.mu.Unlock()
 	log.Printf("loaded %d match rows (%d shards), %d leaderboard entries", len(rows), len(b.matchShardPaths), len(lb.Players))
 	return nil
+}
+
+// reloadFromDiskIfNeeded reloads merged matches + leaderboard when any shard or leaderboard.json changes on disk.
+// Without this (and with -reload 0), Discord keeps the snapshot from process start until restart.
+func (b *botState) reloadFromDiskIfNeeded() error {
+	fp, err := botDataFingerprint(b.matchShardPaths, b.leaderPath)
+	if err != nil {
+		return err
+	}
+	b.mu.RLock()
+	same := fp == b.diskSig && b.diskSig != ""
+	b.mu.RUnlock()
+	if same {
+		return nil
+	}
+	log.Printf("matches/leaderboard changed on disk; reloading")
+	return b.reload()
+}
+
+func botDataFingerprint(shardPaths []string, leaderPath string) (string, error) {
+	var b strings.Builder
+	for _, p := range shardPaths {
+		sig, err := fileStatFingerprint(p)
+		if err != nil {
+			return "", fmt.Errorf("stat shard %s: %w", p, err)
+		}
+		b.WriteString(sig)
+		b.WriteByte('|')
+	}
+	ls, err := fileStatFingerprint(leaderPath)
+	if err != nil {
+		return "", fmt.Errorf("stat leaderboard %s: %w", leaderPath, err)
+	}
+	b.WriteString(ls)
+	return b.String(), nil
+}
+
+func fileStatFingerprint(path string) (string, error) {
+	path = filepath.Clean(path)
+	st, err := os.Stat(path)
+	if err != nil {
+		return "", err
+	}
+	return fmt.Sprintf("%s;%d;%d;%d", path, st.ModTime().UnixNano(), st.Size(), st.Mode()), nil
 }
 
 func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.InteractionCreate) {
@@ -143,6 +194,10 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 		var err error
 		switch data.Name {
 		case "elo-player":
+			if rerr := b.reloadFromDiskIfNeeded(); rerr != nil {
+				msg, err = "", rerr
+				break
+			}
 			name, _ := optString(data.Options, "name")
 			contains := optBool(data.Options, "contains")
 			last := int64(10)
@@ -151,6 +206,14 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 			}
 			msg, err = b.handlePlayer(name, contains, int(last))
 		case "elo-roster":
+			if rerr := b.reloadFromDiskIfNeeded(); rerr != nil {
+				em := "Error: " + rerr.Error()
+				_ = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+					Type: discordgo.InteractionResponseChannelMessageWithSource,
+					Data: &discordgo.InteractionResponseData{Content: em},
+				})
+				return
+			}
 			eid, _ := optString(data.Options, "event_id")
 			eid = strings.TrimSpace(eid)
 			if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
@@ -202,6 +265,10 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 			}
 			msg, err = b.handleFactionBreakdown(strings.TrimSpace(eid))
 		case "elo-leaderboard":
+			if rerr := b.reloadFromDiskIfNeeded(); rerr != nil {
+				msg, err = "", rerr
+				break
+			}
 			top := int64(15)
 			if v, ok := optInt(data.Options, "top"); ok {
 				top = v
