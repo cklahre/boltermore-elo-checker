@@ -1,11 +1,11 @@
 [Unit]
-Description=Periodic Elo leaderboard refresh (matches + leaderboard on droplet)
+Description=Weekly Elo match pull + leaderboard refresh (Monday afternoon)
 
 [Timer]
-# Daily 06:00 *server* local clock (many DO droplets use UTC).
-OnCalendar=*-*-* 06:00:00
+# Monday 20:00 UTC ≈ 4pm EDT / 3pm EST (US afternoon). Droplet clocks are often UTC.
+OnCalendar=Mon *-*-* 20:00:00
 Persistent=true
-RandomizedDelaySec=300
+RandomizedDelaySec=600
 
 [Install]
 WantedBy=timers.target

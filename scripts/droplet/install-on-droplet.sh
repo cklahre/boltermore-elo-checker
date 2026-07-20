@@ -18,6 +18,12 @@ if [[ ! -f "${ROOT}/env/bot.env" ]]; then
   echo "Edit ${ROOT}/env/bot.env with DISCORD_BOT_TOKEN and DISCORD_GUILD_ID, then: chmod 600 ${ROOT}/env/bot.env (CI deploy overwrites this if those values are configured as secrets)"
 fi
 
+if [[ ! -f "${ROOT}/env/refresh.env" ]]; then
+  cp "${SCRIPT_DIR}/env/refresh.env.example" "${ROOT}/env/refresh.env"
+  chmod 600 "${ROOT}/env/refresh.env"
+  echo "Wrote ${ROOT}/env/refresh.env (PULL_MATCHES=1 for weekly BCP harvest)"
+fi
+
 chmod 700 "${ROOT}/env"
 chmod 600 "${ROOT}/env/bot.env" 2>/dev/null || true
 
@@ -28,9 +34,9 @@ cp "${SCRIPT_DIR}/eloevent-refresh-leaderboard.timer" /etc/systemd/system/eloeve
 chmod 644 /etc/systemd/system/eloevent-refresh-leaderboard.service /etc/systemd/system/eloevent-refresh-leaderboard.timer
 
 cp "${SCRIPT_DIR}/refresh-leaderboard.sh" "${ROOT}/scripts/refresh-leaderboard.sh"
-chmod 755 "${ROOT}/scripts/refresh-leaderboard.sh"
+cp "${SCRIPT_DIR}/pull-matches.sh" "${ROOT}/scripts/pull-matches.sh"
 cp "${SCRIPT_DIR}/start-eloevent-discord-bot.sh" "${ROOT}/scripts/start-eloevent-discord-bot.sh"
-chmod 755 "${ROOT}/scripts/start-eloevent-discord-bot.sh"
+chmod 755 "${ROOT}/scripts/refresh-leaderboard.sh" "${ROOT}/scripts/pull-matches.sh" "${ROOT}/scripts/start-eloevent-discord-bot.sh"
 
 systemctl daemon-reload
 systemctl enable eloevent-discord-bot.service
@@ -38,8 +44,9 @@ systemctl enable --now eloevent-refresh-leaderboard.timer
 
 echo "Next:"
 echo "  1. Fill in ${ROOT}/env/bot.env (chmod 600)"
-echo "  2. Match exports: ${ROOT}/data/ **or**, if committed in git, ${ROOT}/repo/ after CI deploy — start-eloevent-discord-bot.sh mirrors refresh precedence (data wins)"
-echo "  3. Optional: ${ROOT}/env/refresh.env from env/refresh.env.example (UPDATE_MATCHES_CMD runs before each timer/refresh)"
-echo "  4. systemd runs refresh daily (eloevent-refresh-leaderboard.timer); or: ${ROOT}/scripts/refresh-leaderboard.sh"
-echo "  5. systemctl start eloevent-discord-bot"
+echo "  2. Seed matches into ${ROOT}/data/ (sync-matches-to-droplet.sh) OR commit shards so CI fills ${ROOT}/repo/ — weekly pull seeds data/ from repo on first run"
+echo "  3. Optional tweaks: ${ROOT}/env/refresh.env (SINCE=, EXPORT_SLEEP_MS=, …)"
+echo "  4. systemd runs pull+refresh every Monday 20:00 UTC (eloevent-refresh-leaderboard.timer)"
+echo "  5. Manual now: PULL_MATCHES=1 ${ROOT}/scripts/refresh-leaderboard.sh"
+echo "  6. systemctl start eloevent-discord-bot"
 echo "  (${ROOT}/repo/ is filled by GitHub Actions deploy rsync after you push to main)"

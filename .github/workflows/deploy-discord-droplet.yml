@@ -38,6 +38,12 @@ jobs:
             go build -trimpath -ldflags="-s -w" -o eloevent-bot ./discord-bot/cmd/bot
           GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
             go build -trimpath -ldflags="-s -w" -o local-elo ./cmd/local-elo
+          GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
+            go build -trimpath -ldflags="-s -w" -o bcp-harvest-events ./cmd/bcp-harvest-events
+          GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
+            go build -trimpath -ldflags="-s -w" -o bcp-export-matches ./cmd/bcp-export-matches
+          GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
+            go build -trimpath -ldflags="-s -w" -o bcp-matches-manifest ./cmd/bcp-matches-manifest
 
       - name: Start SSH agent
         uses: webfactory/ssh-agent@v0.9.0
@@ -69,20 +75,33 @@ jobs:
             --exclude 'bcp-matches.json' \
             --exclude 'eloevent-bot' \
             --exclude 'local-elo' \
+            --exclude 'bcp-harvest-events' \
+            --exclude 'bcp-export-matches' \
+            --exclude 'bcp-matches-manifest' \
             "${GITHUB_WORKSPACE}/" "$U@$HOST:/opt/eloevent/repo/"
-          rsync -avz eloevent-bot local-elo "$U@$HOST:/opt/eloevent/bin/"
+          rsync -avz eloevent-bot local-elo bcp-harvest-events bcp-export-matches bcp-matches-manifest \
+            "$U@$HOST:/opt/eloevent/bin/"
           rsync -avz scripts/droplet/refresh-leaderboard.sh \
+            scripts/droplet/pull-matches.sh \
             scripts/droplet/start-eloevent-discord-bot.sh \
             scripts/droplet/eloevent-refresh-leaderboard.service \
             scripts/droplet/eloevent-refresh-leaderboard.timer \
+            scripts/droplet/eloevent-discord-bot.service \
             "$U@$HOST:/opt/eloevent/scripts/"
-          rsync -avz scripts/droplet/eloevent-discord-bot.service "$U@$HOST:/opt/eloevent/scripts/"
+          rsync -avz scripts/droplet/env/refresh.env.example "$U@$HOST:/opt/eloevent/scripts/refresh.env.example"
           ssh "$U@$HOST" bash -s <<'REMOTE'
           set -euo pipefail
-          chmod +x /opt/eloevent/bin/eloevent-bot /opt/eloevent/bin/local-elo /opt/eloevent/scripts/refresh-leaderboard.sh /opt/eloevent/scripts/start-eloevent-discord-bot.sh
+          chmod +x /opt/eloevent/bin/eloevent-bot /opt/eloevent/bin/local-elo \
+            /opt/eloevent/bin/bcp-harvest-events /opt/eloevent/bin/bcp-export-matches /opt/eloevent/bin/bcp-matches-manifest \
+            /opt/eloevent/scripts/refresh-leaderboard.sh /opt/eloevent/scripts/pull-matches.sh \
+            /opt/eloevent/scripts/start-eloevent-discord-bot.sh
           chmod 644 /opt/eloevent/scripts/eloevent-discord-bot.service \
             /opt/eloevent/scripts/eloevent-refresh-leaderboard.service \
             /opt/eloevent/scripts/eloevent-refresh-leaderboard.timer
+          if [[ ! -f /opt/eloevent/env/refresh.env && -f /opt/eloevent/scripts/refresh.env.example ]]; then
+            cp /opt/eloevent/scripts/refresh.env.example /opt/eloevent/env/refresh.env
+            chmod 600 /opt/eloevent/env/refresh.env
+          fi
           cp /opt/eloevent/scripts/eloevent-discord-bot.service /etc/systemd/system/eloevent-discord-bot.service
           cp /opt/eloevent/scripts/eloevent-refresh-leaderboard.service /etc/systemd/system/eloevent-refresh-leaderboard.service
           cp /opt/eloevent/scripts/eloevent-refresh-leaderboard.timer /etc/systemd/system/eloevent-refresh-leaderboard.timer

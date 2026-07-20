@@ -1,13 +1,16 @@
 [Unit]
-Description=Regenerate Elo leaderboard from matches and restart Discord bot
+Description=Pull new BCP matches, regenerate Elo leaderboard, restart Discord bot
 After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
+Environment=PULL_MATCHES=1
+EnvironmentFile=-/opt/eloevent/env/refresh.env
 ExecStart=/bin/bash /opt/eloevent/scripts/refresh-leaderboard.sh
 
-# Never pile up overlapping runs if a huge export takes longer than the timer cadence:
-TimeoutStartSec=2h
+# Harvest + export of a busy week can run for hours; never overlap with the next Monday:
+TimeoutStartSec=6h
 
 [Install]
 WantedBy=multi-user.target
