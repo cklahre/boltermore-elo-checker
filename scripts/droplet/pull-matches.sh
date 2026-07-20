@@ -29,6 +29,11 @@ fi
 
 EXPORT_SLEEP_MS="${EXPORT_SLEEP_MS:-300}"
 HARVEST_MIN_INTERVAL_MS="${HARVEST_MIN_INTERVAL_MS:-350}"
+# GT-oriented gates (same as bcp-harvest / bcp-export-matches flags). RTTs/leagues out.
+MIN_PLAYERS="${MIN_PLAYERS:-30}"
+MIN_ROUNDS="${MIN_ROUNDS:-5}"
+MAX_SPAN_DAYS="${MAX_SPAN_DAYS:-7}"
+EXCLUDE_NAME="${EXCLUDE_NAME:-league,season,ladder,rtt}"
 
 log() { echo "${LOG_PREFIX}: $*"; }
 die() { echo "${LOG_PREFIX}: $*" >&2; exit 1; }
@@ -114,9 +119,13 @@ else
 	log "using SINCE=${SINCE} from env"
 fi
 
-log "harvesting events since ${SINCE} ..."
+log "harvesting GT events since ${SINCE} (min-players=${MIN_PLAYERS} min-rounds=${MIN_ROUNDS} max-span-days=${MAX_SPAN_DAYS} exclude-name=${EXCLUDE_NAME}) ..."
 "$HARVEST_BIN" \
 	-since "$SINCE" \
+	-min-players "$MIN_PLAYERS" \
+	-min-rounds "$MIN_ROUNDS" \
+	-max-span-days "$MAX_SPAN_DAYS" \
+	-exclude-name "$EXCLUDE_NAME" \
 	-min-interval-ms "$HARVEST_MIN_INTERVAL_MS" \
 	-out-ids "$IDS_FILE" \
 	-out-events-json "${WORKDIR}/events.json"
@@ -124,18 +133,22 @@ log "harvesting events since ${SINCE} ..."
 n_ids="$(grep -cve '^[[:space:]]*$' "$IDS_FILE" 2>/dev/null || true)"
 n_ids="${n_ids:-0}"
 if [[ "$n_ids" -eq 0 ]]; then
-	log "no events since ${SINCE}; leaving shards unchanged"
+	log "no GT events since ${SINCE}; leaving shards unchanged"
 	rm -rf "$WORKDIR"
 	exit 0
 fi
-log "discovered ${n_ids} events; exporting pairings ..."
+log "discovered ${n_ids} GT events; exporting pairings ..."
 
 set +e
 "$EXPORT_BIN" \
 	-events-file "$IDS_FILE" \
 	-out "$NEW_SHARD" \
 	-continue-on-error \
-	-sleep-ms "$EXPORT_SLEEP_MS"
+	-sleep-ms "$EXPORT_SLEEP_MS" \
+	-min-players "$MIN_PLAYERS" \
+	-min-rounds "$MIN_ROUNDS" \
+	-max-span-days "$MAX_SPAN_DAYS" \
+	-exclude-name "$EXCLUDE_NAME"
 export_rc=$?
 set -e
 
