@@ -110,7 +110,7 @@ func WriteLeaderboardWebDir(dir string, asOf time.Time, snap []elo40k.Player, ma
 				AsOfRFC3339: asOfRFC,
 				Players:     chunkRows,
 			}
-			raw, err := json.MarshalIndent(pgFile, "", "  ")
+			raw, err := json.Marshal(pgFile)
 			if err != nil {
 				return fmt.Errorf("%s marshal: %w", fn, err)
 			}
@@ -132,7 +132,7 @@ func WriteLeaderboardWebDir(dir string, asOf time.Time, snap []elo40k.Player, ma
 	}
 
 	indexPath := filepath.Join(dir, "index.json")
-	idxRaw, err := json.MarshalIndent(idx, "", "  ")
+	idxRaw, err := json.Marshal(idx)
 	if err != nil {
 		return err
 	}
@@ -146,7 +146,7 @@ func WriteLeaderboardWebDir(dir string, asOf time.Time, snap []elo40k.Player, ma
 	}
 
 	outBlob := WebOutlineFile{AsOfRFC3339: asOfRFC, Players: outlines}
-	outRaw, err := json.MarshalIndent(outBlob, "", "  ")
+	outRaw, err := json.Marshal(outBlob)
 	if err != nil {
 		return err
 	}

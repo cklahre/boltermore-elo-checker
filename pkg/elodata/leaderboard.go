@@ -7,7 +7,6 @@ import (
 	"strings"
 	"time"
 
-	"fortyk/eloevent/internal/bcp"
 	"fortyk/eloevent/internal/elo40k"
 )
 
@@ -76,85 +75,6 @@ func WriteLeaderboardJSON(path string, asOf time.Time, players []elo40k.Player) 
 		return err
 	}
 	return os.WriteFile(path, raw, 0o644)
-}
-
-// WriteLeaderboardWebJSON writes the same leaderboard as WriteLeaderboardJSON plus recent_games per player,
-// using the same delta rules as player-history.
-func WriteLeaderboardWebJSON(path string, asOf time.Time, snap []elo40k.Player, matchRows []bcp.MatchFileRow, recentN int) error {
-	rows, err := buildLeaderboardWebRows(snap, matchRows, recentN)
-	if err != nil {
-		return err
-	}
-	f := LeaderboardFile{
-		AsOfRFC3339: asOf.UTC().Format(time.RFC3339),
-		Players:     rows,
-	}
-	raw, err := json.MarshalIndent(f, "", "  ")
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, raw, 0o644)
-}
-
-func buildLeaderboardWebRows(snap []elo40k.Player, matchRows []bcp.MatchFileRow, recentN int) ([]LeaderboardRow, error) {
-	byPairing, byLine, err := ComputeMatchDeltas(matchRows)
-	if err != nil {
-		return nil, err
-	}
-	rows := make([]LeaderboardRow, 0, len(snap))
-	for i, p := range snap {
-		rep, err := PlayerLookupWithDeltas(matchRows, p.DisplayName, false, recentN, byPairing, byLine)
-		if err != nil {
-			return nil, fmt.Errorf("%s: %w", p.DisplayName, err)
-		}
-		var recent []RecentGameWire
-		var recentEv []RecentEventWire
-		var wins, losses, draws int
-		var winPct, pointsPct float64
-		if rep != nil {
-			wins, losses, draws = rep.Wins, rep.Losses, rep.Draws
-			winPct, pointsPct = rep.WinPct, rep.PointsPct
-			recent = make([]RecentGameWire, len(rep.Games))
-			for j, g := range rep.Games {
-				recent[j] = RecentGameWire{
-					Time:     g.Time.UTC().Format(time.RFC3339),
-					Result:   string([]byte{g.Result}),
-					Opponent: g.Opponent,
-					AsA:      g.AsA,
-					EventID:  g.EventID,
-					DeltaElo: g.DeltaElo,
-				}
-			}
-			recentEv = make([]RecentEventWire, len(rep.RecentEvents))
-			for j, ev := range rep.RecentEvents {
-				recentEv[j] = RecentEventWire{
-					EventID:       ev.EventID,
-					LastPlayed:    ev.LastPlayed.UTC().Format(time.RFC3339),
-					Wins:          ev.Wins,
-					Losses:        ev.Losses,
-					Draws:         ev.Draws,
-					Games:         ev.Games,
-					TotalDeltaElo: ev.TotalDeltaElo,
-					DeltaGames:    ev.DeltaGames,
-				}
-			}
-		}
-		rows = append(rows, LeaderboardRow{
-			Rank:         i + 1,
-			Name:         p.DisplayName,
-			Key:          elo40k.PlayerKey(p.DisplayName),
-			Elo:          p.Rating,
-			Games:        p.Games,
-			Wins:         wins,
-			Losses:       losses,
-			Draws:        draws,
-			WinPct:       winPct,
-			PointsPct:    pointsPct,
-			RecentGames:  recent,
-			RecentEvents: recentEv,
-		})
-	}
-	return rows, nil
 }
 
 // ReadLeaderboardJSON loads a file produced by WriteLeaderboardJSON.

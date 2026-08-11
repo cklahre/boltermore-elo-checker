@@ -50,14 +50,32 @@ WEB_ELO_DIR="/opt/boltermore-web/data/elo"
 WEB_ELO="${WEB_ELO_DIR}/leaderboard.json"
 WEB_HISTORY_DIR="${WEB_ELO_DIR}/web"
 
+sync_website_leaderboard() {
+  if [[ -d /opt/boltermore-web/data ]]; then
+    mkdir -p "$WEB_ELO_DIR"
+    cp "$LEADER" "$WEB_ELO"
+    echo "Synced website Elo → ${WEB_ELO}"
+  else
+    echo "(skip website Elo sync — ${WEB_ELO_DIR} parent missing)"
+  fi
+}
+
+# Leaderboard first (cheap). History chunks second (heavier) so an OOM there
+# does not block ratings / Discord bot refresh.
 run_local_elo() {
   local manifest="$1"
+  "$BIN" -matches-manifest "$manifest" -out-json "$LEADER"
+  sync_website_leaderboard
+
   if [[ -d /opt/boltermore-web/data ]]; then
     mkdir -p "$WEB_HISTORY_DIR"
-    "$BIN" -matches-manifest "$manifest" -out-json "$LEADER" \
-      -out-web-dir "$WEB_HISTORY_DIR" -recent-n 15 -web-page-size 100
-  else
-    "$BIN" -matches-manifest "$manifest" -out-json "$LEADER"
+    echo "Building website player-history chunks → ${WEB_HISTORY_DIR}"
+    if "$BIN" -matches-manifest "$manifest" \
+      -out-web-dir "$WEB_HISTORY_DIR" -recent-n 15 -web-page-size 100; then
+      echo "Synced player history chunks → ${WEB_HISTORY_DIR}"
+    else
+      echo "WARN: player-history export failed (check RAM). Leaderboard was still updated." >&2
+    fi
   fi
 }
 
@@ -69,12 +87,17 @@ elif [[ -f "$MATCHES_MANIFEST_REPO" ]]; then
   run_local_elo "$MATCHES_MANIFEST_REPO"
 elif [[ -f "$MATCHES_LEGACY_DATA" ]]; then
   echo "(fallback single file — prefer manifest + shards: $MATCHES_LEGACY_DATA)"
+  "$BIN" -matches "$MATCHES_LEGACY_DATA" -out-json "$LEADER"
+  sync_website_leaderboard
   if [[ -d /opt/boltermore-web/data ]]; then
     mkdir -p "$WEB_HISTORY_DIR"
-    "$BIN" -matches "$MATCHES_LEGACY_DATA" -out-json "$LEADER" \
-      -out-web-dir "$WEB_HISTORY_DIR" -recent-n 15 -web-page-size 100
-  else
-    "$BIN" -matches "$MATCHES_LEGACY_DATA" -out-json "$LEADER"
+    echo "Building website player-history chunks → ${WEB_HISTORY_DIR}"
+    if "$BIN" -matches "$MATCHES_LEGACY_DATA" \
+      -out-web-dir "$WEB_HISTORY_DIR" -recent-n 15 -web-page-size 100; then
+      echo "Synced player history chunks → ${WEB_HISTORY_DIR}"
+    else
+      echo "WARN: player-history export failed (check RAM). Leaderboard was still updated." >&2
+    fi
   fi
 else
   echo "missing matches: need bcp-matches.manifest (+ listed shards)" >&2
@@ -85,17 +108,5 @@ fi
 
 echo "Restarting discord bot ..."
 systemctl restart eloevent-discord-bot
-
-# Keep the website Elo page in sync with the same leaderboard snapshot
-if [[ -d /opt/boltermore-web/data ]]; then
-  mkdir -p "$WEB_ELO_DIR"
-  cp "$LEADER" "$WEB_ELO"
-  echo "Synced website Elo → ${WEB_ELO}"
-  if [[ -d "$WEB_HISTORY_DIR" ]]; then
-    echo "Synced player history chunks → ${WEB_HISTORY_DIR}"
-  fi
-else
-  echo "(skip website Elo sync — ${WEB_ELO_DIR} parent missing)"
-fi
 
 echo "Done."
