@@ -46,6 +46,11 @@ type LeaderboardRow struct {
 	Key          string            `json:"key"`
 	Elo          float64           `json:"elo"`
 	Games        int               `json:"games"`
+	Wins         int               `json:"wins,omitempty"`
+	Losses       int               `json:"losses,omitempty"`
+	Draws        int               `json:"draws,omitempty"`
+	WinPct       float64           `json:"win_pct,omitempty"`
+	PointsPct    float64           `json:"points_pct,omitempty"`
 	RecentGames  []RecentGameWire  `json:"recent_games,omitempty"`
 	RecentEvents []RecentEventWire `json:"recent_events,omitempty"`
 }
@@ -104,7 +109,11 @@ func buildLeaderboardWebRows(snap []elo40k.Player, matchRows []bcp.MatchFileRow,
 		}
 		var recent []RecentGameWire
 		var recentEv []RecentEventWire
+		var wins, losses, draws int
+		var winPct, pointsPct float64
 		if rep != nil {
+			wins, losses, draws = rep.Wins, rep.Losses, rep.Draws
+			winPct, pointsPct = rep.WinPct, rep.PointsPct
 			recent = make([]RecentGameWire, len(rep.Games))
 			for j, g := range rep.Games {
 				recent[j] = RecentGameWire{
@@ -136,6 +145,11 @@ func buildLeaderboardWebRows(snap []elo40k.Player, matchRows []bcp.MatchFileRow,
 			Key:          elo40k.PlayerKey(p.DisplayName),
 			Elo:          p.Rating,
 			Games:        p.Games,
+			Wins:         wins,
+			Losses:       losses,
+			Draws:        draws,
+			WinPct:       winPct,
+			PointsPct:    pointsPct,
 			RecentGames:  recent,
 			RecentEvents: recentEv,
 		})

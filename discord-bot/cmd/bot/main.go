@@ -494,30 +494,25 @@ func (b *botState) handlePlayer(name string, contains bool, last int) (string, e
 		o.WriteString(fmt.Sprintf("_**Elo** uses leaderboard key `%s` (first pairing name encountered)._\n", dn))
 	}
 	if len(rep.RecentEvents) > 0 {
-		o.WriteString("**Recent events**\n```\n")
+		o.WriteString("**Recent events**\n")
 		for _, ev := range rep.RecentEvents {
-			id := strings.TrimSpace(ev.EventID)
-			if id == "" {
-				id = "—"
-			}
 			sum := "ΣΔ —"
 			if ev.DeltaGames > 0 {
 				sum = fmt.Sprintf("ΣΔ %+.1f", ev.TotalDeltaElo)
 			}
-			o.WriteString(fmt.Sprintf("%s %s %d–%d–%d · %dg · %s · rated Δ %d/%d\n",
+			o.WriteString(fmt.Sprintf("• %s · %s · **%d–%d–%d** · %dg · %s · rated Δ %d/%d\n",
 				ev.LastPlayed.UTC().Format("2006-01-02"),
-				trunc(id, 26),
+				bcp.EventMarkdownLink(ev.EventID),
 				ev.Wins, ev.Losses, ev.Draws,
 				ev.Games,
 				sum,
 				ev.DeltaGames,
 				ev.Games))
 		}
-		o.WriteString("```\n")
 	}
-	o.WriteString("**Games**\n```\n")
+	o.WriteString("**Games**\n")
 	for _, g := range rep.Games {
-		de := "  —"
+		de := "—"
 		if g.DeltaElo != nil {
 			de = fmt.Sprintf("%+.1f", *g.DeltaElo)
 		}
@@ -525,10 +520,14 @@ func (b *botState) handlePlayer(name string, contains bool, last int) (string, e
 		if g.AsA {
 			side = "A"
 		}
-		o.WriteString(fmt.Sprintf("%s %c %-28s %6s %7s %s\n",
-			g.Time.UTC().Format("2006-01-02"), g.Result, trunc(g.Opponent, 28), side, de, g.EventID))
+		o.WriteString(fmt.Sprintf("• %s **%c** vs %s · %s · Δ %s · %s\n",
+			g.Time.UTC().Format("2006-01-02"),
+			g.Result,
+			trunc(g.Opponent, 28),
+			side,
+			de,
+			bcp.EventMarkdownLink(g.EventID)))
 	}
-	o.WriteString("```")
 	return o.String(), nil
 }
 
@@ -562,7 +561,7 @@ func (b *botState) rosterDiscordMessages(eventID string) ([]string, error) {
 		return nil, err
 	}
 	if len(roster) == 0 {
-		hdr := fmt.Sprintf("**Event roster · Elo** · %s · `%s`\n"+"_BCP returned no players for this event._", head, eventID)
+		hdr := fmt.Sprintf("**Event roster · Elo** · %s · %s\n"+"_BCP returned no players for this event._", head, bcp.EventMarkdownLink(eventID))
 		return []string{hdr}, nil
 	}
 
@@ -612,11 +611,11 @@ func (b *botState) rosterDiscordMessages(eventID string) ([]string, error) {
 	}
 
 	hdrPart1 := fmt.Sprintf(
-		"**Event roster · Elo** · %s · `%s`\n"+
+		"**Event roster · Elo** · %s · %s\n"+
 			"**Players:** %d · Leaderboard **`as_of`** `%s`\n"+
 			"_Sorted by current Elo (high → low). Missing from leaderboard JSON → **`%.0f`**._\n"+
 			"_`OUT` = dropped from event._\n",
-		head, eventID, len(rows), asOfDisp, elo40k.Baseline,
+		head, bcp.EventMarkdownLink(eventID), len(rows), asOfDisp, elo40k.Baseline,
 	)
 
 	return packRosterTableChunks(hdrPart1, eventID, head, len(rows), tableHead, tableLines, ranks), nil
@@ -698,9 +697,9 @@ func packRosterTableChunks(
 
 func rosterContinuationHdr(partNum int, head, eventID string, nPlayers, lo, hi int) string {
 	return fmt.Sprintf(
-		"**Event roster · Elo** · _continued · part **%d**_ · %s · `%s`\n"+
+		"**Event roster · Elo** · _continued · part **%d**_ · %s · %s\n"+
 			"_Ranks **%d**–**%d** of **%d** players · same ordering (Elo high → low)._\n",
-		partNum, head, eventID, lo, hi, nPlayers,
+		partNum, head, bcp.EventMarkdownLink(eventID), lo, hi, nPlayers,
 	)
 }
 
@@ -771,7 +770,7 @@ func (b *botState) handleFactionBreakdown(eventID string) (string, error) {
 		head = strings.TrimSpace(ev.Name)
 	}
 	var o strings.Builder
-	o.WriteString(fmt.Sprintf("**Faction breakdown** · %s · `%s`\n", head, eventID))
+	o.WriteString(fmt.Sprintf("**Faction breakdown** · %s · %s\n", head, bcp.EventMarkdownLink(eventID)))
 	o.WriteString(fmt.Sprintf("**Players:** %d (BCP roster; includes dropped)\n\n", len(roster)))
 
 	if strings.TrimSpace(b.bcpClient.BearerToken) != "" {

@@ -33,7 +33,7 @@ HARVEST_MIN_INTERVAL_MS="${HARVEST_MIN_INTERVAL_MS:-350}"
 MIN_PLAYERS="${MIN_PLAYERS:-30}"
 MIN_ROUNDS="${MIN_ROUNDS:-5}"
 MAX_SPAN_DAYS="${MAX_SPAN_DAYS:-7}"
-EXCLUDE_NAME="${EXCLUDE_NAME:-league,season,ladder,rtt}"
+EXCLUDE_NAME="${EXCLUDE_NAME:-league,season,ladder,rtt,team,teams}"
 
 log() { echo "${LOG_PREFIX}: $*"; }
 die() { echo "${LOG_PREFIX}: $*" >&2; exit 1; }
