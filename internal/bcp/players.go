@@ -24,6 +24,8 @@ type RosterPlayer struct {
 	ParentFactionID string      `json:"parentFactionId"`
 	FactionID       string      `json:"factionId"`
 	Faction         *FactionRef `json:"faction,omitempty"`
+	SubFactionID    string      `json:"subFactionId"`
+	SubFaction      *FactionRef `json:"subFaction,omitempty"`
 	ListID          string      `json:"listId"`
 	ListURL         string      `json:"listUrl"`
 }

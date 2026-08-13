@@ -9,9 +9,13 @@ func TestFactionCounts_armyAndUnknown(t *testing.T) {
 		{Dropped: true, Faction: &FactionRef{Name: "Adeptus Custodes"}},
 		{User: &bcpUser{FirstName: "X", LastName: "Y"}},
 	}
-	rows := FactionCounts(roster, func(p RosterPlayer) string { return p.ArmyFactionName() })
-	if len(rows) < 3 {
-		t.Fatalf("got %d rows, want at least 3", len(rows))
+	active := ActiveRoster(roster)
+	if len(active) != 3 {
+		t.Fatalf("active=%d", len(active))
+	}
+	rows := FactionCounts(active, func(p RosterPlayer) string { return p.ArmyFactionName() })
+	if len(rows) < 2 {
+		t.Fatalf("got %d rows, want at least 2", len(rows))
 	}
 	if rows[0].Label != "Orks" || rows[0].Count != 2 {
 		t.Fatalf("first row: %+v", rows[0])
@@ -19,6 +23,35 @@ func TestFactionCounts_armyAndUnknown(t *testing.T) {
 	last := rows[len(rows)-1]
 	if last.Label != "(no faction on roster)" || last.Count != 1 {
 		t.Fatalf("last row: %+v", last)
+	}
+}
+
+func TestDispositionName(t *testing.T) {
+	p := RosterPlayer{
+		Faction:    &FactionRef{Name: "Chaos Daemons"},
+		SubFaction: &FactionRef{Name: "Take and Hold"},
+	}
+	if got := p.DispositionName(); got != "Take and Hold" {
+		t.Fatalf("got %q", got)
+	}
+	if ActiveRoster([]RosterPlayer{{Dropped: true}, p})[0].DispositionName() != "Take and Hold" {
+		t.Fatal("active filter broke disposition")
+	}
+}
+
+func TestDispositionCounts_skipsDropped(t *testing.T) {
+	roster := []RosterPlayer{
+		{Faction: &FactionRef{Name: "Chaos Daemons"}, SubFaction: &FactionRef{Name: "Take and Hold"}},
+		{Faction: &FactionRef{Name: "Chaos Daemons"}, SubFaction: &FactionRef{Name: "Take and Hold"}},
+		{Dropped: true, Faction: &FactionRef{Name: "Orks"}, SubFaction: &FactionRef{Name: "Purge the Foe"}},
+		{Faction: &FactionRef{Name: "Necrons"}, SubFaction: &FactionRef{Name: "Purge the Foe"}},
+	}
+	rows := FactionCounts(ActiveRoster(roster), func(p RosterPlayer) string { return p.DispositionName() })
+	if len(rows) != 2 {
+		t.Fatalf("got %+v", rows)
+	}
+	if rows[0].Label != "Take and Hold" || rows[0].Count != 2 {
+		t.Fatalf("first %+v", rows[0])
 	}
 }
 

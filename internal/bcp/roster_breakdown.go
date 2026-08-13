@@ -20,6 +20,15 @@ func (p RosterPlayer) ArmyFactionName() string {
 	return strings.TrimSpace(p.Faction.Name)
 }
 
+// DispositionName is the secondary BCP roster label (UI: "Chaos Daemons - Take and Hold").
+// On unlocked 40k rosters this is subFaction.name (e.g. Take and Hold, Purge the Foe).
+func (p RosterPlayer) DispositionName() string {
+	if p.SubFaction == nil {
+		return ""
+	}
+	return strings.TrimSpace(p.SubFaction.Name)
+}
+
 // RollupFactionName groups by grand alliance / parent when the API provides it; otherwise the leaf name.
 func (p RosterPlayer) RollupFactionName() string {
 	if p.Faction == nil {
@@ -32,6 +41,18 @@ func (p RosterPlayer) RollupFactionName() string {
 		}
 	}
 	return strings.TrimSpace(p.Faction.Name)
+}
+
+// ActiveRoster returns roster rows that are not dropped.
+func ActiveRoster(roster []RosterPlayer) []RosterPlayer {
+	out := make([]RosterPlayer, 0, len(roster))
+	for _, p := range roster {
+		if p.Dropped {
+			continue
+		}
+		out = append(out, p)
+	}
+	return out
 }
 
 // FactionCounts returns rows sorted by count (desc), then label; unknown labels last.

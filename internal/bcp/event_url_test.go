@@ -2,6 +2,20 @@ package bcp
 
 import "testing"
 
+func TestParseEventID(t *testing.T) {
+	cases := []struct{ in, want string }{
+		{"FevLNTNDipqC", "FevLNTNDipqC"},
+		{"https://www.bestcoastpairings.com/event/MveGm9kfjwiQ", "MveGm9kfjwiQ"},
+		{"https://www.bestcoastpairings.com/event/MveGm9kfjwiQ?active_tab=roster", "MveGm9kfjwiQ"},
+		{"  MveGm9kfjwiQ  ", "MveGm9kfjwiQ"},
+	}
+	for _, tc := range cases {
+		if got := ParseEventID(tc.in); got != tc.want {
+			t.Fatalf("%q → %q want %q", tc.in, got, tc.want)
+		}
+	}
+}
+
 func TestEventPageURL(t *testing.T) {
 	got := EventPageURL("FevLNTNDipqC")
 	want := "https://www.bestcoastpairings.com/event/FevLNTNDipqC"

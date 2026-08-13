@@ -381,7 +381,7 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 				return
 			}
 			eid, _ := optString(data.Options, "event_id")
-			eid = strings.TrimSpace(eid)
+			eid = bcp.ParseEventID(eid)
 			if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseDeferredChannelMessageWithSource,
 			}); err != nil {
@@ -412,6 +412,7 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 			return
 		case "elo-factions":
 			eid, _ := optString(data.Options, "event_id")
+			eid = bcp.ParseEventID(eid)
 			if strings.TrimSpace(b.bcpClient.BearerToken) != "" {
 				err = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 					Type: discordgo.InteractionResponseDeferredChannelMessageWithSource,
@@ -419,7 +420,7 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 				if err != nil {
 					return
 				}
-				msg, err = b.handleFactionBreakdown(strings.TrimSpace(eid))
+				msg, err = b.handleFactionBreakdown(eid)
 				if err != nil {
 					msg = "Error: " + err.Error()
 				}
@@ -429,7 +430,7 @@ func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.Inter
 				_, _ = s.InteractionResponseEdit(i.Interaction, &discordgo.WebhookEdit{Content: &msg})
 				return
 			}
-			msg, err = b.handleFactionBreakdown(strings.TrimSpace(eid))
+			msg, err = b.handleFactionBreakdown(eid)
 		case "elo-leaderboard":
 			if rerr := b.reloadFromDiskIfNeeded(s); rerr != nil {
 				msg, err = "", rerr
@@ -763,35 +764,45 @@ func (b *botState) handleFactionBreakdown(eventID string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	byArmy := bcp.FactionCounts(roster, func(p bcp.RosterPlayer) string { return p.ArmyFactionName() })
+	active := bcp.ActiveRoster(roster)
+	byArmy := bcp.FactionCounts(active, func(p bcp.RosterPlayer) string { return p.ArmyFactionName() })
+	byDisp := bcp.FactionCounts(active, func(p bcp.RosterPlayer) string { return p.DispositionName() })
 
 	head := eventID
 	if ev != nil && strings.TrimSpace(ev.Name) != "" {
 		head = strings.TrimSpace(ev.Name)
 	}
+	dropped := len(roster) - len(active)
 	var o strings.Builder
-	o.WriteString(fmt.Sprintf("**Faction breakdown** · %s · %s\n", head, bcp.EventMarkdownLink(eventID)))
-	o.WriteString(fmt.Sprintf("**Players:** %d (BCP roster; includes dropped)\n\n", len(roster)))
+	o.WriteString(fmt.Sprintf("**Faction / disposition** · %s · %s\n", head, bcp.EventMarkdownLink(eventID)))
+	o.WriteString(fmt.Sprintf(
+		"**Players:** %d active",
+		len(active),
+	))
+	if dropped > 0 {
+		o.WriteString(fmt.Sprintf(" · %d dropped (ignored)", dropped))
+	}
+	o.WriteString("\n\n")
+
+	o.WriteString("**By faction**\n```\n")
+	writeBreakdownTable(&o, byArmy, 40)
+	o.WriteString("```\n\n")
+
+	o.WriteString("**By disposition**\n```\n")
+	writeBreakdownTable(&o, byDisp, 40)
+	o.WriteString("```\n")
 
 	if strings.TrimSpace(b.bcpClient.BearerToken) != "" {
-		ids := bcp.UniqueListIDs(roster)
-		if len(ids) == 0 {
-			o.WriteString("_No `listId` on roster rows; cannot load lists._\n\n")
-			o.WriteString("**By faction (army)**\n```\n")
-			writeBreakdownTable(&o, byArmy, 35)
-			o.WriteString("```\n")
-		} else {
+		ids := bcp.UniqueListIDs(active)
+		if len(ids) > 0 {
 			det, failed := bcp.ListDetachmentIndex(b.bcpClient, ids)
-			tree := bcp.ArmyDetachmentTree(roster, det, failed)
-			o.WriteString(fmt.Sprintf("_Lists loaded: %d (GET /v1/armylists)_\n\n", len(ids)))
+			tree := bcp.ArmyDetachmentTree(active, det, failed)
+			o.WriteString(fmt.Sprintf("\n**Army → detachment** _(lists loaded: %d)_\n\n", len(ids)))
 			o.WriteString(bcp.FormatArmyDetachmentTree(tree, true))
 			o.WriteString("\n")
 		}
 	} else {
-		o.WriteString("**By faction (army)**\n```\n")
-		writeBreakdownTable(&o, byArmy, 35)
-		o.WriteString("```\n")
-		o.WriteString("\n_Add `BCP_BEARER_TOKEN` (JWT from a logged-in https://www.bestcoastpairings.com session) for army → detachment breakdown._")
+		o.WriteString("\n_Disposition comes from the BCP roster (`subFaction`). Optional army→detachment detail needs `BCP_BEARER_TOKEN`._")
 	}
 	return o.String(), nil
 }
@@ -841,9 +852,9 @@ func registerSlashCommands(s *discordgo.Session, guildID string) error {
 		},
 		{
 			Name:        "elo-factions",
-			Description: "Armies and detachments (BCP roster + optional list auth)",
+			Description: "Faction + disposition charts from a BCP roster (skips dropped)",
 			Options: []*discordgo.ApplicationCommandOption{
-				{Type: discordgo.ApplicationCommandOptionString, Name: "event_id", Description: "Best Coast Pairings event id", Required: true},
+				{Type: discordgo.ApplicationCommandOptionString, Name: "event_id", Description: "Best Coast Pairings event id or URL", Required: true},
 			},
 		},
 		{
