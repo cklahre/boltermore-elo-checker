@@ -13,6 +13,11 @@ LEADER="${ROOT}/data/leaderboard.json"
 BIN="${ROOT}/bin/local-elo"
 PULL_SCRIPT="${ROOT}/scripts/pull-matches.sh"
 
+# Services that also hold large match/leaderboard state in RAM on this droplet.
+STOP_UNITS=(eloevent-discord-bot boltermore-web)
+SWAPFILE="${SWAPFILE:-/swapfile}"
+SWAP_SIZE="${SWAP_SIZE:-2G}"
+
 if [[ ! -x "$BIN" ]]; then
   echo "missing $BIN (deploy binaries from GitHub Actions first)" >&2
   exit 1
@@ -29,6 +34,63 @@ if [[ -f "${ROOT}/env/refresh.env" ]]; then
     PULL_MATCHES="${_PULL_MATCHES_OVERRIDE}"
   fi
 fi
+
+ensure_swap() {
+  if swapon --show | grep -q .; then
+    echo "Swap already active:"
+    swapon --show
+    return 0
+  fi
+  if [[ -f "$SWAPFILE" ]]; then
+    echo "Enabling existing swap ${SWAPFILE} ..."
+    chmod 600 "$SWAPFILE" || true
+    swapon "$SWAPFILE" || true
+    return 0
+  fi
+  echo "No swap detected — creating ${SWAP_SIZE} ${SWAPFILE} (needed for Elo rebuild on small droplets) ..."
+  # fallocate can fail on some filesystems; dd is the portable fallback
+  if ! fallocate -l "$SWAP_SIZE" "$SWAPFILE" 2>/dev/null; then
+    local count=2048
+    if [[ "$SWAP_SIZE" =~ ^([0-9]+)G$ ]]; then
+      count=$((BASH_REMATCH[1] * 1024))
+    fi
+    dd if=/dev/zero of="$SWAPFILE" bs=1M count="$count" status=progress
+  fi
+  chmod 600 "$SWAPFILE"
+  mkswap "$SWAPFILE"
+  swapon "$SWAPFILE"
+  if ! grep -q "^${SWAPFILE} " /etc/fstab 2>/dev/null; then
+    echo "${SWAPFILE} none swap sw 0 0" >>/etc/fstab
+  fi
+  swapon --show
+}
+
+stop_heavy_services() {
+  echo "Stopping heavy services to free RAM for local-elo ..."
+  free -h || true
+  local u
+  for u in "${STOP_UNITS[@]}"; do
+    if systemctl is-active --quiet "$u" 2>/dev/null; then
+      systemctl stop "$u" && echo "  stopped ${u}"
+    else
+      echo "  ${u} not running"
+    fi
+  done
+  # Drop page cache hint (best-effort; needs root)
+  sync || true
+  echo 3 >/proc/sys/vm/drop_caches 2>/dev/null || true
+  free -h || true
+}
+
+start_heavy_services() {
+  echo "Starting services back up ..."
+  local u
+  for u in "${STOP_UNITS[@]}"; do
+    if systemctl cat "$u" >/dev/null 2>&1; then
+      systemctl start "$u" && echo "  started ${u}" || echo "  WARN: failed to start ${u}" >&2
+    fi
+  done
+}
 
 # Weekly automation: harvest + dated shard + manifest before Elo.
 if [[ "${PULL_MATCHES:-0}" == "1" ]]; then
@@ -60,10 +122,14 @@ sync_website_leaderboard() {
   fi
 }
 
-# Leaderboard first (cheap). History chunks second (heavier) so an OOM there
-# does not block ratings / Discord bot refresh.
+ensure_swap
+stop_heavy_services
+trap start_heavy_services EXIT
+
+# Leaderboard first. History chunks second so an OOM there does not block ratings.
 run_local_elo() {
   local manifest="$1"
+  echo "Running local-elo -out-json ..."
   "$BIN" -matches-manifest "$manifest" -out-json "$LEADER"
   sync_website_leaderboard
 
@@ -87,6 +153,7 @@ elif [[ -f "$MATCHES_MANIFEST_REPO" ]]; then
   run_local_elo "$MATCHES_MANIFEST_REPO"
 elif [[ -f "$MATCHES_LEGACY_DATA" ]]; then
   echo "(fallback single file — prefer manifest + shards: $MATCHES_LEGACY_DATA)"
+  echo "Running local-elo -out-json ..."
   "$BIN" -matches "$MATCHES_LEGACY_DATA" -out-json "$LEADER"
   sync_website_leaderboard
   if [[ -d /opt/boltermore-web/data ]]; then
@@ -106,7 +173,5 @@ else
   exit 1
 fi
 
-echo "Restarting discord bot ..."
-systemctl restart eloevent-discord-bot
-
+# EXIT trap restarts services (including discord bot)
 echo "Done."
