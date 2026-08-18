@@ -118,35 +118,24 @@ func (b *botState) onChallengeButton(s *discordgo.Session, i *discordgo.Interact
 	}
 	userID := discordUserID(i)
 	if userID == "" {
+		b.respondEphemeral(s, i, "Could not tell who clicked that.")
 		return true
 	}
 
 	switch kind {
-	case "a":
-		// Accept — if defender needs faction, open modal first.
-		// We don't know faction state here without an API read; always offer modal when label says pick faction,
-		// otherwise try direct accept and fall back to modal on "Faction is required".
-		resp, err := callChallengeAPI("accept", boardID, challengeID, userID, nil)
-		if err != nil && strings.Contains(strings.ToLower(err.Error()), "faction") {
-			return b.respondFactionModal(s, i, boardID, challengeID)
-		}
-		if err != nil {
-			b.respondEphemeral(s, i, "Could not accept: "+err.Error())
+	case "a", "af":
+		// Modal must be the first Discord response (3s limit). Do not call the site first.
+		return b.respondFactionModal(s, i, boardID, challengeID)
+	case "d":
+		if err := b.deferEphemeral(s, i); err != nil {
 			return true
 		}
-		msg := "Challenge accepted."
-		if resp.Challenge.Status == "accepted" {
-			msg = "Challenge accepted — play your game, then use **Report result**."
-		}
-		b.respondEphemeral(s, i, msg)
-		return true
-	case "d":
 		_, err := callChallengeAPI("decline", boardID, challengeID, userID, nil)
 		if err != nil {
-			b.respondEphemeral(s, i, "Could not decline: "+err.Error())
+			b.editEphemeral(s, i, "Could not decline: "+err.Error())
 			return true
 		}
-		b.respondEphemeral(s, i, "Challenge declined (counts as a loss).")
+		b.editEphemeral(s, i, "Challenge declined (counts as a loss).")
 		return true
 	case "r":
 		return b.respondResultModal(s, i, boardID, challengeID)
@@ -170,7 +159,7 @@ func (b *botState) respondFactionModal(s *discordgo.Session, i *discordgo.Intera
 							Label:       "Your faction",
 							Style:       discordgo.TextInputShort,
 							Placeholder: "e.g. Adeptus Custodes",
-							Required:    true,
+							Required:    false,
 							MaxLength:   80,
 						},
 					},
@@ -231,24 +220,32 @@ func (b *botState) onChallengeModal(s *discordgo.Session, i *discordgo.Interacti
 	}
 	userID := discordUserID(i)
 	if userID == "" {
+		b.respondEphemeral(s, i, "Could not tell who submitted that.")
+		return true
+	}
+	if err := b.deferEphemeral(s, i); err != nil {
 		return true
 	}
 
 	switch kind {
 	case "mf":
 		faction := modalTextValue(data, 0)
-		_, err := callChallengeAPI("accept", boardID, challengeID, userID, map[string]any{"faction": faction})
+		extra := map[string]any{}
+		if faction != "" {
+			extra["faction"] = faction
+		}
+		_, err := callChallengeAPI("accept", boardID, challengeID, userID, extra)
 		if err != nil {
-			b.respondEphemeral(s, i, "Could not accept: "+err.Error())
+			b.editEphemeral(s, i, "Could not accept: "+err.Error())
 			return true
 		}
-		b.respondEphemeral(s, i, "Challenge accepted — play your game, then use **Report result**.")
+		b.editEphemeral(s, i, "Challenge accepted — play your game, then use **Report result**.")
 		return true
 	case "mr":
 		chVP, err1 := strconv.Atoi(strings.TrimSpace(modalTextValue(data, 0)))
 		defVP, err2 := strconv.Atoi(strings.TrimSpace(modalTextValue(data, 1)))
 		if err1 != nil || err2 != nil {
-			b.respondEphemeral(s, i, "Victory points must be numbers.")
+			b.editEphemeral(s, i, "Victory points must be numbers.")
 			return true
 		}
 		_, err := callChallengeAPI("result", boardID, challengeID, userID, map[string]any{
@@ -256,14 +253,28 @@ func (b *botState) onChallengeModal(s *discordgo.Session, i *discordgo.Interacti
 			"defenderVp":   defVP,
 		})
 		if err != nil {
-			b.respondEphemeral(s, i, "Could not post result: "+err.Error())
+			b.editEphemeral(s, i, "Could not post result: "+err.Error())
 			return true
 		}
-		b.respondEphemeral(s, i, "Result posted — the board has been updated.")
+		b.editEphemeral(s, i, "Result posted — the board has been updated.")
 		return true
 	default:
-		return false
+		b.editEphemeral(s, i, "Unknown challenge action.")
+		return true
 	}
+}
+
+func (b *botState) deferEphemeral(s *discordgo.Session, i *discordgo.InteractionCreate) error {
+	err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseDeferredChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{
+			Flags: discordgo.MessageFlagsEphemeral,
+		},
+	})
+	if err != nil {
+		log.Printf("challenge defer: %v", err)
+	}
+	return err
 }
 
 func (b *botState) respondEphemeral(s *discordgo.Session, i *discordgo.InteractionCreate, content string) {
@@ -279,6 +290,15 @@ func (b *botState) respondEphemeral(s *discordgo.Session, i *discordgo.Interacti
 	})
 	if err != nil {
 		log.Printf("challenge ephemeral respond: %v", err)
+	}
+}
+
+func (b *botState) editEphemeral(s *discordgo.Session, i *discordgo.InteractionCreate, content string) {
+	if len(content) > 1900 {
+		content = content[:1900] + "…"
+	}
+	if _, err := s.InteractionResponseEdit(i.Interaction, &discordgo.WebhookEdit{Content: &content}); err != nil {
+		log.Printf("challenge ephemeral edit: %v", err)
 	}
 }
 
