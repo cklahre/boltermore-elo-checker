@@ -352,6 +352,9 @@ func fileStatFingerprint(path string) (string, error) {
 
 func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	return func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+		if b.onChallengeInteraction(s, i) {
+			return
+		}
 		if i.Type != discordgo.InteractionApplicationCommand {
 			return
 		}

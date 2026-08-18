@@ -27,10 +27,12 @@ jobs:
           DO_HOST: ${{ secrets.DO_HOST }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+          DISCORD_BOT_API_SECRET: ${{ secrets.DISCORD_BOT_API_SECRET }}
         run: |
           test -n "$DO_HOST" || (echo "Secret DO_HOST is required" >&2 && exit 1)
           test -n "$DISCORD_BOT_TOKEN" || (echo "Secret DISCORD_BOT_TOKEN is required" >&2 && exit 1)
           test -n "$DISCORD_GUILD_ID" || (echo "Secret DISCORD_GUILD_ID is required" >&2 && exit 1)
+          test -n "$DISCORD_BOT_API_SECRET" || (echo "Secret DISCORD_BOT_API_SECRET is required" >&2 && exit 1)
 
       - name: Build Linux binaries
         run: |
@@ -44,6 +46,8 @@ jobs:
             go build -trimpath -ldflags="-s -w" -o bcp-export-matches ./cmd/bcp-export-matches
           GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
             go build -trimpath -ldflags="-s -w" -o bcp-matches-manifest ./cmd/bcp-matches-manifest
+          GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
+            go build -trimpath -ldflags="-s -w" -o bcp-purge-matches-by-name ./cmd/bcp-purge-matches-by-name
 
       - name: Start SSH agent
         uses: webfactory/ssh-agent@v0.9.0
@@ -63,10 +67,11 @@ jobs:
           DO_SSH_USER: ${{ vars.DO_SSH_USER }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+          DISCORD_BOT_API_SECRET: ${{ secrets.DISCORD_BOT_API_SECRET }}
         run: |
           U="${DO_SSH_USER:-root}"
           ssh "$U@$HOST" 'mkdir -p /opt/eloevent/repo /opt/eloevent/bin /opt/eloevent/data /opt/eloevent/env /opt/eloevent/scripts'
-          printf 'DISCORD_BOT_TOKEN=%s\nDISCORD_GUILD_ID=%s\n' "$DISCORD_BOT_TOKEN" "$DISCORD_GUILD_ID" \
+          printf 'DISCORD_BOT_TOKEN=%s\nDISCORD_GUILD_ID=%s\nBOLTERMORE_WEB_URL=http://127.0.0.1:3000\nDISCORD_BOT_API_SECRET=%s\n' "$DISCORD_BOT_TOKEN" "$DISCORD_GUILD_ID" "$DISCORD_BOT_API_SECRET" \
             | ssh "$U@$HOST" 'umask 077; cat >/opt/eloevent/env/bot.env && chmod 600 /opt/eloevent/env/bot.env'
           rsync -avz --delete \
             --exclude '.git/' \
@@ -78,8 +83,9 @@ jobs:
             --exclude 'bcp-harvest-events' \
             --exclude 'bcp-export-matches' \
             --exclude 'bcp-matches-manifest' \
+            --exclude 'bcp-purge-matches-by-name' \
             "${GITHUB_WORKSPACE}/" "$U@$HOST:/opt/eloevent/repo/"
-          rsync -avz eloevent-bot local-elo bcp-harvest-events bcp-export-matches bcp-matches-manifest \
+          rsync -avz eloevent-bot local-elo bcp-harvest-events bcp-export-matches bcp-matches-manifest bcp-purge-matches-by-name \
             "$U@$HOST:/opt/eloevent/bin/"
           rsync -avz scripts/droplet/refresh-leaderboard.sh \
             scripts/droplet/pull-matches.sh \
@@ -93,6 +99,7 @@ jobs:
           set -euo pipefail
           chmod +x /opt/eloevent/bin/eloevent-bot /opt/eloevent/bin/local-elo \
             /opt/eloevent/bin/bcp-harvest-events /opt/eloevent/bin/bcp-export-matches /opt/eloevent/bin/bcp-matches-manifest \
+            /opt/eloevent/bin/bcp-purge-matches-by-name \
             /opt/eloevent/scripts/refresh-leaderboard.sh /opt/eloevent/scripts/pull-matches.sh \
             /opt/eloevent/scripts/start-eloevent-discord-bot.sh
           chmod 644 /opt/eloevent/scripts/eloevent-discord-bot.service \

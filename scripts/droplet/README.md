@@ -92,6 +92,31 @@ go run ./cmd/bcp-matches-manifest -out bcp-matches.manifest -sort name
 
 `local-elo`, **`player-history`**, and **`eloevent-discord-bot`** merge shards with **`DedupeMatchRows`** (pairing-first). Prefer **disjoint** shards; overlaps keep the **first** occurrence — list **oldest batches first**.
 
+## Purge team (or other name-matched) events from existing shards
+
+Weekly harvest already skips names matching **`EXCLUDE_NAME`** (includes `team,teams`). Historical shards still need a one-time purge:
+
+```bash
+# Resolve names via events cache + BCP, write a denylist, dry-run first:
+go run ./cmd/bcp-purge-matches-by-name \
+  -matches-manifest bcp-matches.manifest \
+  -exclude-name team,teams \
+  -events-cache bcp-events-new.json \
+  -out-denylist team-events-denylist.txt \
+  -dry-run
+
+# Apply (rewrites shards in place). Reuse denylist to skip BCP refetch:
+go run ./cmd/bcp-purge-matches-by-name \
+  -matches-manifest bcp-matches.manifest \
+  -denylist team-events-denylist.txt
+
+go run ./cmd/local-elo -matches-manifest bcp-matches.manifest -out-json leaderboard.json
+# Then sync shards + refresh on the droplet:
+# SSH_IDENTITY=… DO_HOST=… ./scripts/droplet/sync-matches-to-droplet.sh
+```
+
+A checked-in **`team-events-denylist.txt`** (175 events as of Aug 2026) is the audit list from the first full purge.
+
 ## Manifest + shards (preferred)
 
 Do **not** commit gigabyte exports without need; **dated shards** + **`bcp-matches.manifest`** are the normal workflow.

@@ -1,0 +1,5482 @@
+[
+  {
+    "date": "2026-08-08T13:00:01Z",
+    "a": "Matt Neeley",
+    "b": "Kaden Hoey",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "lcquCN6dPxON"
+  },
+  {
+    "date": "2026-08-08T13:00:01Z",
+    "a": "Will Horan",
+    "b": "BobbyJo Scott",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "jkLDUnPtmr7X"
+  },
+  {
+    "date": "2026-08-08T13:00:02Z",
+    "a": "Sean Brookshire",
+    "b": "Ethan Floyd",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "A7D8Qup5ymiV"
+  },
+  {
+    "date": "2026-08-08T13:00:02Z",
+    "a": "Taylor Xia",
+    "b": "Paul Marra",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "meMV57wsZlIh"
+  },
+  {
+    "date": "2026-08-08T13:00:03Z",
+    "a": "James Lemrose",
+    "b": "Mike Kissman",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "fW5HLZ9siffV"
+  },
+  {
+    "date": "2026-08-08T13:00:03Z",
+    "a": "Zach Goedert",
+    "b": "Nick Laney",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "4xdNyN7Y3azC"
+  },
+  {
+    "date": "2026-08-08T13:00:04Z",
+    "a": "BamBam Hunter",
+    "b": "Chris Martin",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "zC1m7fM7aUsP"
+  },
+  {
+    "date": "2026-08-08T13:00:04Z",
+    "a": "Dakota Schwan",
+    "b": "Spencer Inman",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "vUBeeWTN9LrJ"
+  },
+  {
+    "date": "2026-08-08T13:00:05Z",
+    "a": "Conan Jennings",
+    "b": "adam bryce",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "KwkhEVQ7odAH"
+  },
+  {
+    "date": "2026-08-08T13:00:05Z",
+    "a": "Dylan Brandon",
+    "b": "Draven Wells",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "vSvFSU0EThOq"
+  },
+  {
+    "date": "2026-08-08T13:00:06Z",
+    "a": "Max Saylor",
+    "b": "Justin Martinelli",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "LunTOlRWKZ6V"
+  },
+  {
+    "date": "2026-08-08T13:00:06Z",
+    "a": "Zachary Lynn",
+    "b": "Kolby Long",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "TJmc7Hz49vkh"
+  },
+  {
+    "date": "2026-08-08T13:00:07Z",
+    "a": "Evan Hoffman",
+    "b": "Jimmy Hayes",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "ThgB22u7gy4s"
+  },
+  {
+    "date": "2026-08-08T13:00:07Z",
+    "a": "Tyler Atkinson",
+    "b": "Rand Anderson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "y7RymsVyGet0"
+  },
+  {
+    "date": "2026-08-08T13:00:08Z",
+    "a": "Cade McLarty",
+    "b": "Ryan Smith",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "624YLf3xSoxZ"
+  },
+  {
+    "date": "2026-08-08T13:00:08Z",
+    "a": "Jacob Kline",
+    "b": "Derek Hotchkin",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "ClIiwRHZkqGJ"
+  },
+  {
+    "date": "2026-08-08T13:00:09Z",
+    "a": "Justin Hackert",
+    "b": "Garin Buttermore",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "f5NKZZa0cVku"
+  },
+  {
+    "date": "2026-08-08T13:00:09Z",
+    "a": "Kirkland Brown",
+    "b": "Brandon Nicolette",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "5C9b11xGWcBw"
+  },
+  {
+    "date": "2026-08-08T13:00:10Z",
+    "a": "Alex Roach",
+    "b": "Ritesh Gautam",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "1HjTUQYw8Els"
+  },
+  {
+    "date": "2026-08-08T13:00:10Z",
+    "a": "Jacob Kwak",
+    "b": "Oliver Olsen",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "s5NschkeUqXy"
+  },
+  {
+    "date": "2026-08-08T13:00:11Z",
+    "a": "Bryan Woodall",
+    "b": "James Arriola",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "SCIdj5ElEzYO"
+  },
+  {
+    "date": "2026-08-08T13:00:11Z",
+    "a": "Sam Schafer",
+    "b": "Jared Boggs",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "4iwgAorp5CEC"
+  },
+  {
+    "date": "2026-08-08T13:00:12Z",
+    "a": "Dan Smith",
+    "b": "Jonathan Brandt",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "bNVtn8OcQWnt"
+  },
+  {
+    "date": "2026-08-08T13:00:12Z",
+    "a": "David DeLisle",
+    "b": "Sam Fletcher",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "b3WGS4RsTmfk"
+  },
+  {
+    "date": "2026-08-08T13:00:13Z",
+    "a": "Alexx Murphy",
+    "b": "Jayden Jones",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "3QSUtiHdTLzr"
+  },
+  {
+    "date": "2026-08-08T13:00:13Z",
+    "a": "Tim Fingerle",
+    "b": "Matthew Barrie",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "HKQ7QXLs6GrD"
+  },
+  {
+    "date": "2026-08-08T13:00:14Z",
+    "a": "Charles Roller",
+    "b": "Donovan Carney",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "dT2NWNZBcKXG"
+  },
+  {
+    "date": "2026-08-08T13:00:14Z",
+    "a": "Kristopher Pals",
+    "b": "Charlie Andre",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "XVmKA1J9GMnZ"
+  },
+  {
+    "date": "2026-08-08T13:00:15Z",
+    "a": "Alex Brudnicki",
+    "b": "Brandon Lohmeyer",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "vdrbEmEh5oiX"
+  },
+  {
+    "date": "2026-08-08T13:00:15Z",
+    "a": "Elijah Byrd",
+    "b": "Michael Anderson",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "ihmE3cdAaLpv"
+  },
+  {
+    "date": "2026-08-08T13:00:16Z",
+    "a": "James Lutz",
+    "b": "Logan Olinger",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "eSYT2iNxBlUN"
+  },
+  {
+    "date": "2026-08-08T13:00:16Z",
+    "a": "Michael Sarapata",
+    "b": "TJ Jarnjak",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "exsIfOdbJVlt"
+  },
+  {
+    "date": "2026-08-08T13:00:17Z",
+    "a": "Gabe Buttermore",
+    "b": "Nathan Hesford",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "h01VRVgaT2ln"
+  },
+  {
+    "date": "2026-08-08T13:00:17Z",
+    "a": "Scot Clark",
+    "b": "Michael Schoose",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "aPcfKFzqqfK3"
+  },
+  {
+    "date": "2026-08-08T13:00:18Z",
+    "a": "Matthew Root",
+    "b": "Rod  Buttermore",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "TszO1ufaOzNQ"
+  },
+  {
+    "date": "2026-08-08T13:00:18Z",
+    "a": "Stephen Eckstein",
+    "b": "Michael Carlyle",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "ioMoN3Q4qOw2"
+  },
+  {
+    "date": "2026-08-08T13:00:19Z",
+    "a": "Matthew Kundla",
+    "b": "Devin Porter",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "F6l1dZK5qjMW"
+  },
+  {
+    "date": "2026-08-08T13:00:19Z",
+    "a": "Phillip HAMMERFALL",
+    "b": "cole knutson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "XffbKN9gzHf3"
+  },
+  {
+    "date": "2026-08-08T13:00:20Z",
+    "a": "Austin Johnson",
+    "b": "Scott Meechan",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "cGNDM3Igq2o4"
+  },
+  {
+    "date": "2026-08-08T13:00:20Z",
+    "a": "Matthew Anderson",
+    "b": "Blake Kittrell",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "laR8ZcM7GDfG"
+  },
+  {
+    "date": "2026-08-08T13:00:21Z",
+    "a": "Daniel Sansone",
+    "b": "KIRK CARSON",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "SOvpPoBurZId"
+  },
+  {
+    "date": "2026-08-08T13:00:21Z",
+    "a": "Mariano Salvatore",
+    "b": "Justin Monnin",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "GzXu2cIVG6hk"
+  },
+  {
+    "date": "2026-08-08T13:00:22Z",
+    "a": "Andrew Snowden",
+    "b": "Caleb Harper",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "jOmCRfyPHVYg"
+  },
+  {
+    "date": "2026-08-08T13:00:22Z",
+    "a": "Tim Royers",
+    "b": "Michael Baumann",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "PVaLiQppUDTj"
+  },
+  {
+    "date": "2026-08-08T13:00:23Z",
+    "a": "Austin Hahn",
+    "b": "Jason Hunter",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "OPiuYweCu1AR"
+  },
+  {
+    "date": "2026-08-08T13:00:23Z",
+    "a": "Brian Smith",
+    "b": "Ben Cherwien",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "28ttM67GUBtq"
+  },
+  {
+    "date": "2026-08-08T13:00:24Z",
+    "a": "Jared Moore",
+    "b": "Ryan Choplick",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "fs9tr7ypocqc"
+  },
+  {
+    "date": "2026-08-08T13:00:25Z",
+    "a": "David Sullivan",
+    "b": "Riley Morris",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "RuLzeSiO5l0D"
+  },
+  {
+    "date": "2026-08-08T13:00:26Z",
+    "a": "Luke Muilenburg",
+    "b": "Thomas Robbins",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "slS0gHtfVBnb"
+  },
+  {
+    "date": "2026-08-08T13:00:27Z",
+    "a": "Matt Stadnik",
+    "b": "Luke O'Connell",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "iDFT7XobYVO0"
+  },
+  {
+    "date": "2026-08-08T13:00:28Z",
+    "a": "Jake Brunkhorst",
+    "b": "Nicholas Kudriavetz",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "S6DClWVQobBc"
+  },
+  {
+    "date": "2026-08-08T13:00:29Z",
+    "a": "Erick Aragon",
+    "b": "Mr.  Rocks",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "syZg1oH5AlUm"
+  },
+  {
+    "date": "2026-08-08T13:00:30Z",
+    "a": "Jacob Evans",
+    "b": "Jason Wheeler",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "y4UWQe1t2UWU"
+  },
+  {
+    "date": "2026-08-08T13:00:31Z",
+    "a": "Mr. Pibb",
+    "b": "Piston Shufflebotham",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "2ikkZHGfrY1I"
+  },
+  {
+    "date": "2026-08-08T13:00:32Z",
+    "a": "Sam Olsen",
+    "b": "Mr. Pibb Zero",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "qOju6bBDrWe8"
+  },
+  {
+    "date": "2026-08-08T13:00:33Z",
+    "a": "Richard Colona",
+    "b": "Kabir Sharma",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "bAevpN25NDi8"
+  },
+  {
+    "date": "2026-08-08T13:00:34Z",
+    "a": "mack mcmurrin",
+    "b": "Brandon Paul",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Szc4zZK4xwUG"
+  },
+  {
+    "date": "2026-08-08T13:00:35Z",
+    "a": "Tim McGerr",
+    "b": "Kale Klitzkie",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "T5uDboLKtiKE"
+  },
+  {
+    "date": "2026-08-08T13:00:36Z",
+    "a": "Alex Kraft",
+    "b": "Stephen Petersen",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "xPjcMgNOMGxO"
+  },
+  {
+    "date": "2026-08-08T13:00:37Z",
+    "a": "Shawn sonnack",
+    "b": "Clay Cone",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "jSj7jUt8Nxew"
+  },
+  {
+    "date": "2026-08-08T15:30:01Z",
+    "a": "Brady Roberts",
+    "b": "Mario Capizzo",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "l6mrYLy5WW0H"
+  },
+  {
+    "date": "2026-08-08T15:30:02Z",
+    "a": "Natalie Hill",
+    "b": "Drake Valle",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "FJ6KMPe57LB8"
+  },
+  {
+    "date": "2026-08-08T15:30:03Z",
+    "a": "Evan Stump",
+    "b": "Stephen Sommers",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "bElfk6IxUguG"
+  },
+  {
+    "date": "2026-08-08T15:30:04Z",
+    "a": "Chase Chappell",
+    "b": "Andrew Radcliffe",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "bUKiYg6uNyj1"
+  },
+  {
+    "date": "2026-08-08T15:30:05Z",
+    "a": "Lucas Pehringer",
+    "b": "Kody mckinnon",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Cl9O9ZK2CszR"
+  },
+  {
+    "date": "2026-08-08T15:30:06Z",
+    "a": "Derek Holder",
+    "b": "Samuel Chapman",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "8YBg224FnOHU"
+  },
+  {
+    "date": "2026-08-08T15:30:07Z",
+    "a": "Jeff Petersen",
+    "b": "Nathan Pearson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "JZ6rR1PdRgVt"
+  },
+  {
+    "date": "2026-08-08T15:30:08Z",
+    "a": "James Davis",
+    "b": "Christopher Johnson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "W8dcFf7SGMh4"
+  },
+  {
+    "date": "2026-08-08T15:30:09Z",
+    "a": "Owen Starks",
+    "b": "alvin aguilar",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "aeEEfafi0fnj"
+  },
+  {
+    "date": "2026-08-08T15:30:10Z",
+    "a": "Noah Gaddis",
+    "b": "Levi Libengood",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "FW7ocCcPFnsg"
+  },
+  {
+    "date": "2026-08-08T15:30:11Z",
+    "a": "Bryce Greenwell",
+    "b": "Jordan Gledhill",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "KMbRe7S5vNbq"
+  },
+  {
+    "date": "2026-08-08T15:30:12Z",
+    "a": "Steven Hall",
+    "b": "Clayton Twombly",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "QblLpJdUUJmg"
+  },
+  {
+    "date": "2026-08-08T15:30:13Z",
+    "a": "Nick Gaddis",
+    "b": "Nick Copier",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "pQsvEp7mRcXg"
+  },
+  {
+    "date": "2026-08-08T15:30:14Z",
+    "a": "Devin Christiansen",
+    "b": "Mira Wilkins",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "VNOstF7onBz0"
+  },
+  {
+    "date": "2026-08-08T15:30:15Z",
+    "a": "Max Coltrin",
+    "b": "Aaron Knafla",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "hdrdIxxuAQ5J"
+  },
+  {
+    "date": "2026-08-08T15:30:16Z",
+    "a": "Brennan Butler",
+    "b": "Wesley Hale",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "6tcXd7XyKN6T"
+  },
+  {
+    "date": "2026-08-08T15:30:17Z",
+    "a": "Robby Curneal",
+    "b": "Steve Altizer",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "yFbgCoIY1oxa"
+  },
+  {
+    "date": "2026-08-08T15:30:18Z",
+    "a": "Zachary  Ross",
+    "b": "Zach Brown",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "qiIaf4j3dyHW"
+  },
+  {
+    "date": "2026-08-08T15:30:19Z",
+    "a": "Jason Laub",
+    "b": "Eric Class",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "s3Q74aItcObt"
+  },
+  {
+    "date": "2026-08-08T15:30:20Z",
+    "a": "Brian McAtee",
+    "b": "John Vuchetich",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "6i5CWpxgp9zn"
+  },
+  {
+    "date": "2026-08-08T15:30:21Z",
+    "a": "Tyler Nix",
+    "b": "Keaton Hensley",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "cz25gNQnEalz"
+  },
+  {
+    "date": "2026-08-08T15:30:22Z",
+    "a": "jake Eichler",
+    "b": "Jake Herrod",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "xNiJJ1RPYpJc"
+  },
+  {
+    "date": "2026-08-08T15:30:23Z",
+    "a": "Jeffrey Wilson",
+    "b": "Vinny. The gob!",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "GnK0WPYL3BgV"
+  },
+  {
+    "date": "2026-08-08T15:30:24Z",
+    "a": "Porter Garlock",
+    "b": "Kole Culbertson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ZKMYNEFMRbAi"
+  },
+  {
+    "date": "2026-08-08T15:30:25Z",
+    "a": "Christopher Mason",
+    "b": "Daniel Nelson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "svsHAjNW21iw"
+  },
+  {
+    "date": "2026-08-08T15:30:26Z",
+    "a": "Myles Meadows",
+    "b": "Austin Coleman",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Dwp0Z8wHc5qR"
+  },
+  {
+    "date": "2026-08-08T15:30:27Z",
+    "a": "Scott Bouche",
+    "b": "William Stewart",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "NtqhwtIqlqCN"
+  },
+  {
+    "date": "2026-08-08T15:30:28Z",
+    "a": "Joshua Bush",
+    "b": "Charles Metts",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "LcoQOEhasUYl"
+  },
+  {
+    "date": "2026-08-08T15:30:29Z",
+    "a": "Brad Gaddis",
+    "b": "Benjamin Sausedo",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "8E8cQ0A8900j"
+  },
+  {
+    "date": "2026-08-08T15:30:30Z",
+    "a": "Eisley Burr",
+    "b": "Ryan Mcguire",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "llYfMK4J0Fd9"
+  },
+  {
+    "date": "2026-08-08T15:30:31Z",
+    "a": "Kaleb Kunz",
+    "b": "Jonathan Barber",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "rWtS4Uce9UI8"
+  },
+  {
+    "date": "2026-08-08T15:30:32Z",
+    "a": "Tanner Johnson",
+    "b": "Jacob Huhtala",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "BYiTtTxmM1aZ"
+  },
+  {
+    "date": "2026-08-08T15:30:33Z",
+    "a": "Ethan Spangenberg",
+    "b": "Mason Newton",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "0Ylxzgvn2apP"
+  },
+  {
+    "date": "2026-08-08T15:30:34Z",
+    "a": "Scott Rumple",
+    "b": "Thomas Moore",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "2yfYUod6Pijd"
+  },
+  {
+    "date": "2026-08-08T15:30:35Z",
+    "a": "Nathan Gaddis",
+    "b": "Jeran Barcus",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "yeTMWx0WCCjY"
+  },
+  {
+    "date": "2026-08-08T15:30:36Z",
+    "a": "Brandon Kuhn",
+    "b": "Joshua Wood",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "pIDWKK7nNW3x"
+  },
+  {
+    "date": "2026-08-08T15:30:37Z",
+    "a": "Marshall Peterson",
+    "b": "Shaun Sharp",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "DSQhgvatNoK4"
+  },
+  {
+    "date": "2026-08-08T15:30:38Z",
+    "a": "Nathan Schmidt",
+    "b": "Liam Miller",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "RazBhtDzOkH5"
+  },
+  {
+    "date": "2026-08-08T15:30:39Z",
+    "a": "Chase Norton",
+    "b": "Ben Jurek",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "y7e49oHa4lSC"
+  },
+  {
+    "date": "2026-08-08T15:30:40Z",
+    "a": "Paul Allen",
+    "b": "Ashton Glodowski",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "S1Ups4X4iz6k"
+  },
+  {
+    "date": "2026-08-08T15:30:41Z",
+    "a": "Nicolas Wenker",
+    "b": "Ben Steigers",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "5IMYyuzWh4OH"
+  },
+  {
+    "date": "2026-08-08T15:30:42Z",
+    "a": "Brandon Clark",
+    "b": "Hayden Godfrey",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "C7Ukv6Hu4ajg"
+  },
+  {
+    "date": "2026-08-08T15:30:43Z",
+    "a": "Aaron Fyffe",
+    "b": "Nicole Clausen",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "hw6RSlAQ1kZV"
+  },
+  {
+    "date": "2026-08-08T15:30:44Z",
+    "a": "Mike Williams",
+    "b": "Keegan Murphy",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "rjdEKp89gyH7"
+  },
+  {
+    "date": "2026-08-08T15:30:45Z",
+    "a": "Jamon Cline",
+    "b": "Mason Stahl",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "xBYQoDr6rVba"
+  },
+  {
+    "date": "2026-08-08T15:30:46Z",
+    "a": "Braden Chancellor",
+    "b": "Talmage Joos",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "P17FbdKoaNz4"
+  },
+  {
+    "date": "2026-08-08T15:30:47Z",
+    "a": "Evan Sharp",
+    "b": "Old Man Steve Baum",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "H9RkM5rxkzlA"
+  },
+  {
+    "date": "2026-08-08T15:30:48Z",
+    "a": "Thomas Knight",
+    "b": "Isaac Terada",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "eyW53OsHShMo"
+  },
+  {
+    "date": "2026-08-08T15:30:49Z",
+    "a": "Treynor Wolfe",
+    "b": "Thomas Kirchenheiter",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "3vYJjmrudOLD"
+  },
+  {
+    "date": "2026-08-08T15:30:50Z",
+    "a": "Thomas Hegstrom Oakey",
+    "b": "Emily Scott",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "UbMHHOakrhtV"
+  },
+  {
+    "date": "2026-08-08T15:30:51Z",
+    "a": "Adam Durrant",
+    "b": "Preston Tomes",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ocBIiG8xuzWq"
+  },
+  {
+    "date": "2026-08-08T15:30:52Z",
+    "a": "William Schmidt",
+    "b": "Steven Rainey",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "6XCcjdjXbYft"
+  },
+  {
+    "date": "2026-08-08T15:30:53Z",
+    "a": "Kaden Lunday",
+    "b": "Jeff Meyer",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "M87hCzBXSzXr"
+  },
+  {
+    "date": "2026-08-08T15:30:54Z",
+    "a": "Ticer Nelson",
+    "b": "Brian Hayes",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "JA9BUA5e8NWt"
+  },
+  {
+    "date": "2026-08-08T15:30:55Z",
+    "a": "Jeffrey Cosper",
+    "b": "Jacob Herrera",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "CGOJ4xuHSSjQ"
+  },
+  {
+    "date": "2026-08-08T15:30:56Z",
+    "a": "Alec White-patarino",
+    "b": "Olivier  Sanchez",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "5QqFlpaTT7Ng"
+  },
+  {
+    "date": "2026-08-08T15:30:57Z",
+    "a": "James Higley",
+    "b": "Jason Stutsman",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "N7OhwxHTsz7k"
+  },
+  {
+    "date": "2026-08-08T15:30:58Z",
+    "a": "Christopher Green",
+    "b": "Eryck Blake",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "GfFaJJNBmWEV"
+  },
+  {
+    "date": "2026-08-08T15:30:59Z",
+    "a": "Harout Baltayan",
+    "b": "Chris Warren",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "tmLo9pPw705f"
+  },
+  {
+    "date": "2026-08-08T15:31:00Z",
+    "a": "Marcus Tanner",
+    "b": "Nate Hasebi",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "jNGTIaSA1mdd"
+  },
+  {
+    "date": "2026-08-08T15:31:01Z",
+    "a": "Ricky Simmons",
+    "b": "Carlos Moreno",
+    "winner": "draw",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "NavrmtgCR1I2"
+  },
+  {
+    "date": "2026-08-08T15:31:02Z",
+    "a": "Kade Chancellor",
+    "b": "Brandon Lamb",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "LNcp76VJKDEv"
+  },
+  {
+    "date": "2026-08-08T15:31:03Z",
+    "a": "Josh Bonner",
+    "b": "Cody Noel",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "CxjHnixJltFk"
+  },
+  {
+    "date": "2026-08-08T15:31:04Z",
+    "a": "Cameron Newton",
+    "b": "Trevor Gurney",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "04IHJDE9PfXb"
+  },
+  {
+    "date": "2026-08-08T15:31:05Z",
+    "a": "AJ Torres",
+    "b": "Melody Gray",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "xTtky5Y5yDJ0"
+  },
+  {
+    "date": "2026-08-09T13:00:01Z",
+    "a": "Cade McLarty",
+    "b": "Mariano Salvatore",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "h2QrhlHR5wL7"
+  },
+  {
+    "date": "2026-08-09T13:00:01Z",
+    "a": "Clay Cone",
+    "b": "Luke O'Connell",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "uGpdTjWQdtpF"
+  },
+  {
+    "date": "2026-08-09T13:00:02Z",
+    "a": "Michael Carlyle",
+    "b": "Zach Goedert",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "i1e5Ws3PKtZc"
+  },
+  {
+    "date": "2026-08-09T13:00:02Z",
+    "a": "Tyler Atkinson",
+    "b": "Tim McGerr",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Zm9mEcOw8w2f"
+  },
+  {
+    "date": "2026-08-09T13:00:03Z",
+    "a": "Gabe Buttermore",
+    "b": "Rand Anderson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "hBmwXxfkgaDs"
+  },
+  {
+    "date": "2026-08-09T13:00:03Z",
+    "a": "Sean Brookshire",
+    "b": "Nick Laney",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "WLbahJ2PQKJy"
+  },
+  {
+    "date": "2026-08-09T13:00:04Z",
+    "a": "Jacob Kline",
+    "b": "Sam Olsen",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "9F49CqZWP3yl"
+  },
+  {
+    "date": "2026-08-09T13:00:04Z",
+    "a": "Scot Clark",
+    "b": "Dakota Schwan",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "NlCIwTzsF5th"
+  },
+  {
+    "date": "2026-08-09T13:00:05Z",
+    "a": "Austin Johnson",
+    "b": "Brandon Nicolette",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "2O7zTk7Li8o9"
+  },
+  {
+    "date": "2026-08-09T13:00:05Z",
+    "a": "Garin Buttermore",
+    "b": "David Sullivan",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "LYfQa1MbAyA6"
+  },
+  {
+    "date": "2026-08-09T13:00:06Z",
+    "a": "BamBam Hunter",
+    "b": "Riley Morris",
+    "winner": "draw",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "bxLyq8OHbFkt"
+  },
+  {
+    "date": "2026-08-09T13:00:06Z",
+    "a": "BobbyJo Scott",
+    "b": "Jason Hunter",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "lyFZbfn4oc5q"
+  },
+  {
+    "date": "2026-08-09T13:00:07Z",
+    "a": "Mr. Pibb Zero",
+    "b": "Ryan Choplick",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "otxtpUId6mLv"
+  },
+  {
+    "date": "2026-08-09T13:00:07Z",
+    "a": "Ritesh Gautam",
+    "b": "Brandon Lohmeyer",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "kfVG8mT5DEal"
+  },
+  {
+    "date": "2026-08-09T13:00:08Z",
+    "a": "Charles Roller",
+    "b": "Justin Monnin",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "9p4reCvzQFqa"
+  },
+  {
+    "date": "2026-08-09T13:00:08Z",
+    "a": "Rod  Buttermore",
+    "b": "Oliver Olsen",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "4ubR2hE7DjZK"
+  },
+  {
+    "date": "2026-08-09T13:00:09Z",
+    "a": "Matt Stadnik",
+    "b": "James Lemrose",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Yxh47JrZq3j6"
+  },
+  {
+    "date": "2026-08-09T13:00:09Z",
+    "a": "Sam Fletcher",
+    "b": "Matthew Barrie",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "btISsKNAEoVB"
+  },
+  {
+    "date": "2026-08-09T13:00:10Z",
+    "a": "Kirkland Brown",
+    "b": "Ethan Floyd",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "gUqfxuOKFaDs"
+  },
+  {
+    "date": "2026-08-09T13:00:10Z",
+    "a": "Kristopher Pals",
+    "b": "Zachary Lynn",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "tTvZx6HLpVbi"
+  },
+  {
+    "date": "2026-08-09T13:00:11Z",
+    "a": "Alex Kraft",
+    "b": "Derek Hotchkin",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "s57PIkxyA6bH"
+  },
+  {
+    "date": "2026-08-09T13:00:11Z",
+    "a": "Scott Meechan",
+    "b": "Jimmy Hayes",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "SAnngjbxiEdP"
+  },
+  {
+    "date": "2026-08-09T13:00:12Z",
+    "a": "Dylan Brandon",
+    "b": "Matthew Root",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "wNzbBCSSRj5r"
+  },
+  {
+    "date": "2026-08-09T13:00:12Z",
+    "a": "Justin Martinelli",
+    "b": "Caleb Harper",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "eWLegHtwuSBa"
+  },
+  {
+    "date": "2026-08-09T13:00:13Z",
+    "a": "Alex Brudnicki",
+    "b": "David DeLisle",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "TdRjRd7p05wt"
+  },
+  {
+    "date": "2026-08-09T13:00:13Z",
+    "a": "Thomas Robbins",
+    "b": "Shawn sonnack",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "JcH2xDcrXSPM"
+  },
+  {
+    "date": "2026-08-09T13:00:14Z",
+    "a": "Erick Aragon",
+    "b": "Piston Shufflebotham",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "g5GN3qAqb6hA"
+  },
+  {
+    "date": "2026-08-09T13:00:14Z",
+    "a": "Matthew Kundla",
+    "b": "Conan Jennings",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "C9JDR8kuRLng"
+  },
+  {
+    "date": "2026-08-09T13:00:15Z",
+    "a": "Ben Cherwien",
+    "b": "Jacob Evans",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "VpHp1MEFVRtm"
+  },
+  {
+    "date": "2026-08-09T13:00:15Z",
+    "a": "Ryan Smith",
+    "b": "Devin Porter",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "6PuG28bx7ehm"
+  },
+  {
+    "date": "2026-08-09T13:00:16Z",
+    "a": "Dan Smith",
+    "b": "James Lutz",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "hJhYY1V2yhpn"
+  },
+  {
+    "date": "2026-08-09T13:00:16Z",
+    "a": "TJ Jarnjak",
+    "b": "Evan Hoffman",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "aAfmMtnzB42F"
+  },
+  {
+    "date": "2026-08-09T13:00:17Z",
+    "a": "Tim Fingerle",
+    "b": "Max Saylor",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "uswY5GDIYzGN"
+  },
+  {
+    "date": "2026-08-09T13:00:17Z",
+    "a": "mack mcmurrin",
+    "b": "Daniel Sansone",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "ICeU5L7pL6I5"
+  },
+  {
+    "date": "2026-08-09T13:00:18Z",
+    "a": "Andrew Snowden",
+    "b": "Austin Hahn",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "eRcgfJFGKYvp"
+  },
+  {
+    "date": "2026-08-09T13:00:18Z",
+    "a": "Charlie Andre",
+    "b": "cole knutson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "aJmaGEyB4dRf"
+  },
+  {
+    "date": "2026-08-09T13:00:19Z",
+    "a": "Taylor Xia",
+    "b": "Alexx Murphy",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "FaULwuF0saR9"
+  },
+  {
+    "date": "2026-08-09T13:00:19Z",
+    "a": "adam bryce",
+    "b": "Gem Ringer",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "KAQ8QSSAxQzV"
+  },
+  {
+    "date": "2026-08-09T13:00:20Z",
+    "a": "Kabir Sharma",
+    "b": "Matthew Anderson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "W77Xta8oKIQx"
+  },
+  {
+    "date": "2026-08-09T13:00:20Z",
+    "a": "Stephen Eckstein",
+    "b": "Spencer Inman",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "VoiAIIKb6qvv"
+  },
+  {
+    "date": "2026-08-09T13:00:21Z",
+    "a": "Michael Baumann",
+    "b": "Jared Moore",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "zlrlOJhTrWef"
+  },
+  {
+    "date": "2026-08-09T13:00:21Z",
+    "a": "Michael Schoose",
+    "b": "Alex Roach",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "mnZ9Q99LVU0I"
+  },
+  {
+    "date": "2026-08-09T13:00:22Z",
+    "a": "Jared Boggs",
+    "b": "Will Horan",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "y1CQ8rju0Ix0"
+  },
+  {
+    "date": "2026-08-09T13:00:22Z",
+    "a": "Richard Colona",
+    "b": "James Arriola",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "IuMiVldP0woL"
+  },
+  {
+    "date": "2026-08-09T13:00:23Z",
+    "a": "Mike Kissman",
+    "b": "Jake Brunkhorst",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "JNiQMjcooMcw"
+  },
+  {
+    "date": "2026-08-09T13:00:23Z",
+    "a": "Sam Schafer",
+    "b": "Donovan Carney",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "xxAMQGyE0HcV"
+  },
+  {
+    "date": "2026-08-09T13:00:25Z",
+    "a": "Logan Olinger",
+    "b": "Tim Royers",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "FZxJgZUzX9Dp"
+  },
+  {
+    "date": "2026-08-09T13:00:26Z",
+    "a": "Elijah Byrd",
+    "b": "Jacob Kwak",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "XoxQwH9OtJ1K"
+  },
+  {
+    "date": "2026-08-09T13:00:27Z",
+    "a": "Chris Martin",
+    "b": "Brandon Paul",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "QDc4eal1q96A"
+  },
+  {
+    "date": "2026-08-09T13:00:28Z",
+    "a": "KIRK CARSON",
+    "b": "Draven Wells",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "buCkzoWJxTyN"
+  },
+  {
+    "date": "2026-08-09T13:00:29Z",
+    "a": "Brian Smith",
+    "b": "Jason Wheeler",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "1eNeQQ8xpp02"
+  },
+  {
+    "date": "2026-08-09T13:00:30Z",
+    "a": "Matt Neeley",
+    "b": "Nicholas Kudriavetz",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "t4wupXXq3PH2"
+  },
+  {
+    "date": "2026-08-09T13:00:31Z",
+    "a": "Kale Klitzkie",
+    "b": "Kaden Hoey",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "yfgMG84AtgRR"
+  },
+  {
+    "date": "2026-08-09T13:00:32Z",
+    "a": "Jayden Jones",
+    "b": "Bryan Woodall",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "xPQDkZVn1Yf2"
+  },
+  {
+    "date": "2026-08-09T13:00:33Z",
+    "a": "Jonathan Brandt",
+    "b": "Mr.  Rocks",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "vBsp3Xbu4KIY"
+  },
+  {
+    "date": "2026-08-09T13:00:34Z",
+    "a": "Kolby Long",
+    "b": "Justin Hackert",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "x4oLynYEgEpn"
+  },
+  {
+    "date": "2026-08-09T13:00:35Z",
+    "a": "Phillip HAMMERFALL",
+    "b": "Michael Anderson",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "w63t4H1mQhKN"
+  },
+  {
+    "date": "2026-08-09T13:00:36Z",
+    "a": "Blake Kittrell",
+    "b": "Mr. Pibb",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "BS4kpVbjfrsk"
+  },
+  {
+    "date": "2026-08-09T13:00:37Z",
+    "a": "Nathan Hesford",
+    "b": "Paul Marra",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "5FqWC3c3sp8O"
+  },
+  {
+    "date": "2026-08-09T15:30:01Z",
+    "a": "Tanner Johnson",
+    "b": "Jacob Herrera",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "725iBnkdM0J5"
+  },
+  {
+    "date": "2026-08-09T15:30:02Z",
+    "a": "Nick Gaddis",
+    "b": "Christopher Mason",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "EKkpZStrnHQ3"
+  },
+  {
+    "date": "2026-08-09T15:30:03Z",
+    "a": "Evan Sharp",
+    "b": "AJ Torres",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "kCBPGkKPjdm4"
+  },
+  {
+    "date": "2026-08-09T15:30:04Z",
+    "a": "Mike Williams",
+    "b": "Cody Noel",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "q9L0Y3HnNhyx"
+  },
+  {
+    "date": "2026-08-09T15:30:05Z",
+    "a": "Scott Bouche",
+    "b": "Owen Starks",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "xP3U0XLEW8nX"
+  },
+  {
+    "date": "2026-08-09T15:30:06Z",
+    "a": "Jamon Cline",
+    "b": "Mira Wilkins",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "evMD45qO2jQA"
+  },
+  {
+    "date": "2026-08-09T15:30:07Z",
+    "a": "Ethan Spangenberg",
+    "b": "Joshua Bush",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "0VnrFWwuNX1V"
+  },
+  {
+    "date": "2026-08-09T15:30:08Z",
+    "a": "Christopher Johnson",
+    "b": "Hayden Godfrey",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "zdJDDWGoDug0"
+  },
+  {
+    "date": "2026-08-09T15:30:09Z",
+    "a": "Nicolas Wenker",
+    "b": "Nathan Gaddis",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "WWxE2gTPt50W"
+  },
+  {
+    "date": "2026-08-09T15:30:10Z",
+    "a": "Derek Holder",
+    "b": "Jeff Petersen",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "45YvaFZCn6tH"
+  },
+  {
+    "date": "2026-08-09T15:30:11Z",
+    "a": "Jason Stutsman",
+    "b": "Ben Jurek",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "kD96RCdoPOHQ"
+  },
+  {
+    "date": "2026-08-09T15:30:12Z",
+    "a": "Ashton Glodowski",
+    "b": "Drake Valle",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "SJVuNpcP4StO"
+  },
+  {
+    "date": "2026-08-09T15:30:13Z",
+    "a": "Jake Herrod",
+    "b": "Preston Tomes",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "qRxish5eDnHc"
+  },
+  {
+    "date": "2026-08-09T15:30:14Z",
+    "a": "Wesley Hale",
+    "b": "Brian Hayes",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "XyR8A1Lm3Gbd"
+  },
+  {
+    "date": "2026-08-09T15:30:15Z",
+    "a": "Aaron Knafla",
+    "b": "Evan Stump",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "dmFLkfKK92OG"
+  },
+  {
+    "date": "2026-08-09T15:30:16Z",
+    "a": "Jonathan Barber",
+    "b": "Jordan Gledhill",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "VoJzPQFLjDO6"
+  },
+  {
+    "date": "2026-08-09T15:30:17Z",
+    "a": "Steven Hall",
+    "b": "Thomas Hegstrom Oakey",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "NAnPtPBGedmr"
+  },
+  {
+    "date": "2026-08-09T15:30:18Z",
+    "a": "Chase Chappell",
+    "b": "Brian McAtee",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "7mF9G72Xj9Vv"
+  },
+  {
+    "date": "2026-08-09T15:30:19Z",
+    "a": "Liam Miller",
+    "b": "Thomas Moore",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "XXoHoDub1OMy"
+  },
+  {
+    "date": "2026-08-09T15:30:20Z",
+    "a": "Jason Laub",
+    "b": "Christopher Green",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "3S52wrNS3uEM"
+  },
+  {
+    "date": "2026-08-09T15:30:21Z",
+    "a": "Steven Rainey",
+    "b": "Levi Libengood",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "NeVbOQw13xsd"
+  },
+  {
+    "date": "2026-08-09T15:30:22Z",
+    "a": "Ryan Mcguire",
+    "b": "Marshall Peterson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "7TkOh67cSdbP"
+  },
+  {
+    "date": "2026-08-09T15:30:23Z",
+    "a": "Tyler Nix",
+    "b": "Brandon Lamb",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "wqk6p6pZsKJt"
+  },
+  {
+    "date": "2026-08-09T15:30:24Z",
+    "a": "Robby Curneal",
+    "b": "Zach Brown",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "4zx1C7yv8d5A"
+  },
+  {
+    "date": "2026-08-09T15:30:25Z",
+    "a": "Cameron Newton",
+    "b": "Brady Roberts",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "wSNV1asiYPzP"
+  },
+  {
+    "date": "2026-08-09T15:30:26Z",
+    "a": "Alec White-patarino",
+    "b": "Harout Baltayan",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "JjdRHWufKI7c"
+  },
+  {
+    "date": "2026-08-09T15:30:27Z",
+    "a": "Brandon Kuhn",
+    "b": "Treynor Wolfe",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "pvBm4j9NK3Jp"
+  },
+  {
+    "date": "2026-08-09T15:30:28Z",
+    "a": "Kole Culbertson",
+    "b": "Talmage Joos",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "EEEmPS9ZxBzV"
+  },
+  {
+    "date": "2026-08-09T15:30:29Z",
+    "a": "Benjamin Sausedo",
+    "b": "Austin Coleman",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "f36shBG0Sfxj"
+  },
+  {
+    "date": "2026-08-09T15:30:30Z",
+    "a": "Nate Hasebi",
+    "b": "Jeff Meyer",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "s6fABURe6gur"
+  },
+  {
+    "date": "2026-08-09T15:30:31Z",
+    "a": "Vinny. The gob!",
+    "b": "Lucas Pehringer",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "FBbKvRMdFrBB"
+  },
+  {
+    "date": "2026-08-09T15:30:32Z",
+    "a": "Isaac Terada",
+    "b": "Nicole Clausen",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "IVMsoypIo365"
+  },
+  {
+    "date": "2026-08-09T15:30:33Z",
+    "a": "Carlos Moreno",
+    "b": "Daniel Nelson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "dwdt2dqYgSSW"
+  },
+  {
+    "date": "2026-08-09T15:30:34Z",
+    "a": "Ricky Simmons",
+    "b": "James Davis",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "fnWLW4vlbP8S"
+  },
+  {
+    "date": "2026-08-09T15:30:35Z",
+    "a": "Andrew Radcliffe",
+    "b": "Ticer Nelson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "D5EahI8ErHPP"
+  },
+  {
+    "date": "2026-08-09T15:30:36Z",
+    "a": "Bryce Greenwell",
+    "b": "Stephen Sommers",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "jyU6zWVoModX"
+  },
+  {
+    "date": "2026-08-09T15:30:37Z",
+    "a": "Marcus Tanner",
+    "b": "Eryck Blake",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "GNd0mA3oblQY"
+  },
+  {
+    "date": "2026-08-09T15:30:38Z",
+    "a": "Jeffrey Cosper",
+    "b": "Devin Christiansen",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "b819wa0ZnL88"
+  },
+  {
+    "date": "2026-08-09T15:30:39Z",
+    "a": "Nathan Schmidt",
+    "b": "Joshua Wood",
+    "winner": "draw",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ive4KCliSN2O"
+  },
+  {
+    "date": "2026-08-09T15:30:40Z",
+    "a": "Eric Class",
+    "b": "Jacob Huhtala",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "BzXKA3x483L5"
+  },
+  {
+    "date": "2026-08-09T15:30:41Z",
+    "a": "Josh Bonner",
+    "b": "Chase Norton",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "3vM9YwE6ICk1"
+  },
+  {
+    "date": "2026-08-09T15:30:42Z",
+    "a": "Paul Allen",
+    "b": "Myles Meadows",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "nUK8badQXhMQ"
+  },
+  {
+    "date": "2026-08-09T15:30:43Z",
+    "a": "Adam Durrant",
+    "b": "Scott Rumple",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Pkx3D6D9ACVm"
+  },
+  {
+    "date": "2026-08-09T15:30:44Z",
+    "a": "Thomas Kirchenheiter",
+    "b": "Shaun Sharp",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "NQxWzGW9LWoH"
+  },
+  {
+    "date": "2026-08-09T15:30:45Z",
+    "a": "Charles Metts",
+    "b": "Kaleb Kunz",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "MnDwyKC06wDd"
+  },
+  {
+    "date": "2026-08-09T15:30:46Z",
+    "a": "Olivier  Sanchez",
+    "b": "Chris Warren",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "pbzn8wUSPcth"
+  },
+  {
+    "date": "2026-08-09T15:30:47Z",
+    "a": "Ben Steigers",
+    "b": "James Higley",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "epEV2tNvRCWv"
+  },
+  {
+    "date": "2026-08-09T15:30:48Z",
+    "a": "Brennan Butler",
+    "b": "Braden Chancellor",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "eymWJxT8AAO9"
+  },
+  {
+    "date": "2026-08-09T15:30:49Z",
+    "a": "Aaron Fyffe",
+    "b": "jake Eichler",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "yUOd6Ld3KKou"
+  },
+  {
+    "date": "2026-08-09T15:30:50Z",
+    "a": "Thomas Knight",
+    "b": "Trevor Gurney",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "N99yhDGewOOo"
+  },
+  {
+    "date": "2026-08-09T15:30:51Z",
+    "a": "alvin aguilar",
+    "b": "Clayton Twombly",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "bNbASreioMde"
+  },
+  {
+    "date": "2026-08-09T15:30:52Z",
+    "a": "Mason Newton",
+    "b": "Brad Gaddis",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "J2785qeHuURs"
+  },
+  {
+    "date": "2026-08-09T15:30:53Z",
+    "a": "Kody mckinnon",
+    "b": "Nathan Pearson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "VqffpudzA69e"
+  },
+  {
+    "date": "2026-08-09T15:30:54Z",
+    "a": "William Stewart",
+    "b": "Samuel Chapman",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "krTfYlsFYwnA"
+  },
+  {
+    "date": "2026-08-09T15:30:55Z",
+    "a": "Melody Gray",
+    "b": "Jeran Barcus",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "H6K3WhhLKt0P"
+  },
+  {
+    "date": "2026-08-09T15:30:56Z",
+    "a": "John Vuchetich",
+    "b": "Keaton Hensley",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "HlnnkSnmTLu1"
+  },
+  {
+    "date": "2026-08-09T15:30:57Z",
+    "a": "Kaden Lunday",
+    "b": "Brandon Clark",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "T6kJ7TVBvDEG"
+  },
+  {
+    "date": "2026-08-09T15:30:58Z",
+    "a": "William Schmidt",
+    "b": "Old Man Steve Baum",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Y7qHSdybd1Gy"
+  },
+  {
+    "date": "2026-08-09T15:30:59Z",
+    "a": "Keegan Murphy",
+    "b": "Jeffrey Wilson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "sISHeNbE1Emt"
+  },
+  {
+    "date": "2026-08-09T15:31:00Z",
+    "a": "Emily Scott",
+    "b": "Zachary  Ross",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "CwdFncTrxDP5"
+  },
+  {
+    "date": "2026-08-09T15:31:01Z",
+    "a": "Eisley Burr",
+    "b": "Nick Copier",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Tj8s5ifcC8ws"
+  },
+  {
+    "date": "2026-08-09T15:31:02Z",
+    "a": "Natalie Hill",
+    "b": "Kade Chancellor",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "91W7dBc1Su6i"
+  },
+  {
+    "date": "2026-08-09T15:31:03Z",
+    "a": "Noah Gaddis",
+    "b": "Steve Altizer",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "UTHUpmKZysZS"
+  },
+  {
+    "date": "2026-08-10T13:00:01Z",
+    "a": "Charles Roller",
+    "b": "Andrew Snowden",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "933KzQPf21vd"
+  },
+  {
+    "date": "2026-08-10T13:00:01Z",
+    "a": "Michael Anderson",
+    "b": "Garin Buttermore",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "p2FX2gFCsjdR"
+  },
+  {
+    "date": "2026-08-10T13:00:02Z",
+    "a": "Justin Martinelli",
+    "b": "Zach Goedert",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "XqwPS3PXVgZR"
+  },
+  {
+    "date": "2026-08-10T13:00:02Z",
+    "a": "Matt Neeley",
+    "b": "Paul Marra",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "4K8RFcCfaNR0"
+  },
+  {
+    "date": "2026-08-10T13:00:03Z",
+    "a": "BobbyJo Scott",
+    "b": "Brandon Lohmeyer",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "KZ0XAEkCG7dV"
+  },
+  {
+    "date": "2026-08-10T13:00:03Z",
+    "a": "Jacob Kline",
+    "b": "Erick Aragon",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "RKYJipRB3eoh"
+  },
+  {
+    "date": "2026-08-10T13:00:04Z",
+    "a": "Elijah Byrd",
+    "b": "Richard Colona",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "WyAyvvqw1iqs"
+  },
+  {
+    "date": "2026-08-10T13:00:04Z",
+    "a": "Scot Clark",
+    "b": "Michael Carlyle",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "w89EMRWIz6vU"
+  },
+  {
+    "date": "2026-08-10T13:00:05Z",
+    "a": "TJ Jarnjak",
+    "b": "Max Saylor",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "EmJDkpP71VUf"
+  },
+  {
+    "date": "2026-08-10T13:00:05Z",
+    "a": "Zachary Lynn",
+    "b": "Brian Smith",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "CrKwFu8DnJpK"
+  },
+  {
+    "date": "2026-08-10T13:00:06Z",
+    "a": "Jonathan Brandt",
+    "b": "Charlie Andre",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "yySdHaw7FwgB"
+  },
+  {
+    "date": "2026-08-10T13:00:06Z",
+    "a": "Ritesh Gautam",
+    "b": "Dakota Schwan",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "NYuFCeTQ4PVp"
+  },
+  {
+    "date": "2026-08-10T13:00:07Z",
+    "a": "James Lemrose",
+    "b": "Blake Kittrell",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "y08Nm5lXwa2A"
+  },
+  {
+    "date": "2026-08-10T13:00:07Z",
+    "a": "Nick Laney",
+    "b": "Will Horan",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "pskcS9aazlIs"
+  },
+  {
+    "date": "2026-08-10T13:00:08Z",
+    "a": "Alex Kraft",
+    "b": "Mr. Pibb",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "uybnDkjYLbk7"
+  },
+  {
+    "date": "2026-08-10T13:00:08Z",
+    "a": "Devin Porter",
+    "b": "Michael Schoose",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "h0PK167Ls5fz"
+  },
+  {
+    "date": "2026-08-10T13:00:09Z",
+    "a": "Tim McGerr",
+    "b": "Oliver Olsen",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "CKys5NOGJOp8"
+  },
+  {
+    "date": "2026-08-10T13:00:09Z",
+    "a": "adam bryce",
+    "b": "Donovan Carney",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "4b0rB9IyQoW0"
+  },
+  {
+    "date": "2026-08-10T13:00:10Z",
+    "a": "Caleb Harper",
+    "b": "Mariano Salvatore",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "xlMNHTyJ6N4T"
+  },
+  {
+    "date": "2026-08-10T13:00:10Z",
+    "a": "Tim Royers",
+    "b": "Matt Stadnik",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "ryoE0WrMqjsw"
+  },
+  {
+    "date": "2026-08-10T13:00:11Z",
+    "a": "Ryan Choplick",
+    "b": "James Lutz",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "wLzZ1noH1XVh"
+  },
+  {
+    "date": "2026-08-10T13:00:11Z",
+    "a": "Tim Fingerle",
+    "b": "Ethan Floyd",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "nYBRe3wszdQK"
+  },
+  {
+    "date": "2026-08-10T13:00:12Z",
+    "a": "BamBam Hunter",
+    "b": "Matthew Root",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "1e24QSavJSNx"
+  },
+  {
+    "date": "2026-08-10T13:00:12Z",
+    "a": "Cade McLarty",
+    "b": "Spencer Inman",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "erVJftTISh3h"
+  },
+  {
+    "date": "2026-08-10T13:00:13Z",
+    "a": "Austin Johnson",
+    "b": "Conan Jennings",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "gBBIOJvvh3ZF"
+  },
+  {
+    "date": "2026-08-10T13:00:13Z",
+    "a": "Dylan Brandon",
+    "b": "Nicholas Kudriavetz",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "NOTaQ6tKAlEO"
+  },
+  {
+    "date": "2026-08-10T13:00:14Z",
+    "a": "Jacob Evans",
+    "b": "mack mcmurrin",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "pnn3dULg7yZI"
+  },
+  {
+    "date": "2026-08-10T13:00:14Z",
+    "a": "Justin Monnin",
+    "b": "Sean Brookshire",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "YF5OWOcmTWxG"
+  },
+  {
+    "date": "2026-08-10T13:00:15Z",
+    "a": "Rod  Buttermore",
+    "b": "Thomas Robbins",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "LQNP4BZyjYhW"
+  },
+  {
+    "date": "2026-08-10T13:00:15Z",
+    "a": "Stephen Eckstein",
+    "b": "Jimmy Hayes",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "TxHfAP6MjOO0"
+  },
+  {
+    "date": "2026-08-10T13:00:16Z",
+    "a": "Sam Olsen",
+    "b": "Bryan Woodall",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "WVOBOK5v36qc"
+  },
+  {
+    "date": "2026-08-10T13:00:16Z",
+    "a": "Sam Schafer",
+    "b": "Kirkland Brown",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "aIWHTVYRUYXD"
+  },
+  {
+    "date": "2026-08-10T13:00:17Z",
+    "a": "Austin Hahn",
+    "b": "Brandon Nicolette",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "lJxxsZ7NdKsj"
+  },
+  {
+    "date": "2026-08-10T13:00:17Z",
+    "a": "Daniel Sansone",
+    "b": "Mr. Pibb Zero",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "akx8LzuQJEzx"
+  },
+  {
+    "date": "2026-08-10T13:00:18Z",
+    "a": "David DeLisle",
+    "b": "Evan Hoffman",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "zYVVkKN9rhb7"
+  },
+  {
+    "date": "2026-08-10T13:00:18Z",
+    "a": "Kristopher Pals",
+    "b": "Piston Shufflebotham",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "qEuOyhsW0rcr"
+  },
+  {
+    "date": "2026-08-10T13:00:19Z",
+    "a": "Chris Martin",
+    "b": "Dan Smith",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "zGacTJk5l7VX"
+  },
+  {
+    "date": "2026-08-10T13:00:19Z",
+    "a": "Ryan Smith",
+    "b": "Sam Fletcher",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "fFDLSJtJUI93"
+  },
+  {
+    "date": "2026-08-10T13:00:20Z",
+    "a": "Alex Roach",
+    "b": "Alex Brudnicki",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "nOm5maicB4DY"
+  },
+  {
+    "date": "2026-08-10T13:00:20Z",
+    "a": "Kaden Hoey",
+    "b": "Logan Olinger",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "KjDV8oBur6uk"
+  },
+  {
+    "date": "2026-08-10T13:00:21Z",
+    "a": "Taylor Xia",
+    "b": "David Sullivan",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "UJnE6r9HaprK"
+  },
+  {
+    "date": "2026-08-10T13:00:22Z",
+    "a": "Matthew Kundla",
+    "b": "Jared Boggs",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "BDa3fay8xPSw"
+  },
+  {
+    "date": "2026-08-10T13:00:22Z",
+    "a": "Michael Baumann",
+    "b": "Brandon Paul",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "S4GrVHKdAyTb"
+  },
+  {
+    "date": "2026-08-10T13:00:23Z",
+    "a": "Gem Ringer",
+    "b": "Scott Meechan",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "0vmhzkSKpfNO"
+  },
+  {
+    "date": "2026-08-10T13:00:23Z",
+    "a": "Jayden Jones",
+    "b": "Jake Brunkhorst",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "4n8STpVQ0Dj3"
+  },
+  {
+    "date": "2026-08-10T13:00:24Z",
+    "a": "Gabe Buttermore",
+    "b": "Justin Hackert",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "14ATzhJHNYQI"
+  },
+  {
+    "date": "2026-08-10T13:00:26Z",
+    "a": "Jared Moore",
+    "b": "Nathan Hesford",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "2BPJF7LSLvdM"
+  },
+  {
+    "date": "2026-08-10T13:00:27Z",
+    "a": "Alexx Murphy",
+    "b": "Rand Anderson",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "PCItC8ruzcvY"
+  },
+  {
+    "date": "2026-08-10T13:00:28Z",
+    "a": "cole knutson",
+    "b": "James Arriola",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "aBQlf23jau0P"
+  },
+  {
+    "date": "2026-08-10T13:00:29Z",
+    "a": "Clay Cone",
+    "b": "Phillip HAMMERFALL",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "mtx4XNnUounk"
+  },
+  {
+    "date": "2026-08-10T13:00:30Z",
+    "a": "Kabir Sharma",
+    "b": "KIRK CARSON",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "B2AuzCzbY3eK"
+  },
+  {
+    "date": "2026-08-10T13:00:31Z",
+    "a": "Luke O'Connell",
+    "b": "Mike Kissman",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "hxoN6J2YJ5Lx"
+  },
+  {
+    "date": "2026-08-10T13:00:32Z",
+    "a": "Jacob Kwak",
+    "b": "Derek Hotchkin",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Y2e6hzZppux8"
+  },
+  {
+    "date": "2026-08-10T13:00:33Z",
+    "a": "Tyler Atkinson",
+    "b": "Matthew Anderson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "3UxckUeQwJbq"
+  },
+  {
+    "date": "2026-08-10T13:00:34Z",
+    "a": "Mr.  Rocks",
+    "b": "Luke Muilenburg",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "0eHVWqO1LV2t"
+  },
+  {
+    "date": "2026-08-10T13:00:35Z",
+    "a": "Draven Wells",
+    "b": "Kale Klitzkie",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "xobESCriETJP"
+  },
+  {
+    "date": "2026-08-10T13:00:36Z",
+    "a": "Ben Cherwien",
+    "b": "Kolby Long",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "QU5aDAoh2sq8"
+  },
+  {
+    "date": "2026-08-10T13:00:37Z",
+    "a": "Shawn sonnack",
+    "b": "Riley Morris",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "BCHj0YHLLUPk"
+  },
+  {
+    "date": "2026-08-10T15:30:01Z",
+    "a": "Jacob Herrera",
+    "b": "Nick Gaddis",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "G9qeDIS2H1Qt"
+  },
+  {
+    "date": "2026-08-10T15:30:02Z",
+    "a": "Evan Sharp",
+    "b": "Cody Noel",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ilHuO8bZrN05"
+  },
+  {
+    "date": "2026-08-10T15:30:03Z",
+    "a": "Owen Starks",
+    "b": "Jamon Cline",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "KoZFmColMkUr"
+  },
+  {
+    "date": "2026-08-10T15:30:04Z",
+    "a": "Joshua Bush",
+    "b": "Christopher Johnson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "rsZWT5ILX7Nl"
+  },
+  {
+    "date": "2026-08-10T15:30:05Z",
+    "a": "Nicolas Wenker",
+    "b": "Derek Holder",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "DA80Opck6ue2"
+  },
+  {
+    "date": "2026-08-10T15:30:06Z",
+    "a": "Ben Jurek",
+    "b": "Ashton Glodowski",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "5RSwRtwHYGNy"
+  },
+  {
+    "date": "2026-08-10T15:30:07Z",
+    "a": "Jake Herrod",
+    "b": "Wesley Hale",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "JKVP6UEvBOhc"
+  },
+  {
+    "date": "2026-08-10T15:30:08Z",
+    "a": "Evan Stump",
+    "b": "Jordan Gledhill",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "9drlPIDT3eW6"
+  },
+  {
+    "date": "2026-08-10T15:30:09Z",
+    "a": "Steven Hall",
+    "b": "Chase Chappell",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "gxosSsrNJS3M"
+  },
+  {
+    "date": "2026-08-10T15:30:10Z",
+    "a": "Thomas Moore",
+    "b": "Jason Laub",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "aClS68jvfX6q"
+  },
+  {
+    "date": "2026-08-10T15:30:11Z",
+    "a": "Levi Libengood",
+    "b": "Marshall Peterson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "5SCqgNUAtRCJ"
+  },
+  {
+    "date": "2026-08-10T15:30:12Z",
+    "a": "Tyler Nix",
+    "b": "Zach Brown",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Okl1pYJAIY5a"
+  },
+  {
+    "date": "2026-08-10T15:30:13Z",
+    "a": "Cameron Newton",
+    "b": "Harout Baltayan",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "UNJ7F709rpUx"
+  },
+  {
+    "date": "2026-08-10T15:30:14Z",
+    "a": "Treynor Wolfe",
+    "b": "Talmage Joos",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "TE3nmUH9pgeD"
+  },
+  {
+    "date": "2026-08-10T15:30:15Z",
+    "a": "Austin Coleman",
+    "b": "Jeff Meyer",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "CxeFTmJLRloa"
+  },
+  {
+    "date": "2026-08-10T15:30:16Z",
+    "a": "Lucas Pehringer",
+    "b": "Isaac Terada",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "HslMX2sZ0nl3"
+  },
+  {
+    "date": "2026-08-10T15:30:17Z",
+    "a": "Carlos Moreno",
+    "b": "Tanner Johnson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "uOK3peoB2XT0"
+  },
+  {
+    "date": "2026-08-10T15:30:18Z",
+    "a": "Christopher Mason",
+    "b": "AJ Torres",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "RlEumPsS8Xd9"
+  },
+  {
+    "date": "2026-08-10T15:30:19Z",
+    "a": "Mike Williams",
+    "b": "Scott Bouche",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "LTjAxbiOuyL9"
+  },
+  {
+    "date": "2026-08-10T15:30:20Z",
+    "a": "Mira Wilkins",
+    "b": "Ethan Spangenberg",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "VpUjaFpSNOZT"
+  },
+  {
+    "date": "2026-08-10T15:30:21Z",
+    "a": "Hayden Godfrey",
+    "b": "Nathan Gaddis",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "vJDWtzsniRfH"
+  },
+  {
+    "date": "2026-08-10T15:30:22Z",
+    "a": "Jeff Petersen",
+    "b": "Jason Stutsman",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "cZSLkc3SIcQN"
+  },
+  {
+    "date": "2026-08-10T15:30:23Z",
+    "a": "Drake Valle",
+    "b": "Preston Tomes",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "w9OjKdzdq7zv"
+  },
+  {
+    "date": "2026-08-10T15:30:24Z",
+    "a": "Brian Hayes",
+    "b": "Aaron Knafla",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "YZ7sMUgX7UJI"
+  },
+  {
+    "date": "2026-08-10T15:30:25Z",
+    "a": "Jonathan Barber",
+    "b": "Thomas Hegstrom Oakey",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "UcnA9nHY4WCg"
+  },
+  {
+    "date": "2026-08-10T15:30:26Z",
+    "a": "Brian McAtee",
+    "b": "Liam Miller",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "k9putB4BoOC7"
+  },
+  {
+    "date": "2026-08-10T15:30:27Z",
+    "a": "Christopher Green",
+    "b": "Steven Rainey",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "m0WcigQSyyj9"
+  },
+  {
+    "date": "2026-08-10T15:30:28Z",
+    "a": "Ryan Mcguire",
+    "b": "Brandon Lamb",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "5mMf11JRJisM"
+  },
+  {
+    "date": "2026-08-10T15:30:29Z",
+    "a": "Robby Curneal",
+    "b": "Brady Roberts",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "aAz5LdwFVtNa"
+  },
+  {
+    "date": "2026-08-10T15:30:30Z",
+    "a": "Alec White-patarino",
+    "b": "Brandon Kuhn",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "o9ul0FqSqG36"
+  },
+  {
+    "date": "2026-08-10T15:30:31Z",
+    "a": "Kole Culbertson",
+    "b": "Benjamin Sausedo",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ILy5kfJwUZjq"
+  },
+  {
+    "date": "2026-08-10T15:30:32Z",
+    "a": "Vinny. The gob!",
+    "b": "Nicole Clausen",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "huQc3UoCZcXH"
+  },
+  {
+    "date": "2026-08-10T15:30:33Z",
+    "a": "James Davis",
+    "b": "Ticer Nelson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "1elnznpnCus5"
+  },
+  {
+    "date": "2026-08-10T15:30:34Z",
+    "a": "Bryce Greenwell",
+    "b": "Marcus Tanner",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "4MywBsbmY0hW"
+  },
+  {
+    "date": "2026-08-10T15:30:35Z",
+    "a": "Jeffrey Cosper",
+    "b": "Jacob Huhtala",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "YA9sBnG1iPCt"
+  },
+  {
+    "date": "2026-08-10T15:30:36Z",
+    "a": "Josh Bonner",
+    "b": "Paul Allen",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "L8DqQQA643BN"
+  },
+  {
+    "date": "2026-08-10T15:30:37Z",
+    "a": "Scott Rumple",
+    "b": "Shaun Sharp",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "nWF5QC01GDoo"
+  },
+  {
+    "date": "2026-08-10T15:30:38Z",
+    "a": "Kaleb Kunz",
+    "b": "Olivier  Sanchez",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "aUldwCYLDHlf"
+  },
+  {
+    "date": "2026-08-10T15:30:39Z",
+    "a": "James Higley",
+    "b": "Brennan Butler",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "0hesnyQ9iA6N"
+  },
+  {
+    "date": "2026-08-10T15:30:40Z",
+    "a": "Aaron Fyffe",
+    "b": "Thomas Knight",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "egLUDWRttCwu"
+  },
+  {
+    "date": "2026-08-10T15:30:41Z",
+    "a": "alvin aguilar",
+    "b": "Brad Gaddis",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "D9UDAVfyKzJ1"
+  },
+  {
+    "date": "2026-08-10T15:30:42Z",
+    "a": "Nathan Pearson",
+    "b": "William Stewart",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "GMVbu3Wu6Jmh"
+  },
+  {
+    "date": "2026-08-10T15:30:43Z",
+    "a": "Jeran Barcus",
+    "b": "John Vuchetich",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "CvKaJXANN3Zw"
+  },
+  {
+    "date": "2026-08-10T15:30:44Z",
+    "a": "Brandon Clark",
+    "b": "William Schmidt",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "psnH0ayBY5uQ"
+  },
+  {
+    "date": "2026-08-10T15:30:45Z",
+    "a": "Jeffrey Wilson",
+    "b": "Emily Scott",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "JTIs5vkqnymS"
+  },
+  {
+    "date": "2026-08-10T15:30:46Z",
+    "a": "Nick Copier",
+    "b": "Natalie Hill",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "1NKukk7YCtIx"
+  },
+  {
+    "date": "2026-08-10T15:30:47Z",
+    "a": "Noah Gaddis",
+    "b": "Ricky Simmons",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "kHpesiQgst2p"
+  },
+  {
+    "date": "2026-08-10T15:30:48Z",
+    "a": "Nathan Schmidt",
+    "b": "Daniel Nelson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "oVzaWq1nmbWD"
+  },
+  {
+    "date": "2026-08-10T15:30:49Z",
+    "a": "Joshua Wood",
+    "b": "Andrew Radcliffe",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "OyqJXBQcWhGW"
+  },
+  {
+    "date": "2026-08-10T15:30:50Z",
+    "a": "Stephen Sommers",
+    "b": "Eryck Blake",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "czU5VOxllS6q"
+  },
+  {
+    "date": "2026-08-10T15:30:51Z",
+    "a": "Devin Christiansen",
+    "b": "Eric Class",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "HkzGaZOaKyhP"
+  },
+  {
+    "date": "2026-08-10T15:30:52Z",
+    "a": "Chase Norton",
+    "b": "Myles Meadows",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "3rMQKwkXZIFN"
+  },
+  {
+    "date": "2026-08-10T15:30:53Z",
+    "a": "Adam Durrant",
+    "b": "Thomas Kirchenheiter",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "NzyPYCN2g7oW"
+  },
+  {
+    "date": "2026-08-10T15:30:54Z",
+    "a": "Chris Warren",
+    "b": "Ben Steigers",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "pRyFPgcIq8uq"
+  },
+  {
+    "date": "2026-08-10T15:30:55Z",
+    "a": "Braden Chancellor",
+    "b": "jake Eichler",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "3Ee5kwjGx2dL"
+  },
+  {
+    "date": "2026-08-10T15:30:56Z",
+    "a": "Trevor Gurney",
+    "b": "Clayton Twombly",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "SDarYKGsFhBB"
+  },
+  {
+    "date": "2026-08-10T15:30:57Z",
+    "a": "Mason Newton",
+    "b": "Kody mckinnon",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "bgbWZWDZcgC8"
+  },
+  {
+    "date": "2026-08-10T15:30:58Z",
+    "a": "Samuel Chapman",
+    "b": "Melody Gray",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Af4pltJdZB4X"
+  },
+  {
+    "date": "2026-08-10T15:30:59Z",
+    "a": "Keaton Hensley",
+    "b": "Kaden Lunday",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "qucp5HR9OokB"
+  },
+  {
+    "date": "2026-08-10T15:31:00Z",
+    "a": "Old Man Steve Baum",
+    "b": "Keegan Murphy",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "m6GF6AfmcUsf"
+  },
+  {
+    "date": "2026-08-10T15:31:01Z",
+    "a": "Zachary  Ross",
+    "b": "Eisley Burr",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ubEbjYChn8Ws"
+  },
+  {
+    "date": "2026-08-10T15:31:02Z",
+    "a": "Kade Chancellor",
+    "b": "Steve Altizer",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "QhA9wBUvxdzx"
+  },
+  {
+    "date": "2026-08-11T13:00:01Z",
+    "a": "Mr. Pibb Zero",
+    "b": "Thomas Robbins",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "ybPTRrtee7rq"
+  },
+  {
+    "date": "2026-08-11T13:00:01Z",
+    "a": "Stephen Eckstein",
+    "b": "Matthew Kundla",
+    "winner": "draw",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "xv7Y3L0kRxpD"
+  },
+  {
+    "date": "2026-08-11T13:00:02Z",
+    "a": "Austin Johnson",
+    "b": "Austin Hahn",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "hHCS6HFj5F4e"
+  },
+  {
+    "date": "2026-08-11T13:00:02Z",
+    "a": "Luke Muilenburg",
+    "b": "Matt Stadnik",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "spSaZfzBnFGc"
+  },
+  {
+    "date": "2026-08-11T13:00:03Z",
+    "a": "Kale Klitzkie",
+    "b": "mack mcmurrin",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "5yOCyG1AxvKN"
+  },
+  {
+    "date": "2026-08-11T13:00:03Z",
+    "a": "Will Horan",
+    "b": "Max Saylor",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "cIEpryAWgG6f"
+  },
+  {
+    "date": "2026-08-11T13:00:04Z",
+    "a": "Ben Cherwien",
+    "b": "Alexx Murphy",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "TxiGUNpCcZOE"
+  },
+  {
+    "date": "2026-08-11T13:00:04Z",
+    "a": "Justin Martinelli",
+    "b": "Sean Brookshire",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "65FeWK2ZlBDx"
+  },
+  {
+    "date": "2026-08-11T13:00:05Z",
+    "a": "BamBam Hunter",
+    "b": "Blake Kittrell",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Qmhzn5OQoCzl"
+  },
+  {
+    "date": "2026-08-11T13:00:06Z",
+    "a": "Bryan Woodall",
+    "b": "Garin Buttermore",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "MlDZWUVsFwwt"
+  },
+  {
+    "date": "2026-08-11T13:00:06Z",
+    "a": "Scot Clark",
+    "b": "Sam Fletcher",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "AeaJ7SffQgWk"
+  },
+  {
+    "date": "2026-08-11T13:00:07Z",
+    "a": "Kaden Hoey",
+    "b": "Jason Wheeler",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "X7wSYFgQ06Jq"
+  },
+  {
+    "date": "2026-08-11T13:00:07Z",
+    "a": "Michael Schoose",
+    "b": "Jimmy Hayes",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "pceO1CEdljMX"
+  },
+  {
+    "date": "2026-08-11T13:00:08Z",
+    "a": "Brandon Nicolette",
+    "b": "Ethan Floyd",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "gU8W2NnXsb5D"
+  },
+  {
+    "date": "2026-08-11T13:00:08Z",
+    "a": "Matthew Root",
+    "b": "David Sullivan",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Akg0I3LvCYgi"
+  },
+  {
+    "date": "2026-08-11T13:00:09Z",
+    "a": "Conan Jennings",
+    "b": "Spencer Inman",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "FQci5ZCwf7wy"
+  },
+  {
+    "date": "2026-08-11T13:00:09Z",
+    "a": "Riley Morris",
+    "b": "Kolby Long",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "eDZp0kDKUU7H"
+  },
+  {
+    "date": "2026-08-11T13:00:10Z",
+    "a": "BobbyJo Scott",
+    "b": "Scott Meechan",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "g5pgbRJUkIQl"
+  },
+  {
+    "date": "2026-08-11T13:00:10Z",
+    "a": "Clay Cone",
+    "b": "Tyler Atkinson",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "N8u078lhUhGG"
+  },
+  {
+    "date": "2026-08-11T13:00:11Z",
+    "a": "Kirkland Brown",
+    "b": "Michael Carlyle",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "3qWRG3aSKfeS"
+  },
+  {
+    "date": "2026-08-11T13:00:11Z",
+    "a": "Matt Neeley",
+    "b": "Alex Kraft",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "AjrgEh613Tu0"
+  },
+  {
+    "date": "2026-08-11T13:00:12Z",
+    "a": "Charles Roller",
+    "b": "Alex Brudnicki",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "8ewLhyrrDLvB"
+  },
+  {
+    "date": "2026-08-11T13:00:12Z",
+    "a": "Tim McGerr",
+    "b": "Nathan Hesford",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "NaJuHH8AjweD"
+  },
+  {
+    "date": "2026-08-11T13:00:13Z",
+    "a": "Brandon Lohmeyer",
+    "b": "Caleb Harper",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "Wd1lXN6NeN2V"
+  },
+  {
+    "date": "2026-08-11T13:00:13Z",
+    "a": "Taylor Xia",
+    "b": "Brian Smith",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "yEQgUh49BFWL"
+  },
+  {
+    "date": "2026-08-11T13:00:14Z",
+    "a": "James Arriola",
+    "b": "Chris Martin",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "PCwdG4vnj7gM"
+  },
+  {
+    "date": "2026-08-11T13:00:14Z",
+    "a": "Mariano Salvatore",
+    "b": "Ryan Smith",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "qLhuqge0Ia7f"
+  },
+  {
+    "date": "2026-08-11T13:00:15Z",
+    "a": "Alex Roach",
+    "b": "Cade McLarty",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "0EjwjI60g9B2"
+  },
+  {
+    "date": "2026-08-11T13:00:15Z",
+    "a": "Michael Baumann",
+    "b": "Jake Brunkhorst",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "FHBZ3tJpTny4"
+  },
+  {
+    "date": "2026-08-11T13:00:16Z",
+    "a": "Justin Monnin",
+    "b": "Zach Goedert",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "dULlPhIjPUqH"
+  },
+  {
+    "date": "2026-08-11T13:00:16Z",
+    "a": "Sam Olsen",
+    "b": "Luke O'Connell",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "22Z68gHU4l2y"
+  },
+  {
+    "date": "2026-08-11T13:00:17Z",
+    "a": "David DeLisle",
+    "b": "Jared Boggs",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "sHQG9lsLmQMl"
+  },
+  {
+    "date": "2026-08-11T13:00:17Z",
+    "a": "Mike Kissman",
+    "b": "Oliver Olsen",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "5dtD86IP39SW"
+  },
+  {
+    "date": "2026-08-11T13:00:18Z",
+    "a": "Devin Porter",
+    "b": "Evan Hoffman",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "gopSqmNoUVea"
+  },
+  {
+    "date": "2026-08-11T13:00:18Z",
+    "a": "James Lutz",
+    "b": "Paul Marra",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "2biGmCxk35I5"
+  },
+  {
+    "date": "2026-08-11T13:00:19Z",
+    "a": "Donovan Carney",
+    "b": "Ritesh Gautam",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "6PpyGw4lemF3"
+  },
+  {
+    "date": "2026-08-11T13:00:19Z",
+    "a": "Phillip HAMMERFALL",
+    "b": "Erick Aragon",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "GOZnwdfaxdQa"
+  },
+  {
+    "date": "2026-08-11T13:00:20Z",
+    "a": "Dakota Schwan",
+    "b": "adam bryce",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "OZW8ScNNa87i"
+  },
+  {
+    "date": "2026-08-11T13:00:20Z",
+    "a": "Draven Wells",
+    "b": "Jared Moore",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "IltZYRa15ZfM"
+  },
+  {
+    "date": "2026-08-11T13:00:21Z",
+    "a": "James Lemrose",
+    "b": "Zachary Lynn",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "hlUA7jTkrc1z"
+  },
+  {
+    "date": "2026-08-11T13:00:21Z",
+    "a": "TJ Jarnjak",
+    "b": "Andrew Snowden",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "ofy7MWdzj3U6"
+  },
+  {
+    "date": "2026-08-11T13:00:22Z",
+    "a": "Rand Anderson",
+    "b": "Richard Colona",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "FX8yq12JYVyb"
+  },
+  {
+    "date": "2026-08-11T13:00:23Z",
+    "a": "Piston Shufflebotham",
+    "b": "Michael Anderson",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "B93jFzmQACT6"
+  },
+  {
+    "date": "2026-08-11T13:00:24Z",
+    "a": "Jayden Jones",
+    "b": "Dylan Brandon",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Uxxvo9pmHkrT"
+  },
+  {
+    "date": "2026-08-11T13:00:25Z",
+    "a": "Elijah Byrd",
+    "b": "Daniel Sansone",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "B1GpkIRcdkNK"
+  },
+  {
+    "date": "2026-08-11T13:00:26Z",
+    "a": "Jacob Kline",
+    "b": "Kabir Sharma",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "N7xP9vQGi9KB"
+  },
+  {
+    "date": "2026-08-11T13:00:27Z",
+    "a": "Ryan Choplick",
+    "b": "Justin Hackert",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "OPVkbIjwB5Yu"
+  },
+  {
+    "date": "2026-08-11T13:00:28Z",
+    "a": "Jonathan Brandt",
+    "b": "Derek Hotchkin",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "gU1GJ7Xf8Bpp"
+  },
+  {
+    "date": "2026-08-11T13:00:29Z",
+    "a": "Charlie Andre",
+    "b": "Mr. Pibb",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "MDZZ1n4EUY0I"
+  },
+  {
+    "date": "2026-08-11T13:00:30Z",
+    "a": "Mr.  Rocks",
+    "b": "Jacob Kwak",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "lowoxYP6TILs"
+  },
+  {
+    "date": "2026-08-11T13:00:31Z",
+    "a": "KIRK CARSON",
+    "b": "Dan Smith",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Zw8GJyTcuGuM"
+  },
+  {
+    "date": "2026-08-11T13:00:32Z",
+    "a": "Jacob Evans",
+    "b": "Logan Olinger",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "1g9tU39sRpjl"
+  },
+  {
+    "date": "2026-08-11T13:00:33Z",
+    "a": "Kristopher Pals",
+    "b": "Gabe Buttermore",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Y9LUtw8vmjxn"
+  },
+  {
+    "date": "2026-08-11T13:00:34Z",
+    "a": "cole knutson",
+    "b": "Shawn sonnack",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "1pJ1gYTgKUoR"
+  },
+  {
+    "date": "2026-08-11T13:00:35Z",
+    "a": "Matthew Anderson",
+    "b": "Brandon Paul",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "BjkxmTYEhyZ0"
+  },
+  {
+    "date": "2026-08-11T13:00:36Z",
+    "a": "Nicholas Kudriavetz",
+    "b": "Tim Royers",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "pWfzqm8hogaz"
+  },
+  {
+    "date": "2026-08-11T15:30:01Z",
+    "a": "Jacob Herrera",
+    "b": "Cody Noel",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "I46b2zlbhLik"
+  },
+  {
+    "date": "2026-08-11T15:30:02Z",
+    "a": "Jamon Cline",
+    "b": "Joshua Bush",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "xinPC1HASk9e"
+  },
+  {
+    "date": "2026-08-11T15:30:03Z",
+    "a": "Nicolas Wenker",
+    "b": "Ben Jurek",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "H4TOEnIcvhDN"
+  },
+  {
+    "date": "2026-08-11T15:30:04Z",
+    "a": "Wesley Hale",
+    "b": "Jordan Gledhill",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "0HLvDdFb4PLU"
+  },
+  {
+    "date": "2026-08-11T15:30:05Z",
+    "a": "Chase Chappell",
+    "b": "Thomas Moore",
+    "winner": "draw",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "nQbJNxDWJOzc"
+  },
+  {
+    "date": "2026-08-11T15:30:06Z",
+    "a": "Marshall Peterson",
+    "b": "Tyler Nix",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "p6K7W8G7OZMv"
+  },
+  {
+    "date": "2026-08-11T15:30:07Z",
+    "a": "Harout Baltayan",
+    "b": "Treynor Wolfe",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "3IMzjTyjVgeO"
+  },
+  {
+    "date": "2026-08-11T15:30:08Z",
+    "a": "Jeff Meyer",
+    "b": "Isaac Terada",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "jLWsKcuN0DrH"
+  },
+  {
+    "date": "2026-08-11T15:30:09Z",
+    "a": "Nick Gaddis",
+    "b": "Evan Sharp",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "8L9PGQOLA7lX"
+  },
+  {
+    "date": "2026-08-11T15:30:10Z",
+    "a": "Owen Starks",
+    "b": "Derek Holder",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ZEwai4OLJNuF"
+  },
+  {
+    "date": "2026-08-11T15:30:11Z",
+    "a": "Ashton Glodowski",
+    "b": "Evan Stump",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "PfiNh1Kn0qqV"
+  },
+  {
+    "date": "2026-08-11T15:30:12Z",
+    "a": "Steven Hall",
+    "b": "Jason Laub",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "noOy8a9DRcNT"
+  },
+  {
+    "date": "2026-08-11T15:30:13Z",
+    "a": "Levi Libengood",
+    "b": "Zach Brown",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "BkEsRJmpOtXs"
+  },
+  {
+    "date": "2026-08-11T15:30:14Z",
+    "a": "Cameron Newton",
+    "b": "Talmage Joos",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "4HtumLn00yq9"
+  },
+  {
+    "date": "2026-08-11T15:30:15Z",
+    "a": "Austin Coleman",
+    "b": "Lucas Pehringer",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "2vTtDYZHayYc"
+  },
+  {
+    "date": "2026-08-11T15:30:16Z",
+    "a": "Tanner Johnson",
+    "b": "AJ Torres",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "zafsycCHeawa"
+  },
+  {
+    "date": "2026-08-11T15:30:17Z",
+    "a": "Scott Bouche",
+    "b": "Mira Wilkins",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "35MpfYC3ih9H"
+  },
+  {
+    "date": "2026-08-11T15:30:18Z",
+    "a": "Nathan Gaddis",
+    "b": "Jeff Petersen",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "17yxmHMIF9Sn"
+  },
+  {
+    "date": "2026-08-11T15:30:19Z",
+    "a": "Preston Tomes",
+    "b": "Brian Hayes",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ekxuQaX5BXQU"
+  },
+  {
+    "date": "2026-08-11T15:30:20Z",
+    "a": "Jonathan Barber",
+    "b": "Brian McAtee",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "pcLUpYQjPkBK"
+  },
+  {
+    "date": "2026-08-11T15:30:21Z",
+    "a": "Steven Rainey",
+    "b": "Ryan Mcguire",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Y77JVrk7UafO"
+  },
+  {
+    "date": "2026-08-11T15:30:22Z",
+    "a": "Robby Curneal",
+    "b": "Alec White-patarino",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Va3OVCWKo1zZ"
+  },
+  {
+    "date": "2026-08-11T15:30:23Z",
+    "a": "Benjamin Sausedo",
+    "b": "Vinny. The gob!",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "x1qDSdeVzM0q"
+  },
+  {
+    "date": "2026-08-11T15:30:24Z",
+    "a": "James Davis",
+    "b": "Marcus Tanner",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "6dtCXnqgWGgR"
+  },
+  {
+    "date": "2026-08-11T15:30:25Z",
+    "a": "Jacob Huhtala",
+    "b": "Josh Bonner",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "N3Nhb7cTjBrm"
+  },
+  {
+    "date": "2026-08-11T15:30:26Z",
+    "a": "Shaun Sharp",
+    "b": "Kaleb Kunz",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "mJqYEh3wD5HV"
+  },
+  {
+    "date": "2026-08-11T15:30:27Z",
+    "a": "James Higley",
+    "b": "Aaron Fyffe",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "QRMpcitdMwNY"
+  },
+  {
+    "date": "2026-08-11T15:30:28Z",
+    "a": "Brad Gaddis",
+    "b": "Nathan Pearson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "z5GNYNHMYJwQ"
+  },
+  {
+    "date": "2026-08-11T15:30:29Z",
+    "a": "John Vuchetich",
+    "b": "Brandon Clark",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "2QWyy8oERrrC"
+  },
+  {
+    "date": "2026-08-11T15:30:30Z",
+    "a": "Jeffrey Wilson",
+    "b": "Natalie Hill",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "myJl79HDF9qL"
+  },
+  {
+    "date": "2026-08-11T15:30:31Z",
+    "a": "Noah Gaddis",
+    "b": "Carlos Moreno",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "WUmEWQtEjuHT"
+  },
+  {
+    "date": "2026-08-11T15:30:32Z",
+    "a": "Nathan Schmidt",
+    "b": "Christopher Mason",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "eXPE8vqwVXlv"
+  },
+  {
+    "date": "2026-08-11T15:30:33Z",
+    "a": "Ethan Spangenberg",
+    "b": "Hayden Godfrey",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Tl7mU4LJR6kS"
+  },
+  {
+    "date": "2026-08-11T15:30:34Z",
+    "a": "Jason Stutsman",
+    "b": "Drake Valle",
+    "winner": "draw",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "0o9v6i734Xyb"
+  },
+  {
+    "date": "2026-08-11T15:30:35Z",
+    "a": "Aaron Knafla",
+    "b": "Thomas Hegstrom Oakey",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "aDUmYmTEAKq3"
+  },
+  {
+    "date": "2026-08-11T15:30:36Z",
+    "a": "Liam Miller",
+    "b": "Christopher Green",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "LsuKYKY3G90F"
+  },
+  {
+    "date": "2026-08-11T15:30:37Z",
+    "a": "Brandon Lamb",
+    "b": "Brady Roberts",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "AjVUtNVhhsG1"
+  },
+  {
+    "date": "2026-08-11T15:30:38Z",
+    "a": "Brandon Kuhn",
+    "b": "Kole Culbertson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "A4cOwVCQrXC9"
+  },
+  {
+    "date": "2026-08-11T15:30:39Z",
+    "a": "Nicole Clausen",
+    "b": "Ticer Nelson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "KWLhLCL7u48i"
+  },
+  {
+    "date": "2026-08-11T15:30:40Z",
+    "a": "Bryce Greenwell",
+    "b": "Paul Allen",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "vfkxb38rDKE5"
+  },
+  {
+    "date": "2026-08-11T15:30:41Z",
+    "a": "Scott Rumple",
+    "b": "Olivier  Sanchez",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "uaL6NRU4lY4g"
+  },
+  {
+    "date": "2026-08-11T15:30:42Z",
+    "a": "Brennan Butler",
+    "b": "Thomas Knight",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "h4fbjPlynJGg"
+  },
+  {
+    "date": "2026-08-11T15:30:43Z",
+    "a": "alvin aguilar",
+    "b": "William Stewart",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "gc9tAQd21AXN"
+  },
+  {
+    "date": "2026-08-11T15:30:44Z",
+    "a": "Jeran Barcus",
+    "b": "William Schmidt",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "hE5xVHpV45La"
+  },
+  {
+    "date": "2026-08-11T15:30:45Z",
+    "a": "Emily Scott",
+    "b": "Nick Copier",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "8LXXBfZ040C7"
+  },
+  {
+    "date": "2026-08-11T15:30:46Z",
+    "a": "Andrew Radcliffe",
+    "b": "Stephen Sommers",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "RvNvSTa0ThbU"
+  },
+  {
+    "date": "2026-08-11T15:30:47Z",
+    "a": "Devin Christiansen",
+    "b": "Chase Norton",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "QFVdeBznL3yP"
+  },
+  {
+    "date": "2026-08-11T15:30:48Z",
+    "a": "Thomas Kirchenheiter",
+    "b": "Ben Steigers",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "u4vJenQdFb0d"
+  },
+  {
+    "date": "2026-08-11T15:30:49Z",
+    "a": "jake Eichler",
+    "b": "Mason Newton",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "vAb78av6uwHK"
+  },
+  {
+    "date": "2026-08-11T15:30:50Z",
+    "a": "Samuel Chapman",
+    "b": "Keaton Hensley",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "YJfmwcyvKtej"
+  },
+  {
+    "date": "2026-08-11T15:30:51Z",
+    "a": "Old Man Steve Baum",
+    "b": "Zachary  Ross",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "DpWhyB7blQL9"
+  },
+  {
+    "date": "2026-08-11T15:30:52Z",
+    "a": "Kade Chancellor",
+    "b": "Charles Metts",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "e2H9UPCr1F6A"
+  },
+  {
+    "date": "2026-08-11T15:30:53Z",
+    "a": "Ricky Simmons",
+    "b": "Joshua Wood",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "CJwHITp3noZa"
+  },
+  {
+    "date": "2026-08-11T15:30:54Z",
+    "a": "Daniel Nelson",
+    "b": "Eric Class",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "5MH92DXTX0r9"
+  },
+  {
+    "date": "2026-08-11T15:30:55Z",
+    "a": "Myles Meadows",
+    "b": "Adam Durrant",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "sqXjIT2polFc"
+  },
+  {
+    "date": "2026-08-11T15:30:56Z",
+    "a": "Chris Warren",
+    "b": "Braden Chancellor",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "kDw6xrFNtYBy"
+  },
+  {
+    "date": "2026-08-11T15:30:57Z",
+    "a": "Clayton Twombly",
+    "b": "Kody mckinnon",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "gGeccTS2Zp4l"
+  },
+  {
+    "date": "2026-08-11T15:30:58Z",
+    "a": "Melody Gray",
+    "b": "Kaden Lunday",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "CdzPPnXt6TLv"
+  },
+  {
+    "date": "2026-08-11T15:30:59Z",
+    "a": "Keegan Murphy",
+    "b": "Eisley Burr",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "JrBzIkrLa264"
+  },
+  {
+    "date": "2026-08-12T13:00:01Z",
+    "a": "Donovan Carney",
+    "b": "Dakota Schwan",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "Qi3CJSfANd2D"
+  },
+  {
+    "date": "2026-08-12T13:00:01Z",
+    "a": "Mr. Pibb Zero",
+    "b": "Jonathan Brandt",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "kVIYkwsniZRV"
+  },
+  {
+    "date": "2026-08-12T13:00:02Z",
+    "a": "David DeLisle",
+    "b": "Ritesh Gautam",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "804nfu9xKTn2"
+  },
+  {
+    "date": "2026-08-12T13:00:02Z",
+    "a": "Jared Moore",
+    "b": "Kabir Sharma",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "0cT5qIthDY3i"
+  },
+  {
+    "date": "2026-08-12T13:00:03Z",
+    "a": "Andrew Snowden",
+    "b": "Mariano Salvatore",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "5P9tcBRRI17F"
+  },
+  {
+    "date": "2026-08-12T13:00:03Z",
+    "a": "Mr.  Rocks",
+    "b": "Chris Martin",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "FGLZvLNzTiel"
+  },
+  {
+    "date": "2026-08-12T13:00:04Z",
+    "a": "Alex Brudnicki",
+    "b": "Max Saylor",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "6NdCCp5gzyur"
+  },
+  {
+    "date": "2026-08-12T13:00:04Z",
+    "a": "Kale Klitzkie",
+    "b": "Mike Kissman",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "k3LszkGPXXSf"
+  },
+  {
+    "date": "2026-08-12T13:00:05Z",
+    "a": "Mr. Pibb",
+    "b": "Taylor Xia",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "nrTB5aNrqhY9"
+  },
+  {
+    "date": "2026-08-12T13:00:06Z",
+    "a": "David Sullivan",
+    "b": "Jason Wheeler",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "93d30jFl2eve"
+  },
+  {
+    "date": "2026-08-12T13:00:06Z",
+    "a": "Michael Carlyle",
+    "b": "Ryan Smith",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "KY1ROtVeK8i3"
+  },
+  {
+    "date": "2026-08-12T13:00:07Z",
+    "a": "Luke Muilenburg",
+    "b": "Jacob Kwak",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "fPD0DdQngELX"
+  },
+  {
+    "date": "2026-08-12T13:00:07Z",
+    "a": "Will Horan",
+    "b": "Conan Jennings",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "BNkYqF6Mnppr"
+  },
+  {
+    "date": "2026-08-12T13:00:08Z",
+    "a": "Devin Porter",
+    "b": "BobbyJo Scott",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "SOVUCQGZoECd"
+  },
+  {
+    "date": "2026-08-12T13:00:08Z",
+    "a": "James Lutz",
+    "b": "Tyler Atkinson",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "k8zC4jKc7YH8"
+  },
+  {
+    "date": "2026-08-12T13:00:09Z",
+    "a": "Austin Johnson",
+    "b": "Alex Roach",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "MxtrObs1YpcF"
+  },
+  {
+    "date": "2026-08-12T13:00:09Z",
+    "a": "Draven Wells",
+    "b": "Michael Baumann",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "qwVheptp8Kz7"
+  },
+  {
+    "date": "2026-08-12T13:00:10Z",
+    "a": "Kolby Long",
+    "b": "mack mcmurrin",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "QlJlx5xqRaoP"
+  },
+  {
+    "date": "2026-08-12T13:00:10Z",
+    "a": "Sean Brookshire",
+    "b": "Evan Hoffman",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "ZIhdqQ4Kclzn"
+  },
+  {
+    "date": "2026-08-12T13:00:11Z",
+    "a": "Charles Roller",
+    "b": "Spencer Inman",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "REZe9YoaY4Hx"
+  },
+  {
+    "date": "2026-08-12T13:00:11Z",
+    "a": "Piston Shufflebotham",
+    "b": "Sam Olsen",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "E05rgNGMYeRG"
+  },
+  {
+    "date": "2026-08-12T13:00:12Z",
+    "a": "Brian Smith",
+    "b": "Derek Hotchkin",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "HF3RvL91DnQo"
+  },
+  {
+    "date": "2026-08-12T13:00:12Z",
+    "a": "Ethan Floyd",
+    "b": "Scott Meechan",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "O5imFQ9Jjj3M"
+  },
+  {
+    "date": "2026-08-12T13:00:13Z",
+    "a": "Brandon Lohmeyer",
+    "b": "Stephen Eckstein",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "Xgouc9Cvq7TJ"
+  },
+  {
+    "date": "2026-08-12T13:00:13Z",
+    "a": "cole knutson",
+    "b": "Dylan Brandon",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "JBAOpRSWDovn"
+  },
+  {
+    "date": "2026-08-12T13:00:14Z",
+    "a": "Jayden Jones",
+    "b": "Shawn sonnack",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "1PGQL3RptAsQ"
+  },
+  {
+    "date": "2026-08-12T13:00:14Z",
+    "a": "TJ Jarnjak",
+    "b": "Michael Schoose",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "jr1kF5PuclH8"
+  },
+  {
+    "date": "2026-08-12T13:00:15Z",
+    "a": "Alexx Murphy",
+    "b": "Charlie Andre",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "YoewFyIyubPe"
+  },
+  {
+    "date": "2026-08-12T13:00:15Z",
+    "a": "Zach Goedert",
+    "b": "Tim Fingerle",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "JBBm7p51r5nj"
+  },
+  {
+    "date": "2026-08-12T13:00:16Z",
+    "a": "Austin Hahn",
+    "b": "Cade McLarty",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "iHrKXCLocCH4"
+  },
+  {
+    "date": "2026-08-12T13:00:16Z",
+    "a": "Jacob Kline",
+    "b": "Matthew Anderson",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "82jnGvn6Xyom"
+  },
+  {
+    "date": "2026-08-12T13:00:17Z",
+    "a": "Matthew Kundla",
+    "b": "Justin Martinelli",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "pFx8F1NhvTyh"
+  },
+  {
+    "date": "2026-08-12T13:00:17Z",
+    "a": "Oliver Olsen",
+    "b": "Nathan Hesford",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "hOCKRw7CJgG7"
+  },
+  {
+    "date": "2026-08-12T13:00:18Z",
+    "a": "Jacob Evans",
+    "b": "Rand Anderson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Tajinoeum3JP"
+  },
+  {
+    "date": "2026-08-12T13:00:18Z",
+    "a": "Scot Clark",
+    "b": "adam bryce",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "A4YZbfdfr2qX"
+  },
+  {
+    "date": "2026-08-12T13:00:19Z",
+    "a": "Justin Monnin",
+    "b": "Jimmy Hayes",
+    "winner": "b",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "cnmqLkzEfoCS"
+  },
+  {
+    "date": "2026-08-12T13:00:19Z",
+    "a": "Logan Olinger",
+    "b": "Richard Colona",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "mVuYPiFmCQK4"
+  },
+  {
+    "date": "2026-08-12T13:00:20Z",
+    "a": "BamBam Hunter",
+    "b": "Ben Cherwien",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "3G1TG7MjVodO"
+  },
+  {
+    "date": "2026-08-12T13:00:20Z",
+    "a": "Caleb Harper",
+    "b": "Sam Fletcher",
+    "winner": "a",
+    "event_id": "KtOeoN0UAWWH",
+    "pairing_id": "wjnPoexJPcSr"
+  },
+  {
+    "date": "2026-08-12T13:00:21Z",
+    "a": "Ryan Choplick",
+    "b": "Paul Marra",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "HZ7NEnC7oNzW"
+  },
+  {
+    "date": "2026-08-12T13:00:22Z",
+    "a": "Riley Morris",
+    "b": "Nicholas Kudriavetz",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "8cfLLpKwZEJj"
+  },
+  {
+    "date": "2026-08-12T13:00:23Z",
+    "a": "Thomas Robbins",
+    "b": "Kristopher Pals",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Ps7nLAyRB2uh"
+  },
+  {
+    "date": "2026-08-12T13:00:24Z",
+    "a": "KIRK CARSON",
+    "b": "Tim McGerr",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "BpgM2tTLSSgT"
+  },
+  {
+    "date": "2026-08-12T13:00:25Z",
+    "a": "Tim Royers",
+    "b": "Elijah Byrd",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "hZMNEgZ9zsrh"
+  },
+  {
+    "date": "2026-08-12T13:00:26Z",
+    "a": "Matthew Root",
+    "b": "Zachary Lynn",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Co8UJnqq7zlE"
+  },
+  {
+    "date": "2026-08-12T13:00:27Z",
+    "a": "James Arriola",
+    "b": "Clay Cone",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "eoP3TZRsPMIZ"
+  },
+  {
+    "date": "2026-08-12T13:00:28Z",
+    "a": "Blake Kittrell",
+    "b": "Jake Brunkhorst",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "yow539n4IXPC"
+  },
+  {
+    "date": "2026-08-12T13:00:29Z",
+    "a": "Matt Stadnik",
+    "b": "Brandon Paul",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "a4S4bnvyPJ5R"
+  },
+  {
+    "date": "2026-08-12T13:00:30Z",
+    "a": "James Lemrose",
+    "b": "Gabe Buttermore",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "p9gtXSvCPwUd"
+  },
+  {
+    "date": "2026-08-12T13:00:31Z",
+    "a": "Phillip HAMMERFALL",
+    "b": "Bryan Woodall",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "adPLmzTsJTEZ"
+  },
+  {
+    "date": "2026-08-12T13:00:32Z",
+    "a": "Matt Neeley",
+    "b": "Daniel Sansone",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "aE3qkCW849Ik"
+  },
+  {
+    "date": "2026-08-12T13:00:33Z",
+    "a": "Luke O'Connell",
+    "b": "Michael Anderson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "msbpUpWZUdpw"
+  },
+  {
+    "date": "2026-08-12T13:00:34Z",
+    "a": "Justin Hackert",
+    "b": "Erick Aragon",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "rqUDTUmX3Vcb"
+  },
+  {
+    "date": "2026-08-12T13:00:35Z",
+    "a": "Garin Buttermore",
+    "b": "Dan Smith",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "GtjoarX7v1Qy"
+  },
+  {
+    "date": "2026-08-12T13:00:36Z",
+    "a": "Alex Kraft",
+    "b": "Kaden Hoey",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "o5lj9dfvGvyc"
+  },
+  {
+    "date": "2026-08-12T15:30:01Z",
+    "a": "Jacob Herrera",
+    "b": "Joshua Bush",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "hMTBBtaiRID9"
+  },
+  {
+    "date": "2026-08-12T15:30:02Z",
+    "a": "Ben Jurek",
+    "b": "Jordan Gledhill",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "YIIOwhF95B38"
+  },
+  {
+    "date": "2026-08-12T15:30:03Z",
+    "a": "Marshall Peterson",
+    "b": "Treynor Wolfe",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "76k3PpfbNMvU"
+  },
+  {
+    "date": "2026-08-12T15:30:04Z",
+    "a": "Isaac Terada",
+    "b": "Chase Chappell",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "lBXpDMFdOJ2o"
+  },
+  {
+    "date": "2026-08-12T15:30:05Z",
+    "a": "Thomas Moore",
+    "b": "Cody Noel",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "KvBsft3WVg16"
+  },
+  {
+    "date": "2026-08-12T15:30:06Z",
+    "a": "Jamon Cline",
+    "b": "Nicolas Wenker",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "hKmwEUYcbWzW"
+  },
+  {
+    "date": "2026-08-12T15:30:07Z",
+    "a": "Wesley Hale",
+    "b": "Tyler Nix",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "jrqFhKZDY8ik"
+  },
+  {
+    "date": "2026-08-12T15:30:08Z",
+    "a": "Harout Baltayan",
+    "b": "Jeff Meyer",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "9EoqbqAyqyIc"
+  },
+  {
+    "date": "2026-08-12T15:30:09Z",
+    "a": "Nick Gaddis",
+    "b": "Derek Holder",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "mzSXgipU2e5n"
+  },
+  {
+    "date": "2026-08-12T15:30:10Z",
+    "a": "Evan Stump",
+    "b": "Steven Hall",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "1lhtHEkJdzjA"
+  },
+  {
+    "date": "2026-08-12T15:30:11Z",
+    "a": "Zach Brown",
+    "b": "Cameron Newton",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "LloFD7DEIuau"
+  },
+  {
+    "date": "2026-08-12T15:30:12Z",
+    "a": "Lucas Pehringer",
+    "b": "AJ Torres",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "QRtiu000U6GB"
+  },
+  {
+    "date": "2026-08-12T15:30:13Z",
+    "a": "Mira Wilkins",
+    "b": "Jeff Petersen",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "zUcyjvHpRKqt"
+  },
+  {
+    "date": "2026-08-12T15:30:14Z",
+    "a": "Preston Tomes",
+    "b": "Brian McAtee",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ENiEz68nRGV1"
+  },
+  {
+    "date": "2026-08-12T15:30:15Z",
+    "a": "Ryan Mcguire",
+    "b": "Alec White-patarino",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "UkYlyQcZ7mY7"
+  },
+  {
+    "date": "2026-08-12T15:30:16Z",
+    "a": "Vinny. The gob!",
+    "b": "James Davis",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "A6n3t0IG5nAx"
+  },
+  {
+    "date": "2026-08-12T15:30:17Z",
+    "a": "Josh Bonner",
+    "b": "Shaun Sharp",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "5BWwullqeU7n"
+  },
+  {
+    "date": "2026-08-12T15:30:18Z",
+    "a": "James Higley",
+    "b": "Brad Gaddis",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "S8SUlq1gGOU1"
+  },
+  {
+    "date": "2026-08-12T15:30:19Z",
+    "a": "John Vuchetich",
+    "b": "Natalie Hill",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "6EgL0lbBZKj9"
+  },
+  {
+    "date": "2026-08-12T15:30:20Z",
+    "a": "Noah Gaddis",
+    "b": "Evan Sharp",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "vQ2vf6GFB1pj"
+  },
+  {
+    "date": "2026-08-12T15:30:21Z",
+    "a": "Owen Starks",
+    "b": "Ashton Glodowski",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "N88C5hIDyCMg"
+  },
+  {
+    "date": "2026-08-12T15:30:22Z",
+    "a": "Jason Laub",
+    "b": "Levi Libengood",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "tInHSWCHXHCw"
+  },
+  {
+    "date": "2026-08-12T15:30:23Z",
+    "a": "Talmage Joos",
+    "b": "Austin Coleman",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "1m2ZnpjMAqGj"
+  },
+  {
+    "date": "2026-08-12T15:30:24Z",
+    "a": "Tanner Johnson",
+    "b": "Scott Bouche",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "mBiXvg1Gii1a"
+  },
+  {
+    "date": "2026-08-12T15:30:25Z",
+    "a": "Nathan Gaddis",
+    "b": "Brian Hayes",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "752MATz6gC4f"
+  },
+  {
+    "date": "2026-08-12T15:30:26Z",
+    "a": "Jonathan Barber",
+    "b": "Steven Rainey",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "9C6igWW1jc90"
+  },
+  {
+    "date": "2026-08-12T15:30:27Z",
+    "a": "Robby Curneal",
+    "b": "Benjamin Sausedo",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "HVrRK9yGKR5x"
+  },
+  {
+    "date": "2026-08-12T15:30:28Z",
+    "a": "Christopher Mason",
+    "b": "Ethan Spangenberg",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "cgR9rZsT36pJ"
+  },
+  {
+    "date": "2026-08-12T15:30:29Z",
+    "a": "Aaron Knafla",
+    "b": "Liam Miller",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "1QqKpC8Bh7nj"
+  },
+  {
+    "date": "2026-08-12T15:30:30Z",
+    "a": "Brady Roberts",
+    "b": "Brandon Kuhn",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "VxH8kUF6OAOK"
+  },
+  {
+    "date": "2026-08-12T15:30:31Z",
+    "a": "Nicole Clausen",
+    "b": "Marcus Tanner",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "gVSaL7rSeUDf"
+  },
+  {
+    "date": "2026-08-12T15:30:32Z",
+    "a": "Jacob Huhtala",
+    "b": "Kaleb Kunz",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "B5dsoS62dASQ"
+  },
+  {
+    "date": "2026-08-12T15:30:33Z",
+    "a": "Aaron Fyffe",
+    "b": "Nathan Pearson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "7za0EWAnuUAP"
+  },
+  {
+    "date": "2026-08-12T15:30:34Z",
+    "a": "Brandon Clark",
+    "b": "Jeffrey Wilson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "BHsLiQTgPf4U"
+  },
+  {
+    "date": "2026-08-12T15:30:35Z",
+    "a": "Bryce Greenwell",
+    "b": "Scott Rumple",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ER1CJqhzPzKO"
+  },
+  {
+    "date": "2026-08-12T15:30:36Z",
+    "a": "Thomas Knight",
+    "b": "William Stewart",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "HqNBUezhj2YZ"
+  },
+  {
+    "date": "2026-08-12T15:30:37Z",
+    "a": "William Schmidt",
+    "b": "Nick Copier",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "zw7FoXVKaY96"
+  },
+  {
+    "date": "2026-08-12T15:30:38Z",
+    "a": "Stephen Sommers",
+    "b": "Chase Norton",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "rSLskx5ptrgt"
+  },
+  {
+    "date": "2026-08-12T15:30:39Z",
+    "a": "Ben Steigers",
+    "b": "Mason Newton",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "KlKZ4dXYoxki"
+  },
+  {
+    "date": "2026-08-12T15:30:40Z",
+    "a": "Samuel Chapman",
+    "b": "Zachary  Ross",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "PANfPw6Kw49B"
+  },
+  {
+    "date": "2026-08-12T15:30:41Z",
+    "a": "Charles Metts",
+    "b": "Carlos Moreno",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "97zqYjT7pnYg"
+  },
+  {
+    "date": "2026-08-12T15:30:42Z",
+    "a": "Jason Stutsman",
+    "b": "Ricky Simmons",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Vevlp3QYZGhk"
+  },
+  {
+    "date": "2026-08-12T15:30:43Z",
+    "a": "Drake Valle",
+    "b": "Nathan Schmidt",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Jch141TflnTm"
+  },
+  {
+    "date": "2026-08-12T15:30:44Z",
+    "a": "Hayden Godfrey",
+    "b": "Thomas Hegstrom Oakey",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "yE8r7lBEr1w3"
+  },
+  {
+    "date": "2026-08-12T15:30:45Z",
+    "a": "Christopher Green",
+    "b": "Brandon Lamb",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "uIsiX6P0ac03"
+  },
+  {
+    "date": "2026-08-12T15:30:46Z",
+    "a": "Kole Culbertson",
+    "b": "Ticer Nelson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "EKMtJ8ZKFcaG"
+  },
+  {
+    "date": "2026-08-12T15:30:47Z",
+    "a": "Paul Allen",
+    "b": "Olivier  Sanchez",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "8xE6q4hn2RDU"
+  },
+  {
+    "date": "2026-08-12T15:30:48Z",
+    "a": "Brennan Butler",
+    "b": "alvin aguilar",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "lMilk41LyWqf"
+  },
+  {
+    "date": "2026-08-12T15:30:49Z",
+    "a": "Jeran Barcus",
+    "b": "Emily Scott",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "K2Rdq7nBJGGQ"
+  },
+  {
+    "date": "2026-08-12T15:30:50Z",
+    "a": "Andrew Radcliffe",
+    "b": "Devin Christiansen",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "MpU3e4W5ExNK"
+  },
+  {
+    "date": "2026-08-12T15:30:51Z",
+    "a": "Thomas Kirchenheiter",
+    "b": "jake Eichler",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "r1p1yO0Eevue"
+  },
+  {
+    "date": "2026-08-12T15:30:52Z",
+    "a": "Keaton Hensley",
+    "b": "Old Man Steve Baum",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "K2egfI9H61kv"
+  },
+  {
+    "date": "2026-08-12T15:30:53Z",
+    "a": "Kade Chancellor",
+    "b": "Eric Class",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "d4BuYtWJYpvf"
+  },
+  {
+    "date": "2026-08-12T15:30:54Z",
+    "a": "Adam Durrant",
+    "b": "Chris Warren",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "H7EM5J5D0zp3"
+  },
+  {
+    "date": "2026-08-12T15:30:55Z",
+    "a": "Kody mckinnon",
+    "b": "Kaden Lunday",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "v1Ga3rmUO50H"
+  },
+  {
+    "date": "2026-08-12T15:30:56Z",
+    "a": "Eisley Burr",
+    "b": "Steve Altizer",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "nWoPZ4ECrfoj"
+  },
+  {
+    "date": "2026-08-12T15:30:57Z",
+    "a": "Joshua Wood",
+    "b": "Myles Meadows",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Fcnv3SxHyedD"
+  },
+  {
+    "date": "2026-08-12T15:30:58Z",
+    "a": "Braden Chancellor",
+    "b": "Clayton Twombly",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "RUEAE7Dz0qDl"
+  },
+  {
+    "date": "2026-08-12T15:30:59Z",
+    "a": "Melody Gray",
+    "b": "Keegan Murphy",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "AGAvnyXeqj91"
+  },
+  {
+    "date": "2026-08-13T13:00:01Z",
+    "a": "Clay Cone",
+    "b": "Draven Wells",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "n0vCCvjDSEJv"
+  },
+  {
+    "date": "2026-08-13T13:00:02Z",
+    "a": "Ben Cherwien",
+    "b": "Taylor Xia",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "vHY9g91LKDqB"
+  },
+  {
+    "date": "2026-08-13T13:00:03Z",
+    "a": "Derek Hotchkin",
+    "b": "Phillip HAMMERFALL",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "mSGbDKX7oB68"
+  },
+  {
+    "date": "2026-08-13T13:00:04Z",
+    "a": "Jason Wheeler",
+    "b": "Sam Olsen",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "DkZm2dTUL5xm"
+  },
+  {
+    "date": "2026-08-13T13:00:05Z",
+    "a": "Elijah Byrd",
+    "b": "Erick Aragon",
+    "winner": "draw",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "iReAn49NjEBp"
+  },
+  {
+    "date": "2026-08-13T13:00:06Z",
+    "a": "mack mcmurrin",
+    "b": "Thomas Robbins",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "KzEzpfcQ51B3"
+  },
+  {
+    "date": "2026-08-13T13:00:07Z",
+    "a": "Charlie Andre",
+    "b": "Tim Royers",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "aLjvegR1ne0e"
+  },
+  {
+    "date": "2026-08-13T13:00:08Z",
+    "a": "Garin Buttermore",
+    "b": "Tyler Atkinson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "Vyyz1T7XDHFz"
+  },
+  {
+    "date": "2026-08-13T13:00:09Z",
+    "a": "Brandon Paul",
+    "b": "Nicholas Kudriavetz",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "sXZa9rE0yoHZ"
+  },
+  {
+    "date": "2026-08-13T13:00:10Z",
+    "a": "Zachary Lynn",
+    "b": "Ryan Choplick",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "2Uk0gBrHBj1I"
+  },
+  {
+    "date": "2026-08-13T13:00:11Z",
+    "a": "Chris Martin",
+    "b": "Gabe Buttermore",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "PfqY7kOjjyvY"
+  },
+  {
+    "date": "2026-08-13T13:00:12Z",
+    "a": "Kabir Sharma",
+    "b": "Michael Anderson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "RN6iWffsSWNy"
+  },
+  {
+    "date": "2026-08-13T13:00:13Z",
+    "a": "Shawn sonnack",
+    "b": "Daniel Sansone",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "RBe0hzD20RRj"
+  },
+  {
+    "date": "2026-08-13T13:00:14Z",
+    "a": "Kristopher Pals",
+    "b": "Kaden Hoey",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "3WPepe6JkkZ6"
+  },
+  {
+    "date": "2026-08-13T13:00:15Z",
+    "a": "Luke O'Connell",
+    "b": "Tim McGerr",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "ZWwG7CmXpaTN"
+  },
+  {
+    "date": "2026-08-13T13:00:16Z",
+    "a": "Kale Klitzkie",
+    "b": "Michael Baumann",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "6jAZ0XBoObha"
+  },
+  {
+    "date": "2026-08-13T13:00:17Z",
+    "a": "KIRK CARSON",
+    "b": "Oliver Olsen",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "PzRTgz5f31Hq"
+  },
+  {
+    "date": "2026-08-13T13:00:18Z",
+    "a": "Paul Marra",
+    "b": "Jake Brunkhorst",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "1sYHaZpKYHAo"
+  },
+  {
+    "date": "2026-08-13T13:00:19Z",
+    "a": "Mr. Pibb Zero",
+    "b": "Rand Anderson",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "OWuaV0R04fbe"
+  },
+  {
+    "date": "2026-08-13T13:00:20Z",
+    "a": "Logan Olinger",
+    "b": "Matt Stadnik",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "8LCKjQOosVf1"
+  },
+  {
+    "date": "2026-08-13T13:00:21Z",
+    "a": "Mr. Pibb",
+    "b": "Jonathan Brandt",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "DWtIDVxyAedl"
+  },
+  {
+    "date": "2026-08-13T13:00:22Z",
+    "a": "Luke Muilenburg",
+    "b": "Justin Hackert",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "0zijKO1xVFuW"
+  },
+  {
+    "date": "2026-08-13T13:00:23Z",
+    "a": "Alex Kraft",
+    "b": "James Lutz",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "pynBga1bvoRr"
+  },
+  {
+    "date": "2026-08-13T13:00:24Z",
+    "a": "Jared Moore",
+    "b": "Mike Kissman",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "YimFALMV7lOK"
+  },
+  {
+    "date": "2026-08-13T13:00:25Z",
+    "a": "Piston Shufflebotham",
+    "b": "Jacob Kwak",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "XVSuWtMhVv9f"
+  },
+  {
+    "date": "2026-08-13T13:00:26Z",
+    "a": "Jacob Evans",
+    "b": "Brian Smith",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "359XfTwYopDK"
+  },
+  {
+    "date": "2026-08-13T13:00:27Z",
+    "a": "James Arriola",
+    "b": "Matthew Root",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "a14WJEuYOs3G"
+  },
+  {
+    "date": "2026-08-13T13:00:28Z",
+    "a": "David Sullivan",
+    "b": "Mr.  Rocks",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "GG0IEuWArirw"
+  },
+  {
+    "date": "2026-08-13T13:00:29Z",
+    "a": "Riley Morris",
+    "b": "Alexx Murphy",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "eaMkP5TNIivv"
+  },
+  {
+    "date": "2026-08-13T13:00:30Z",
+    "a": "Kolby Long",
+    "b": "Matt Neeley",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "uHIfovIlcp29"
+  },
+  {
+    "date": "2026-08-13T13:00:31Z",
+    "a": "Jacob Kline",
+    "b": "Bryan Woodall",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "IdUrMJ5zcepr"
+  },
+  {
+    "date": "2026-08-13T13:00:32Z",
+    "a": "Dan Smith",
+    "b": "Nathan Hesford",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "qGBUSOQXJ1NW"
+  },
+  {
+    "date": "2026-08-13T13:00:33Z",
+    "a": "Richard Colona",
+    "b": "Dylan Brandon",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "6SorTOc7i46P"
+  },
+  {
+    "date": "2026-08-13T13:00:34Z",
+    "a": "Matthew Anderson",
+    "b": "James Lemrose",
+    "winner": "b",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "pNG2DDTp8ZPu"
+  },
+  {
+    "date": "2026-08-13T13:00:35Z",
+    "a": "Jayden Jones",
+    "b": "cole knutson",
+    "winner": "a",
+    "event_id": "zPNtlPCqg5jk",
+    "pairing_id": "rmNkD09dtplJ"
+  },
+  {
+    "date": "2026-08-13T15:30:01Z",
+    "a": "Joshua Bush",
+    "b": "Ben Jurek",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "PFEStDRGy38M"
+  },
+  {
+    "date": "2026-08-13T15:30:02Z",
+    "a": "Treynor Wolfe",
+    "b": "Isaac Terada",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Yf4JcitJszbs"
+  },
+  {
+    "date": "2026-08-13T15:30:03Z",
+    "a": "Thomas Moore",
+    "b": "Jacob Herrera",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "2s2obsN62ueZ"
+  },
+  {
+    "date": "2026-08-13T15:30:04Z",
+    "a": "Jordan Gledhill",
+    "b": "Marshall Peterson",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "8vm2LoLAZfhz"
+  },
+  {
+    "date": "2026-08-13T15:30:05Z",
+    "a": "Nicolas Wenker",
+    "b": "Wesley Hale",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "7LoKFTdn09vy"
+  },
+  {
+    "date": "2026-08-13T15:30:06Z",
+    "a": "Harout Baltayan",
+    "b": "Nick Gaddis",
+    "winner": "draw",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "36iRinBFMi4l"
+  },
+  {
+    "date": "2026-08-13T15:30:07Z",
+    "a": "Evan Stump",
+    "b": "Zach Brown",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Q5w0hOmp5aIY"
+  },
+  {
+    "date": "2026-08-13T15:30:08Z",
+    "a": "Lucas Pehringer",
+    "b": "Jeff Petersen",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "qEB4HNVS7HpL"
+  },
+  {
+    "date": "2026-08-13T15:30:09Z",
+    "a": "Brian McAtee",
+    "b": "Ryan Mcguire",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "oiRtAn3eQp85"
+  },
+  {
+    "date": "2026-08-13T15:30:10Z",
+    "a": "James Davis",
+    "b": "Shaun Sharp",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "0SeEbiWPxAxU"
+  },
+  {
+    "date": "2026-08-13T15:30:11Z",
+    "a": "James Higley",
+    "b": "John Vuchetich",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "uRZAnYibzcSP"
+  },
+  {
+    "date": "2026-08-13T15:30:12Z",
+    "a": "Cody Noel",
+    "b": "Jamon Cline",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "2yx0h8dbev5x"
+  },
+  {
+    "date": "2026-08-13T15:30:13Z",
+    "a": "Tyler Nix",
+    "b": "Jeff Meyer",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "4pSpWs8uSSal"
+  },
+  {
+    "date": "2026-08-13T15:30:14Z",
+    "a": "Derek Holder",
+    "b": "Steven Hall",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "HSkCgfd8v6M7"
+  },
+  {
+    "date": "2026-08-13T15:30:15Z",
+    "a": "Cameron Newton",
+    "b": "Evan Sharp",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "UXD0yWpFkXwq"
+  },
+  {
+    "date": "2026-08-13T15:30:16Z",
+    "a": "Ashton Glodowski",
+    "b": "Levi Libengood",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "kQo9cXaXfh6O"
+  },
+  {
+    "date": "2026-08-13T15:30:17Z",
+    "a": "Talmage Joos",
+    "b": "AJ Torres",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "XOUvdJefryC8"
+  },
+  {
+    "date": "2026-08-13T15:30:18Z",
+    "a": "Mira Wilkins",
+    "b": "Mason Newton",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "xEQFTro0KsQS"
+  },
+  {
+    "date": "2026-08-13T15:30:19Z",
+    "a": "Alec White-patarino",
+    "b": "Ricky Simmons",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "YnwaHl6Att5g"
+  },
+  {
+    "date": "2026-08-13T15:30:20Z",
+    "a": "Scott Bouche",
+    "b": "Nathan Gaddis",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ECGKWKXJvfZr"
+  },
+  {
+    "date": "2026-08-13T15:30:21Z",
+    "a": "Steven Rainey",
+    "b": "Robby Curneal",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "2If05sbgLz84"
+  },
+  {
+    "date": "2026-08-13T15:30:22Z",
+    "a": "Ethan Spangenberg",
+    "b": "Aaron Knafla",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "W3zQs98KGyXE"
+  },
+  {
+    "date": "2026-08-13T15:30:23Z",
+    "a": "Brady Roberts",
+    "b": "Josh Bonner",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "6xdNYEitDMLZ"
+  },
+  {
+    "date": "2026-08-13T15:30:24Z",
+    "a": "Brad Gaddis",
+    "b": "Natalie Hill",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "KI9Dp5Hmt0ZN"
+  },
+  {
+    "date": "2026-08-13T15:30:25Z",
+    "a": "Noah Gaddis",
+    "b": "Marcus Tanner",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "YlDkKNK7kbYl"
+  },
+  {
+    "date": "2026-08-13T15:30:26Z",
+    "a": "Kaleb Kunz",
+    "b": "Nathan Pearson",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "nljZUVp5VhDU"
+  },
+  {
+    "date": "2026-08-13T15:30:27Z",
+    "a": "Jeffrey Wilson",
+    "b": "Thomas Knight",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "D9fT12FKyKSI"
+  },
+  {
+    "date": "2026-08-13T15:30:28Z",
+    "a": "Nick Copier",
+    "b": "Stephen Sommers",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "KBkYdvZVXJpN"
+  },
+  {
+    "date": "2026-08-13T15:30:30Z",
+    "a": "Charles Metts",
+    "b": "Jason Stutsman",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "mF64boCWCx6r"
+  },
+  {
+    "date": "2026-08-13T15:30:31Z",
+    "a": "Drake Valle",
+    "b": "Owen Starks",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "8gFzmqKqSZZf"
+  },
+  {
+    "date": "2026-08-13T15:30:32Z",
+    "a": "Jason Laub",
+    "b": "Austin Coleman",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "ZXCefeJKmQZV"
+  },
+  {
+    "date": "2026-08-13T15:30:33Z",
+    "a": "Tanner Johnson",
+    "b": "Brian Hayes",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "bjd6SueIRVBy"
+  },
+  {
+    "date": "2026-08-13T15:30:34Z",
+    "a": "Jonathan Barber",
+    "b": "Benjamin Sausedo",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "gzwBityV7csI"
+  },
+  {
+    "date": "2026-08-13T15:30:35Z",
+    "a": "Christopher Mason",
+    "b": "Liam Miller",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "BNetzdtVDGdc"
+  },
+  {
+    "date": "2026-08-13T15:30:36Z",
+    "a": "Brandon Kuhn",
+    "b": "Nicole Clausen",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "InmltHxdvC5C"
+  },
+  {
+    "date": "2026-08-13T15:30:37Z",
+    "a": "Hayden Godfrey",
+    "b": "Christopher Green",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "gwPmQikWiBj7"
+  },
+  {
+    "date": "2026-08-13T15:30:38Z",
+    "a": "Kole Culbertson",
+    "b": "Jacob Huhtala",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "zoZRHNTXV0Lw"
+  },
+  {
+    "date": "2026-08-13T15:30:39Z",
+    "a": "Aaron Fyffe",
+    "b": "Brandon Clark",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "aKBwlOiXLSmZ"
+  },
+  {
+    "date": "2026-08-13T15:30:40Z",
+    "a": "Bryce Greenwell",
+    "b": "William Stewart",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "4mMPvbJaLm92"
+  },
+  {
+    "date": "2026-08-13T15:30:41Z",
+    "a": "William Schmidt",
+    "b": "Paul Allen",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "V5vQCI7WwLtm"
+  },
+  {
+    "date": "2026-08-13T15:30:42Z",
+    "a": "alvin aguilar",
+    "b": "Emily Scott",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "5UrlIyueq6Yb"
+  },
+  {
+    "date": "2026-08-13T15:30:43Z",
+    "a": "Chase Norton",
+    "b": "Zachary  Ross",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "N7ei2WGdSiwR"
+  },
+  {
+    "date": "2026-08-13T15:30:44Z",
+    "a": "Devin Christiansen",
+    "b": "Keaton Hensley",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "L2HylkAywRFu"
+  },
+  {
+    "date": "2026-08-13T15:30:45Z",
+    "a": "Eric Class",
+    "b": "Chris Warren",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "EdGLzvIF7SqG"
+  },
+  {
+    "date": "2026-08-13T15:30:46Z",
+    "a": "Kaden Lunday",
+    "b": "Eisley Burr",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "k6IR4swfCztE"
+  },
+  {
+    "date": "2026-08-13T15:30:47Z",
+    "a": "Carlos Moreno",
+    "b": "Nathan Schmidt",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "l3bdT34BWK3O"
+  },
+  {
+    "date": "2026-08-13T15:30:48Z",
+    "a": "Vinny. The gob!",
+    "b": "Thomas Hegstrom Oakey",
+    "winner": "draw",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "vZod40NKNTr7"
+  },
+  {
+    "date": "2026-08-13T15:30:50Z",
+    "a": "Brennan Butler",
+    "b": "Jeran Barcus",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "L4CKBLvxF3ha"
+  },
+  {
+    "date": "2026-08-13T15:30:51Z",
+    "a": "Andrew Radcliffe",
+    "b": "jake Eichler",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "Q2WRdyBSEO9Z"
+  },
+  {
+    "date": "2026-08-13T15:30:52Z",
+    "a": "Old Man Steve Baum",
+    "b": "Kade Chancellor",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "V7CQiXspyn3t"
+  },
+  {
+    "date": "2026-08-13T15:30:53Z",
+    "a": "Adam Durrant",
+    "b": "Kody mckinnon",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "BpTOcOmJNkhz"
+  },
+  {
+    "date": "2026-08-13T15:30:54Z",
+    "a": "Steve Altizer",
+    "b": "Myles Meadows",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "g4qeFZY5aX1M"
+  },
+  {
+    "date": "2026-08-13T15:30:55Z",
+    "a": "Clayton Twombly",
+    "b": "Melody Gray",
+    "winner": "a",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "hEo0QMq0BxUE"
+  },
+  {
+    "date": "2026-08-13T15:30:56Z",
+    "a": "Joshua Wood",
+    "b": "Braden Chancellor",
+    "winner": "b",
+    "event_id": "xXG7Dtz598CS",
+    "pairing_id": "P1lZO2XLdFu9"
+  }
+]
