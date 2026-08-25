@@ -35,8 +35,10 @@ chmod 644 /etc/systemd/system/eloevent-refresh-leaderboard.service /etc/systemd/
 
 cp "${SCRIPT_DIR}/refresh-leaderboard.sh" "${ROOT}/scripts/refresh-leaderboard.sh"
 cp "${SCRIPT_DIR}/pull-matches.sh" "${ROOT}/scripts/pull-matches.sh"
+cp "${SCRIPT_DIR}/backfill-min-players.sh" "${ROOT}/scripts/backfill-min-players.sh"
 cp "${SCRIPT_DIR}/start-eloevent-discord-bot.sh" "${ROOT}/scripts/start-eloevent-discord-bot.sh"
-chmod 755 "${ROOT}/scripts/refresh-leaderboard.sh" "${ROOT}/scripts/pull-matches.sh" "${ROOT}/scripts/start-eloevent-discord-bot.sh"
+chmod 755 "${ROOT}/scripts/refresh-leaderboard.sh" "${ROOT}/scripts/pull-matches.sh" \
+  "${ROOT}/scripts/backfill-min-players.sh" "${ROOT}/scripts/start-eloevent-discord-bot.sh"
 
 systemctl daemon-reload
 systemctl enable eloevent-discord-bot.service

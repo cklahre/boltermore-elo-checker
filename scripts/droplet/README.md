@@ -18,6 +18,7 @@ Layout on the server:
 | `/opt/eloevent/scripts/start-eloevent-discord-bot.sh` | **ExecStart launcher** — **`data/`** first, **`repo/`** fallback |
 | `/opt/eloevent/env/refresh.env` | **`PULL_MATCHES=1`** (default) + optional `SINCE=` / throttle knobs |
 | `/opt/eloevent/scripts/pull-matches.sh` | Harvest since newest shard → export dated shard → rewrite manifest |
+| `/opt/eloevent/scripts/backfill-min-players.sh` | One-shot: harvest from earliest shard date at MIN_PLAYERS=20, export missing events only |
 | `/opt/eloevent/scripts/refresh-leaderboard.sh` | Optional pull, then `local-elo` + restart Discord bot |
 | systemd **`eloevent-refresh-leaderboard.timer`** | **Monday 20:00 UTC** (~4pm EDT / 3pm EST); install/enable via `install-on-droplet.sh` or CI deploy |
 
@@ -40,6 +41,29 @@ PULL_MATCHES=0 /opt/eloevent/scripts/refresh-leaderboard.sh
 ```
 
 Check schedule: `systemctl list-timers eloevent-refresh-leaderboard.timer`
+
+## Backfill after lowering MIN_PLAYERS
+
+Weekly pulls only look forward from the newest shard. After dropping the floor from 30 → 20, run a **one-shot** backfill that:
+
+1. Finds the earliest match date already in `/opt/eloevent/data/` shards
+2. Harvests with **`MIN_PLAYERS=20`** (and the usual GT gates) from that day
+3. Exports **only event IDs missing** from existing shards → `bcp-matches-backfill-min20.json`
+4. Rewrites the manifest (old shards first, backfill last) and rebuilds the leaderboard
+
+```bash
+# After deploy has synced scripts/binaries:
+bash /opt/eloevent/scripts/backfill-min-players.sh
+```
+
+This can take a long time (BCP harvest + many event exports). To write the shard only:
+
+```bash
+SKIP_REFRESH=1 bash /opt/eloevent/scripts/backfill-min-players.sh
+PULL_MATCHES=0 /opt/eloevent/scripts/refresh-leaderboard.sh
+```
+
+If `/opt/eloevent/env/refresh.env` still sets `MIN_PLAYERS=30`, remove or set `MIN_PLAYERS=20` so Monday automation matches the new floor.
 
 ## One-time droplet setup
 
