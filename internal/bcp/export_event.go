@@ -66,7 +66,7 @@ func ParseCommaTerms(csv string) []string {
 }
 
 // EventSkippedByFilter returns a non-empty human-readable reason if the event should be skipped
-// before downloading pairings (min totals are inclusive: -min-players 30 keeps events with totalPlayers >= 30).
+// before downloading pairings (min totals are inclusive: -min-players 20 keeps events with totalPlayers >= 20).
 func EventSkippedByFilter(ev *Event, f MetadataFilter) string {
 	if ev == nil {
 		return "nil event"

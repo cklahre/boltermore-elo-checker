@@ -24,7 +24,7 @@ func main() {
 	continueOnError := flag.Bool("continue-on-error", false, "when exporting many events: log and skip failures")
 	dedupe := flag.Bool("dedupe", true, "drop duplicate pairing_id (or fallback fingerprint) when merging")
 	sleepMs := flag.Int("sleep-ms", 0, "optional pause between events when exporting many (reduces rate limits)")
-	minPlayers := flag.Int("min-players", 0, "skip events with totalPlayers below this (0 = off; GTs: try 30 or 31)")
+	minPlayers := flag.Int("min-players", 0, "skip events with totalPlayers below this (0 = off; GTs: try 20)")
 	minRounds := flag.Int("min-rounds", 0, "skip events with numberOfRounds below this (0 = off; GTs: try 5)")
 	sinceStr := flag.String("since", "", "skip events before this calendar day in UTC (layout 2006-01-02); improves yield vs legacy BCP data")
 	maxSpanDays := flag.Int("max-span-days", 0, "skip if (eventEndDate−eventDate) exceeds this many UTC calendar days (0=off; try 4–7 to drop long leagues)")

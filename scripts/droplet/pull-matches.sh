@@ -30,7 +30,7 @@ fi
 EXPORT_SLEEP_MS="${EXPORT_SLEEP_MS:-300}"
 HARVEST_MIN_INTERVAL_MS="${HARVEST_MIN_INTERVAL_MS:-350}"
 # GT-oriented gates (same as bcp-harvest / bcp-export-matches flags). RTTs/leagues out.
-MIN_PLAYERS="${MIN_PLAYERS:-30}"
+MIN_PLAYERS="${MIN_PLAYERS:-20}"
 MIN_ROUNDS="${MIN_ROUNDS:-5}"
 MAX_SPAN_DAYS="${MAX_SPAN_DAYS:-7}"
 EXCLUDE_NAME="${EXCLUDE_NAME:-league,season,ladder,rtt,team,teams}"

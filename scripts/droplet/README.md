@@ -26,7 +26,7 @@ Layout on the server:
 Each Monday the timer runs with **`PULL_MATCHES=1`**:
 
 1. **`pull-matches.sh`** finds the newest `bcp-matches-YYYY-MM-DD.json` under **`data/`**, uses **day-after** as `-since` (or **`SINCE=`** from `refresh.env`).
-2. Harvests **GT-scale** BCP events only (default **`MIN_PLAYERS=30`**, **`MIN_ROUNDS=5`**, **`MAX_SPAN_DAYS=7`**, **`EXCLUDE_NAME=league,season,ladder,rtt,team,teams`**), exports pairings to **`bcp-matches-<today>.json`**, regenerates **`bcp-matches.manifest`**.
+2. Harvests **GT-scale** BCP events only (default **`MIN_PLAYERS=20`**, **`MIN_ROUNDS=5`**, **`MAX_SPAN_DAYS=7`**, **`EXCLUDE_NAME=league,season,ladder,rtt,team,teams`**), exports pairings to **`bcp-matches-<today>.json`**, regenerates **`bcp-matches.manifest`**.
 3. Rebuilds **`leaderboard.json`** and restarts the Discord bot.
 
 First weekly run seeds **`data/`** from **`repo/`** if **`data/`** has no manifest yet (so you can keep historical shards in git or sync them once with `sync-matches-to-droplet.sh`).
