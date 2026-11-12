@@ -62,8 +62,26 @@ Flags override env. When **`ELO_MATCHES_MANIFEST`**/**`-matches-manifest`** is s
 | `/elo-player` | Name, optional `contains`, optional `last` (default 10 recent games + ΔElo) |
 | `/elo-leaderboard` | Optional `top` (default 15) from `leaderboard.json` |
 | `/elo-roster` | BCP `event_id` — pulls roster from Best Coast, matches names to your cached Elo |
+| `/teams-pair` | GW companion-style teams pairing (defenders → attackers → tables) |
 
 Roster rows **not** in `leaderboard.json` are shown at baseline **1500** (no games in your export).
+
+### `/teams-pair` flow
+
+```
+/teams-pair captain_a:@... captain_b:@... size:5 tables:Alpha,Bravo,Charlie,Delta,Echo
+```
+
+- `size` defaults to **5** (allowed 2–8). `tables` is optional; defaults to `Table 1`…`Table N`.
+- Captains each use a **user select** on the board message to pick their full roster (must include themselves).
+- Then the bot walks the GW process with buttons + ephemeral selects:
+  1. Secret defender nomination (both captains)
+  2. Reveal
+  3. Each captain proposes attackers vs the opposing defender (2 when possible)
+  4. Each captain accepts one offered attacker (refuses the other)
+  5. Defender (or their captain) picks a table
+  6. Repeat until everyone is paired (last 1v1 auto-pairs)
+
 
 ## Discord app setup (short)
 

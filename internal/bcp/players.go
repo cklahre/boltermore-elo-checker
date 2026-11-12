@@ -13,6 +13,12 @@ type FactionRef struct {
 	ParentFaction *FactionRef `json:"parentFaction,omitempty"`
 }
 
+// TeamRef is club or affiliation metadata on a roster player.
+type TeamRef struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
 // RosterPlayer is one active entry from GET /v1/events/{id}/players (active[]).
 type RosterPlayer struct {
 	ID              string      `json:"id"`
@@ -28,12 +34,36 @@ type RosterPlayer struct {
 	SubFaction      *FactionRef `json:"subFaction,omitempty"`
 	ListID          string      `json:"listId"`
 	ListURL         string      `json:"listUrl"`
+	TeamPlayerID    string      `json:"teamPlayerId"`
+	TeamID          string      `json:"teamId"`
+	Team            *TeamRef    `json:"team,omitempty"`
 }
 
 type bcpUser struct {
 	ID        string `json:"id"`
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
+}
+
+// TeamPlayer is one registered team from GET /v1/events/{id}/teamplayers (active[]).
+type TeamPlayer struct {
+	ID        string   `json:"id"`
+	EventID   string   `json:"eventId"`
+	Name      string   `json:"name"`
+	CaptainID string   `json:"captainId"`
+	Captain   *bcpUser `json:"captain,omitempty"`
+	CheckedIn bool     `json:"checkedIn"`
+	Dropped   bool     `json:"dropped"`
+}
+
+func (t TeamPlayer) CaptainName() string {
+	if t.Captain != nil {
+		n := strings.TrimSpace(t.Captain.FirstName + " " + t.Captain.LastName)
+		if n != "" {
+			return n
+		}
+	}
+	return ""
 }
 
 func (p RosterPlayer) FullName() string {
@@ -48,6 +78,23 @@ func (p RosterPlayer) FullName() string {
 
 type playersEnvelope struct {
 	Active []RosterPlayer `json:"active"`
+}
+
+type teamPlayersEnvelope struct {
+	Active []TeamPlayer `json:"active"`
+}
+
+// FetchTeamPlayers returns active registered teams from GET /v1/events/{id}/teamplayers (active[]).
+func FetchTeamPlayers(c *Client, eventID string) ([]TeamPlayer, error) {
+	body, err := c.GetJSON("/events/"+url.PathEscape(eventID)+"/teamplayers", nil)
+	if err != nil {
+		return nil, err
+	}
+	var env teamPlayersEnvelope
+	if err := json.Unmarshal(body, &env); err != nil {
+		return nil, err
+	}
+	return env.Active, nil
 }
 
 // FetchRoster returns currently active roster rows (includes dropped flag per row).

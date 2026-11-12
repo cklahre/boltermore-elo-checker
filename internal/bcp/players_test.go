@@ -24,3 +24,16 @@ func TestRosterPlayerFullName_nestedUserOverridesRoot(t *testing.T) {
 		t.Fatalf("FullName: got %q want Jack Murphy", got)
 	}
 }
+
+func TestTeamPlayerCaptainName(t *testing.T) {
+	tp := TeamPlayer{
+		Name: "Void Screamers",
+		Captain: &bcpUser{
+			FirstName: "Sean",
+			LastName:  "Devaney",
+		},
+	}
+	if got := tp.CaptainName(); got != "Sean Devaney" {
+		t.Fatalf("CaptainName: got %q want Sean Devaney", got)
+	}
+}

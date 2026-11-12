@@ -61,6 +61,7 @@ func main() {
 		leaderPath:          *leaderPath,
 		announceGuildID:     strings.TrimSpace(*guildID),
 		announceChannelSpec: strings.TrimSpace(*announceChan),
+		pairings:            newTeamPairHub(),
 		bcpClient: &bcp.Client{
 			MinInterval: 400 * time.Millisecond,
 			BearerToken: strings.TrimSpace(os.Getenv("BCP_BEARER_TOKEN")),
@@ -124,6 +125,8 @@ type botState struct {
 	resolvedAnnounceID  string
 
 	bcpClient *bcp.Client
+
+	pairings *teamPairHub
 }
 
 func (b *botState) reload(announceSession *discordgo.Session) error {
@@ -352,10 +355,21 @@ func fileStatFingerprint(path string) (string, error) {
 
 func (b *botState) onInteraction() func(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	return func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+		if i.Type == discordgo.InteractionMessageComponent {
+			data := i.MessageComponentData()
+			if strings.HasPrefix(data.CustomID, tpPrefix) {
+				b.handleTeamsPairComponent(s, i)
+			}
+			return
+		}
 		if i.Type != discordgo.InteractionApplicationCommand {
 			return
 		}
 		data := i.ApplicationCommandData()
+		if data.Name == "teams-pair" {
+			b.handleTeamsPairCommand(s, i)
+			return
+		}
 		var msg string
 		var err error
 		switch data.Name {
@@ -566,6 +580,13 @@ func (b *botState) rosterDiscordMessages(eventID string) ([]string, error) {
 		return []string{hdr}, nil
 	}
 
+	if ev != nil && (ev.TeamEvent || ev.TotalTeamPlayers > 0) {
+		teamPlayers, terr := bcp.FetchTeamPlayers(b.bcpClient, eventID)
+		if terr == nil && len(teamPlayers) > 0 {
+			return b.teamRosterDiscordMessages(eventID, head, ev, lb, roster, teamPlayers)
+		}
+	}
+
 	type line struct {
 		name string
 		elo  float64
@@ -620,6 +641,281 @@ func (b *botState) rosterDiscordMessages(eventID string) ([]string, error) {
 	)
 
 	return packRosterTableChunks(hdrPart1, eventID, head, len(rows), tableHead, tableLines, ranks), nil
+}
+
+type teamPlayerLine struct {
+	name      string
+	elo       float64
+	drop      bool
+	isCaptain bool
+}
+
+type teamLine struct {
+	id          string
+	name        string
+	captainID   string
+	captainName string
+	dropped     bool
+	players     []teamPlayerLine
+	avgElo      float64
+	minElo      float64
+	maxElo      float64
+}
+
+type teamBlock struct {
+	rank  int
+	lines []string
+}
+
+func (b *botState) teamRosterDiscordMessages(
+	eventID, head string,
+	ev *bcp.Event,
+	lb *elodata.LeaderboardFile,
+	roster []bcp.RosterPlayer,
+	teamPlayers []bcp.TeamPlayer,
+) ([]string, error) {
+	teamMap := make(map[string]*teamLine)
+	for _, tp := range teamPlayers {
+		teamMap[tp.ID] = &teamLine{
+			id:          tp.ID,
+			name:        tp.Name,
+			captainID:   tp.CaptainID,
+			captainName: tp.CaptainName(),
+			dropped:     tp.Dropped,
+		}
+	}
+
+	var unassigned []teamPlayerLine
+	for _, p := range roster {
+		n := p.FullName()
+		if n == "" {
+			n = "(unnamed)"
+		}
+		el := elo40k.Baseline
+		if n != "(unnamed)" {
+			if row, ok := lb.LookupPlayerRow(n); ok {
+				el = row.Elo
+			}
+		}
+		tp := teamMap[p.TeamPlayerID]
+		isCap := false
+		if tp != nil {
+			if (p.UserID != "" && p.UserID == tp.captainID) ||
+				(p.User != nil && p.User.ID != "" && p.User.ID == tp.captainID) ||
+				(p.ID != "" && p.ID == tp.captainID) ||
+				(tp.captainName != "" && strings.EqualFold(n, tp.captainName)) {
+				isCap = true
+			}
+		}
+		pline := teamPlayerLine{
+			name:      n,
+			elo:       el,
+			drop:      p.Dropped,
+			isCaptain: isCap,
+		}
+		if tp != nil {
+			tp.players = append(tp.players, pline)
+		} else {
+			unassigned = append(unassigned, pline)
+		}
+	}
+
+	var teams []*teamLine
+	for _, t := range teamMap {
+		var sum float64
+		var count int
+		var minEl, maxEl float64
+		var activeCount int
+		for _, p := range t.players {
+			if !p.drop {
+				activeCount++
+			}
+		}
+		first := true
+		for _, p := range t.players {
+			if activeCount > 0 && p.drop {
+				continue
+			}
+			sum += p.elo
+			count++
+			if first {
+				minEl = p.elo
+				maxEl = p.elo
+				first = false
+			} else {
+				if p.elo < minEl {
+					minEl = p.elo
+				}
+				if p.elo > maxEl {
+					maxEl = p.elo
+				}
+			}
+		}
+		if count > 0 {
+			t.avgElo = sum / float64(count)
+			t.minElo = minEl
+			t.maxElo = maxEl
+		} else {
+			t.avgElo = elo40k.Baseline
+		}
+		sort.Slice(t.players, func(i, j int) bool {
+			if t.players[i].drop != t.players[j].drop {
+				return !t.players[i].drop
+			}
+			if t.players[i].isCaptain != t.players[j].isCaptain {
+				return t.players[i].isCaptain
+			}
+			if t.players[i].elo != t.players[j].elo {
+				return t.players[i].elo > t.players[j].elo
+			}
+			return t.players[i].name < t.players[j].name
+		})
+		teams = append(teams, t)
+	}
+
+	sort.Slice(teams, func(i, j int) bool {
+		if teams[i].dropped != teams[j].dropped {
+			return !teams[i].dropped
+		}
+		if teams[i].avgElo != teams[j].avgElo {
+			return teams[i].avgElo > teams[j].avgElo
+		}
+		return teams[i].name < teams[j].name
+	})
+
+	if len(unassigned) > 0 {
+		var sum float64
+		var count int
+		for _, p := range unassigned {
+			if !p.drop {
+				sum += p.elo
+				count++
+			}
+		}
+		avg := elo40k.Baseline
+		if count > 0 {
+			avg = sum / float64(count)
+		}
+		teams = append(teams, &teamLine{
+			id:      "unassigned",
+			name:    "Unassigned Players",
+			dropped: false,
+			players: unassigned,
+			avgElo:  avg,
+		})
+	}
+
+	asOfDisp := leaderboardAsOfShort(lb.AsOfRFC3339)
+	colHeader := fmt.Sprintf("%-6s %8s %-36s %-4s\n", "Rank", "Avg Elo", "Team / Player", "St")
+	sepLine := strings.Repeat("-", len([]rune(colHeader))-1) + "\n"
+	tableHead := colHeader + sepLine
+
+	var blocks []teamBlock
+	for i, team := range teams {
+		rank := i + 1
+		teamSt := ""
+		if team.dropped {
+			teamSt = "OUT"
+		}
+		tName := team.name
+		if tName == "" {
+			tName = "Unnamed Team"
+		}
+		teamLabel := fmt.Sprintf("%s (%d)", tName, len(team.players))
+		teamRow := fmt.Sprintf("%-6d %8.1f %-36s %-4s", rank, team.avgElo, trunc(teamLabel, 36), teamSt)
+
+		lines := []string{teamRow}
+		for _, p := range team.players {
+			pSt := ""
+			if p.drop {
+				pSt = "OUT"
+			}
+			pName := p.name
+			if p.isCaptain {
+				pName += " (C)"
+			}
+			playerRow := fmt.Sprintf("%-6s %8.1f   %-34s %-4s", "", p.elo, trunc(pName, 34), pSt)
+			lines = append(lines, playerRow)
+		}
+		blocks = append(blocks, teamBlock{
+			rank:  rank,
+			lines: lines,
+		})
+	}
+
+	hdrPart1 := fmt.Sprintf(
+		"**Event roster · Team Elo** · %s · %s\n"+
+			"**Teams:** %d · **Players:** %d · Leaderboard **`as_of`** `%s`\n"+
+			"_Teams sorted by Team Average Elo (high → low). Missing from leaderboard JSON → **`%.0f`**._\n"+
+			"_`(C)` = Captain · `OUT` = dropped from event._\n",
+		head, bcp.EventMarkdownLink(eventID), len(teams), len(roster), asOfDisp, elo40k.Baseline,
+	)
+
+	return packTeamTableChunks(hdrPart1, eventID, head, len(teams), len(roster), tableHead, blocks), nil
+}
+
+func teamRosterContinuationHdr(partNum int, head, eventID string, nTeams, nPlayers, lo, hi int) string {
+	return fmt.Sprintf(
+		"**Event roster · Team Elo** · _continued · part **%d**_ · %s · %s\n"+
+			"_Teams **%d–%d** of %d (%d total players)_\n",
+		partNum, head, bcp.EventMarkdownLink(eventID), lo, hi, nTeams, nPlayers,
+	)
+}
+
+func packTeamTableChunks(
+	hdrPart1, eventID, head string,
+	nTeams, nPlayers int,
+	tableHead string,
+	blocks []teamBlock,
+) []string {
+	openFence := "```\n"
+	closeFence := "```"
+
+	part := 1
+	idx := 0
+	var chunks []string
+	for idx < len(blocks) {
+		startRank := blocks[idx].rank
+
+		var linesInChunk []string
+		startIdx := idx
+		for idx < len(blocks) {
+			proposedHi := blocks[idx].rank
+			hdr := hdrPart1
+			if part > 1 {
+				hdr = teamRosterContinuationHdr(part, head, eventID, nTeams, nPlayers, startRank, proposedHi)
+			}
+			var candidateLines []string
+			candidateLines = append(candidateLines, linesInChunk...)
+			candidateLines = append(candidateLines, blocks[idx].lines...)
+			body := strings.Join(candidateLines, "\n") + "\n"
+			msgLen := len(hdr) + len(openFence) + len(tableHead) + len(body) + len(closeFence)
+			if msgLen <= discordPayloadBytes {
+				linesInChunk = append(linesInChunk, blocks[idx].lines...)
+				idx++
+				continue
+			}
+			if len(linesInChunk) > 0 {
+				break
+			}
+			linesInChunk = append(linesInChunk, blocks[idx].lines...)
+			idx++
+			break
+		}
+
+		endRank := blocks[idx-1].rank
+		finalHdr := hdrPart1
+		if part > 1 || idx < len(blocks) || startIdx > 0 {
+			if part > 1 {
+				finalHdr = teamRosterContinuationHdr(part, head, eventID, nTeams, nPlayers, startRank, endRank)
+			}
+		}
+		body := strings.Join(linesInChunk, "\n") + "\n"
+		chunk := finalHdr + openFence + tableHead + body + closeFence
+		chunks = append(chunks, chunk)
+		part++
+	}
+	return chunks
 }
 
 func leaderboardAsOfShort(asOfRFC string) string {
@@ -862,6 +1158,16 @@ func registerSlashCommands(s *discordgo.Session, guildID string) error {
 			Description: "Top slice of cached leaderboard.json",
 			Options: []*discordgo.ApplicationCommandOption{
 				{Type: discordgo.ApplicationCommandOptionInteger, Name: "top", Description: "How many rows (default 15)", Required: false},
+			},
+		},
+		{
+			Name:        "teams-pair",
+			Description: "Run GW-style 40k teams pairing (defenders, attackers, tables)",
+			Options: []*discordgo.ApplicationCommandOption{
+				{Type: discordgo.ApplicationCommandOptionUser, Name: "captain_a", Description: "Team A captain", Required: true},
+				{Type: discordgo.ApplicationCommandOptionUser, Name: "captain_b", Description: "Team B captain", Required: true},
+				{Type: discordgo.ApplicationCommandOptionInteger, Name: "size", Description: "Players per team (default 5, max 8)", Required: false},
+				{Type: discordgo.ApplicationCommandOptionString, Name: "tables", Description: "Comma-separated table names (default Table 1..N)", Required: false},
 			},
 		},
 	}
