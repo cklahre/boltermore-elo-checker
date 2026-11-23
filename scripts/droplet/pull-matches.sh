@@ -2,7 +2,7 @@
 # Harvest new BCP events since the latest dated shard, export a new shard into
 # /opt/eloevent/data/, and regenerate bcp-matches.manifest there.
 #
-# Intended for Monday-afternoon systemd timer (see eloevent-refresh-leaderboard.timer)
+# Intended for Monday-morning systemd timer (see eloevent-refresh-leaderboard.timer)
 # or: PULL_MATCHES=1 /opt/eloevent/scripts/refresh-leaderboard.sh
 set -euo pipefail
 

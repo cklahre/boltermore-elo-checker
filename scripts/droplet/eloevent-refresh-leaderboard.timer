@@ -1,9 +1,9 @@
 [Unit]
-Description=Weekly Elo match pull + leaderboard refresh (Monday afternoon)
+Description=Weekly Elo match pull + leaderboard refresh (Monday morning)
 
 [Timer]
-# Monday 20:00 UTC ≈ 4pm EDT / 3pm EST (US afternoon). Droplet clocks are often UTC.
-OnCalendar=Mon *-*-* 20:00:00
+# Monday 15:00 UTC = 10am EST / 11am EDT. Droplet clocks are often UTC.
+OnCalendar=Mon *-*-* 15:00:00
 Persistent=true
 RandomizedDelaySec=600
 

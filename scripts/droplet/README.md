@@ -20,9 +20,9 @@ Layout on the server:
 | `/opt/eloevent/scripts/pull-matches.sh` | Harvest since newest shard → export dated shard → rewrite manifest |
 | `/opt/eloevent/scripts/backfill-min-players.sh` | One-shot: harvest from earliest shard date at MIN_PLAYERS=20, export missing events only |
 | `/opt/eloevent/scripts/refresh-leaderboard.sh` | Optional pull, then `local-elo` + restart Discord bot |
-| systemd **`eloevent-refresh-leaderboard.timer`** | **Monday 20:00 UTC** (~4pm EDT / 3pm EST); install/enable via `install-on-droplet.sh` or CI deploy |
+| systemd **`eloevent-refresh-leaderboard.timer`** | **Monday 15:00 UTC** (10am EST / 11am EDT); install/enable via `install-on-droplet.sh` or CI deploy |
 
-## Weekly automation (Monday afternoon)
+## Weekly automation (Monday morning)
 
 Each Monday the timer runs with **`PULL_MATCHES=1`**:
 
