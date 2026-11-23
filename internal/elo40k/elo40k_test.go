@@ -61,7 +61,22 @@ func TestPlayerMatchKeyCollapsesSpaces(t *testing.T) {
 	if got, want := PlayerMatchKey("  Jack\u00a0Murphy "), "jack murphy"; got != want {
 		t.Fatalf("PlayerMatchKey NBSP: got %q want %q", got, want)
 	}
-	if got, want := PlayerKey("Jack  Murphy"), "jack  murphy"; got != want {
-		t.Fatalf("PlayerKey preserves internal spacing: got %q want %q", got, want)
+	if got, want := PlayerKey("Jack  Murphy"), "jack murphy"; got != want {
+		t.Fatalf("PlayerKey collapses internal spacing: got %q want %q", got, want)
+	}
+}
+
+func TestEngineMergesSpacingVariants(t *testing.T) {
+	e := NewEngine()
+	t0 := time.Date(2026, 1, 1, 0, 0, 0, 0, time.UTC)
+	e.Play(Match{Time: t0, A: "Jack Murphy", B: "Opp One", Res: AWin})
+	e.Play(Match{Time: t0.Add(time.Hour), A: "Jack  Murphy", B: "Opp Two", Res: AWin})
+	e.Play(Match{Time: t0.Add(2 * time.Hour), A: "Opp Three", B: "jack\u00a0murphy", Res: BWin})
+	p, ok := e.players["jack murphy"]
+	if !ok || p.Games != 3 {
+		t.Fatalf("expected one merged player with 3 games, got %+v (players=%d)", p, len(e.players))
+	}
+	if len(e.players) != 4 {
+		t.Fatalf("expected 4 players total, got %d", len(e.players))
 	}
 }

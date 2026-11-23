@@ -41,17 +41,18 @@ func NewEngine() *Engine {
 	return &Engine{players: make(map[string]*Player)}
 }
 
-func key(name string) string { return strings.ToLower(strings.TrimSpace(name)) }
+// key lowercases and collapses all whitespace (including NBSP) to single spaces.
+// BCP names vary in internal spacing ("Jack  Murphy"), which must not split a player.
+func key(name string) string {
+	name = strings.ReplaceAll(name, "\u00a0", " ")
+	return strings.Join(strings.Fields(strings.ToLower(name)), " ")
+}
 
 // PlayerKey is the canonical key used to merge player names (same as the Elo engine).
 func PlayerKey(name string) string { return key(name) }
 
-// PlayerMatchKey lowercases and collapses whitespace to a single space for comparing
-// pairing/roster/display strings where internal spacing differs.
-func PlayerMatchKey(name string) string {
-	name = strings.TrimSpace(strings.ReplaceAll(name, "\u00a0", " "))
-	return strings.Join(strings.Fields(strings.ToLower(name)), " ")
-}
+// PlayerMatchKey is the same normalization as PlayerKey; kept for existing callers.
+func PlayerMatchKey(name string) string { return key(name) }
 
 func (e *Engine) ensure(name string) *Player {
 	k := key(name)

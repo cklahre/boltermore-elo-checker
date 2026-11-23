@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"fortyk/eloevent/internal/bcp"
+	"fortyk/eloevent/internal/elo40k"
 )
 
 // RecentGame is one row in a player’s history (newest-first when returned from PlayerLookup).
@@ -217,9 +218,9 @@ func outcomeForSide(isPlayerA bool, win string) (byte, error) {
 
 func nameMatches(field, query string, contains bool) bool {
 	if contains {
-		return strings.Contains(strings.ToLower(field), strings.ToLower(strings.TrimSpace(query)))
+		return strings.Contains(elo40k.PlayerKey(field), elo40k.PlayerKey(query))
 	}
-	return strings.EqualFold(strings.TrimSpace(field), strings.TrimSpace(query))
+	return elo40k.PlayerKey(field) == elo40k.PlayerKey(query)
 }
 
 // rollupRecentEvents returns up to limit distinct events: bucket key is trimmed EventID (empty merges into one bucket).
