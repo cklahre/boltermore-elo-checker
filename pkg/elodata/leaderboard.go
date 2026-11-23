@@ -29,6 +29,7 @@ type RecentGameWire struct {
 // RecentEventWire is per-event rollup for GitHub Pages / JSON APIs.
 type RecentEventWire struct {
 	EventID       string  `json:"event_id"` // empty if source had no event_id for that bucket
+	EventName     string  `json:"event_name,omitempty"`
 	LastPlayed    string  `json:"last_played_rfc3339"`
 	Wins          int     `json:"wins"`
 	Losses        int     `json:"losses"`

@@ -227,7 +227,11 @@ function eventsSummary(events) {
   }
   const rowsHtml = events
     .map((e) => {
-      const evId = escapeHtml(((e.event_id ?? "") + "").trim() || "—");
+      const rawId = ((e.event_id ?? "") + "").trim();
+      const rawName = ((e.event_name ?? "") + "").trim();
+      const evCell = rawId
+        ? `<a href="https://www.bestcoastpairings.com/event/${encodeURIComponent(rawId)}" target="_blank" rel="noopener noreferrer">${escapeHtml(rawName || rawId)}</a>`
+        : "—";
       const day = escapeHtml(((e.last_played_rfc3339 ?? "") + "").slice(0, 10) || "—");
       let sum = "—";
       const dg = Number(e.delta_games) || 0;
@@ -237,7 +241,7 @@ function eventsSummary(events) {
       const gCt = Number(e.games) ?? 0;
       return `<tr>
         <td class="mono">${day}</td>
-        <td class="mono ev-id">${evId}</td>
+        <td class="${rawName ? "" : "mono "}ev-id">${evCell}</td>
         <td class="num">${Number(e.wins) || 0}-${Number(e.losses) || 0}-${Number(e.draws) || 0}</td>
         <td class="num">${gCt}</td>
         <td class="num">${sum}</td>

@@ -184,8 +184,15 @@ func ExportMatchesForEvent(c *Client, ev *Event, maxRounds int) ([]MatchFileRow,
 	}
 	names := NameLookup(roster)
 
+	end, err := ParseEventEnd(ev)
+	if err != nil || end.Before(start) {
+		end = start
+	}
+
 	opt := MatchExportOptions{
 		EventStart:        start,
+		EventEnd:          end,
+		TotalRounds:       ev.NumberOfRounds,
 		TieBreakSameRound: 1,
 	}
 
@@ -227,7 +234,7 @@ func ExportMatchesForEvent(c *Client, ev *Event, maxRounds int) ([]MatchFileRow,
 				st.Skipped++
 				continue
 			}
-			rows = append(rows, matchFileRowFromPairing(eventID, p, m))
+			rows = append(rows, matchFileRowFromPairing(eventID, ev.Name, p, m))
 		}
 	}
 

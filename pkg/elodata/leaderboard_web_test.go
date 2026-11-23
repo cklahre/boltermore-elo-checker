@@ -10,6 +10,35 @@ import (
 	"fortyk/eloevent/internal/elo40k"
 )
 
+func TestBuildLeaderboardWebRows_EventNames(t *testing.T) {
+	rows := []bcp.MatchFileRow{
+		{Date: "2026-01-01T12:00:00Z", A: "Ada", B: "Bob", Winner: "a", EventID: "e1", PairingID: "p1"},
+		{Date: "2026-01-01T13:00:00Z", A: "Ada", B: "Cara", Winner: "a", EventID: "e1", EventName: "Winter GT", PairingID: "p2"},
+	}
+	e := elo40k.NewEngine()
+	for i := range rows {
+		m, err := RowToMatch(&rows[i])
+		if err != nil {
+			t.Fatal(err)
+		}
+		e.Play(m)
+	}
+	out, err := buildLeaderboardWebRows(e.Snapshot(), rows, 10)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, r := range out {
+		if r.Name != "Ada" {
+			continue
+		}
+		if len(r.RecentEvents) != 1 || r.RecentEvents[0].EventName != "Winter GT" {
+			t.Fatalf("want one event named Winter GT, got %+v", r.RecentEvents)
+		}
+		return
+	}
+	t.Fatal("Ada missing")
+}
+
 func TestBuildLeaderboardWebRows_SinglePass(t *testing.T) {
 	rows := []bcp.MatchFileRow{
 		{Date: "2026-01-01T12:00:00Z", A: "Ada", B: "Bob", Winner: "a", EventID: "e1", PairingID: "p1"},

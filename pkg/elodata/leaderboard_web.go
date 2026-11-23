@@ -108,8 +108,12 @@ func buildLeaderboardWebRows(snap []elo40k.Player, matchRows []bcp.MatchFileRow,
 		eventID   string
 		pairingID string
 	}
+	eventNames := map[string]string{}
 	metas := make([]rowMeta, 0, len(matchRows))
 	for _, r := range matchRows {
+		if eid, n := strings.TrimSpace(r.EventID), strings.TrimSpace(r.EventName); eid != "" && n != "" && eventNames[eid] == "" {
+			eventNames[eid] = n
+		}
 		a := strings.TrimSpace(r.A)
 		b := strings.TrimSpace(r.B)
 		if a == "" || b == "" {
@@ -222,6 +226,7 @@ func buildLeaderboardWebRows(snap []elo40k.Player, matchRows []bcp.MatchFileRow,
 		for j, item := range evs {
 			recentEv[j] = RecentEventWire{
 				EventID:       item.id,
+				EventName:     eventNames[item.id],
 				LastPlayed:    item.e.lastPlayed.UTC().Format(time.RFC3339),
 				Wins:          item.e.w,
 				Losses:        item.e.l,

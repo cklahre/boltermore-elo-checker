@@ -116,6 +116,19 @@ go run ./cmd/bcp-matches-manifest -out bcp-matches.manifest -sort name
 
 `local-elo`, **`player-history`**, and **`eloevent-discord-bot`** merge shards with **`DedupeMatchRows`** (pairing-first). Prefer **disjoint** shards; overlaps keep the **first** occurrence — list **oldest batches first**.
 
+## Repair one-day-per-round match dates
+
+Exports before Nov 2026 dated round N as event start + (N−1) days, so an 8-round GT spread over 8 days (often into the future). New exports place rounds inside the event's real start/end dates. To fix existing shards once (fetches each event's dates from BCP; cached in `-meta-cache`, so it's safe to stop and rerun):
+
+```bash
+cd /opt/eloevent/data
+/opt/eloevent/bin/bcp-repair-dates -matches-manifest bcp-matches.manifest -meta-cache .repair-meta-cache.json -dry-run
+/opt/eloevent/bin/bcp-repair-dates -matches-manifest bcp-matches.manifest -meta-cache .repair-meta-cache.json
+PULL_MATCHES=0 /opt/eloevent/scripts/refresh-leaderboard.sh
+```
+
+Don't run it while a refresh is in progress. Rows already in the new layout are left unchanged.
+
 ## Purge team (or other name-matched) events from existing shards
 
 Weekly harvest already skips names matching **`EXCLUDE_NAME`** (includes `team,teams`). Historical shards still need a one-time purge:

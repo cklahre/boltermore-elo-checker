@@ -15,7 +15,31 @@ var ErrUnscored = errors.New("unscored pairing")
 // MatchExportOptions controls how BCP rows become local-elo matches.
 type MatchExportOptions struct {
 	EventStart        time.Time // parsed from Event.EventDate (UTC/layout tolerant)
+	EventEnd          time.Time // parsed from Event.EventEndDate; zero = same day as start
+	TotalRounds       int       // Event.NumberOfRounds; rounds are spread across the event's days
 	TieBreakSameRound int       // spreads same-round timestamps by table index
+}
+
+// RoundTime places a round inside the event's calendar span. BCP pairings carry no
+// per-round timestamp, so rounds are spread evenly over the event's days (8 rounds over
+// a 2-day event = 4 per day), never past EventEnd's day. Rounds are 15 minutes apart so the
+// per-table tie-break seconds (up to 899 tables) never reorder rounds.
+func (opt MatchExportOptions) RoundTime(round int) time.Time {
+	if round < 1 {
+		return opt.EventStart
+	}
+	days := 1
+	if !opt.EventEnd.IsZero() && opt.EventEnd.After(opt.EventStart) {
+		d0 := time.Date(opt.EventStart.Year(), opt.EventStart.Month(), opt.EventStart.Day(), 0, 0, 0, 0, time.UTC)
+		d1 := time.Date(opt.EventEnd.Year(), opt.EventEnd.Month(), opt.EventEnd.Day(), 0, 0, 0, 0, time.UTC)
+		days = int(d1.Sub(d0).Hours()/24) + 1
+	}
+	total := opt.TotalRounds
+	if total < round {
+		total = round
+	}
+	dayIdx := (round - 1) * days / total
+	return opt.EventStart.Add(time.Duration(dayIdx)*24*time.Hour + time.Duration(round-1)*15*time.Minute)
 }
 
 // PairingToMatch converts a pairing using name resolution and game points / gameResult.
@@ -26,12 +50,9 @@ func PairingToMatch(p Pairing, names map[string]string, opt MatchExportOptions) 
 	if a == "" || b == "" {
 		return elo40k.Match{}, "missing player (bye or unresolved id)", nil
 	}
-	t := opt.EventStart.Add(
-		time.Duration(p.Round-1)*24*time.Hour +
-			time.Duration(p.Table*opt.TieBreakSameRound)*time.Second,
-	)
-	if p.Round < 1 {
-		t = opt.EventStart
+	t := opt.RoundTime(p.Round)
+	if p.Round >= 1 {
+		t = t.Add(time.Duration(p.Table*opt.TieBreakSameRound) * time.Second)
 	}
 
 	var res elo40k.Outcome

@@ -20,10 +20,11 @@ type MatchFileRow struct {
 	B         string `json:"b"`
 	Winner    string `json:"winner"`
 	EventID   string `json:"event_id,omitempty"`
+	EventName string `json:"event_name,omitempty"`
 	PairingID string `json:"pairing_id,omitempty"`
 }
 
-func matchFileRowFromPairing(eventID string, p Pairing, m elo40k.Match) MatchFileRow {
+func matchFileRowFromPairing(eventID, eventName string, p Pairing, m elo40k.Match) MatchFileRow {
 	var w string
 	switch m.Res {
 	case elo40k.AWin:
@@ -39,6 +40,7 @@ func matchFileRowFromPairing(eventID string, p Pairing, m elo40k.Match) MatchFil
 		B:         m.B,
 		Winner:    w,
 		EventID:   eventID,
+		EventName: strings.TrimSpace(eventName),
 		PairingID: p.ID,
 	}
 }
