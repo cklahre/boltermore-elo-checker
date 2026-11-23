@@ -10,10 +10,8 @@ ROOT="/opt/eloevent"
 DATA="${ROOT}/data"
 REPO="${ROOT}/repo"
 BIN="${ROOT}/bin"
-WORKDIR="${DATA}/.pull-work"
 TODAY="$(date -u +%Y-%m-%d)"
 NEW_SHARD="${DATA}/bcp-matches-${TODAY}.json"
-IDS_FILE="${WORKDIR}/event-ids.txt"
 LOG_PREFIX="pull-matches"
 
 HARVEST_BIN="${BIN}/bcp-harvest-events"
@@ -42,7 +40,11 @@ for b in "$HARVEST_BIN" "$EXPORT_BIN" "$MANIFEST_BIN"; do
 	[[ -x "$b" ]] || die "missing executable $b (redeploy from GitHub Actions)"
 done
 
-mkdir -p "$DATA" "$WORKDIR"
+mkdir -p "$DATA"
+# Per-run workdir: a shared path gets deleted out from under overlapping runs.
+WORKDIR="$(mktemp -d "${DATA}/.pull-work.XXXXXX")"
+trap 'rm -rf "$WORKDIR"' EXIT
+IDS_FILE="${WORKDIR}/event-ids.txt"
 
 # Seed data/ from repo mirror once so a data/manifest never drops historical shards.
 seed_from_repo() {
@@ -134,7 +136,6 @@ n_ids="$(grep -cve '^[[:space:]]*$' "$IDS_FILE" 2>/dev/null || true)"
 n_ids="${n_ids:-0}"
 if [[ "$n_ids" -eq 0 ]]; then
 	log "no GT events since ${SINCE}; leaving shards unchanged"
-	rm -rf "$WORKDIR"
 	exit 0
 fi
 log "discovered ${n_ids} GT events; exporting pairings ..."
@@ -157,14 +158,12 @@ if [[ "$export_rc" -ne 0 ]]; then
 		log "export exited ${export_rc} but wrote ${NEW_SHARD}; continuing"
 	else
 		log "export produced no games (rc=${export_rc}); leaving shards unchanged"
-		rm -rf "$WORKDIR"
 		exit 0
 	fi
 fi
 
 if [[ ! -f "$NEW_SHARD" ]]; then
 	log "no new shard written; leaving shards unchanged"
-	rm -rf "$WORKDIR"
 	exit 0
 fi
 
@@ -174,5 +173,4 @@ log "regenerating manifest from dated shards in ${DATA}/"
 	"$MANIFEST_BIN" -out bcp-matches.manifest -sort name
 )
 
-rm -rf "$WORKDIR"
 log "wrote ${NEW_SHARD} and updated ${DATA}/bcp-matches.manifest"

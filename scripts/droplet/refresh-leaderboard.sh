@@ -23,6 +23,12 @@ if [[ ! -x "$BIN" ]]; then
   exit 1
 fi
 
+exec 9>"${ROOT}/data/.refresh-leaderboard.lock"
+if ! flock -n 9; then
+  echo "another refresh-leaderboard run is already in progress; exiting" >&2
+  exit 1
+fi
+
 if [[ -f "${ROOT}/env/refresh.env" ]]; then
   # Explicit PULL_MATCHES=0|1 on the command line wins over refresh.env.
   _PULL_MATCHES_OVERRIDE="${PULL_MATCHES-}"
