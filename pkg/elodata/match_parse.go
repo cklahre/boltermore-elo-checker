@@ -40,6 +40,36 @@ func ParseRowTime(s string) (time.Time, error) {
 	return time.Time{}, fmt.Errorf("parse date: %v", last)
 }
 
+// LatestMatchTime returns the latest parsed match timestamp, or zero if rows is empty.
+func LatestMatchTime(rows []bcp.MatchFileRow) (time.Time, error) {
+	var latest time.Time
+	for i := range rows {
+		t, err := ParseRowTime(rows[i].Date)
+		if err != nil {
+			return time.Time{}, fmt.Errorf("row %d: %w", i, err)
+		}
+		if t.After(latest) {
+			latest = t
+		}
+	}
+	return latest, nil
+}
+
+// FilterRowsSince keeps rows dated on or after since (compared in UTC).
+func FilterRowsSince(rows []bcp.MatchFileRow, since time.Time) ([]bcp.MatchFileRow, error) {
+	out := make([]bcp.MatchFileRow, 0, len(rows))
+	for i := range rows {
+		t, err := ParseRowTime(rows[i].Date)
+		if err != nil {
+			return nil, fmt.Errorf("row %d: %w", i, err)
+		}
+		if !t.Before(since) {
+			out = append(out, rows[i])
+		}
+	}
+	return out, nil
+}
+
 // RowToMatch converts a BCP export row to an elo40k.Match.
 func RowToMatch(r *bcp.MatchFileRow) (elo40k.Match, error) {
 	t, err := ParseRowTime(r.Date)

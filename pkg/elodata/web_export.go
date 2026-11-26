@@ -14,13 +14,14 @@ import (
 
 // WebLeaderboardIndex drives the chunked static UI under data/index.json (see site/js/home.js).
 type WebLeaderboardIndex struct {
-	Version      int      `json:"version"`
-	AsOfRFC3339  string   `json:"as_of"`
-	PageSize     int      `json:"page_size"`
-	TotalPlayers int      `json:"total_players"`
-	PageCount    int      `json:"page_count"`
-	Pages        []string `json:"pages"`        // filenames (e.g. page-000001.json)
-	OutlineFile  string   `json:"outline_file"` // outline.json path relative to dir
+	Version               int      `json:"version"`
+	AsOfRFC3339           string   `json:"as_of"`
+	MatchesThroughRFC3339 string   `json:"matches_through,omitempty"`
+	PageSize              int      `json:"page_size"`
+	TotalPlayers          int      `json:"total_players"`
+	PageCount             int      `json:"page_count"`
+	Pages                 []string `json:"pages"`        // filenames (e.g. page-000001.json)
+	OutlineFile           string   `json:"outline_file"` // outline.json path relative to dir
 }
 
 // WebOutlineEntry is minimal per-player identity for filtering without loading chunk payloads.
@@ -129,6 +130,9 @@ func WriteLeaderboardWebDir(dir string, asOf time.Time, snap []elo40k.Player, ma
 		PageCount:    pageCount,
 		Pages:        pageNames,
 		OutlineFile:  "outline.json",
+	}
+	if through, err := LatestMatchTime(matchRows); err == nil && !through.IsZero() {
+		idx.MatchesThroughRFC3339 = through.UTC().Format(time.RFC3339)
 	}
 
 	indexPath := filepath.Join(dir, "index.json")

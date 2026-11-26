@@ -12,8 +12,9 @@ import (
 
 // LeaderboardFile is written by local-elo -out-json and read by the Discord bot (or anything else).
 type LeaderboardFile struct {
-	AsOfRFC3339 string           `json:"as_of"`
-	Players     []LeaderboardRow `json:"players"`
+	AsOfRFC3339          string           `json:"as_of"`
+	MatchesThroughRFC3339 string          `json:"matches_through,omitempty"`
+	Players              []LeaderboardRow `json:"players"`
 }
 
 // RecentGameWire is one game for JSON consumers (GitHub Pages, APIs).
@@ -56,7 +57,8 @@ type LeaderboardRow struct {
 }
 
 // WriteLeaderboardJSON writes snapshot from the Elo engine (caller runs FinalizeDecay first as desired).
-func WriteLeaderboardJSON(path string, asOf time.Time, players []elo40k.Player) error {
+// matchesThrough is the latest rated game timestamp (zero → omitted).
+func WriteLeaderboardJSON(path string, asOf time.Time, players []elo40k.Player, matchesThrough time.Time) error {
 	rows := make([]LeaderboardRow, 0, len(players))
 	for i, p := range players {
 		rows = append(rows, LeaderboardRow{
@@ -70,6 +72,9 @@ func WriteLeaderboardJSON(path string, asOf time.Time, players []elo40k.Player) 
 	f := LeaderboardFile{
 		AsOfRFC3339: asOf.UTC().Format(time.RFC3339),
 		Players:     rows,
+	}
+	if !matchesThrough.IsZero() {
+		f.MatchesThroughRFC3339 = matchesThrough.UTC().Format(time.RFC3339)
 	}
 	raw, err := json.MarshalIndent(f, "", "  ")
 	if err != nil {

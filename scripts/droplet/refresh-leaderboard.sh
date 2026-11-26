@@ -10,6 +10,9 @@ MATCHES_LEGACY_DATA="${ROOT}/data/bcp-matches.json"
 MATCHES_MANIFEST_DATA="${ROOT}/data/bcp-matches.manifest"
 MATCHES_MANIFEST_REPO="${REPO}/bcp-matches.manifest"
 LEADER="${ROOT}/data/leaderboard.json"
+LEADER_11E="${ROOT}/data/leaderboard-11e.json"
+# 11th edition release; the 11e ladder rates only games from this UTC day on.
+ELO_11E_SINCE="${ELO_11E_SINCE:-2026-06-20}"
 BIN="${ROOT}/bin/local-elo"
 PULL_SCRIPT="${ROOT}/scripts/pull-matches.sh"
 
@@ -148,6 +151,21 @@ run_local_elo() {
     else
       echo "WARN: player-history export failed (check RAM). Leaderboard was still updated." >&2
     fi
+  fi
+  run_local_elo_11e "$manifest" || echo "WARN: 11th edition ladder failed. All-time leaderboard was still updated." >&2
+}
+
+run_local_elo_11e() {
+  local manifest="$1"
+  echo "Running local-elo for 11th edition ladder (since ${ELO_11E_SINCE}) ..."
+  "$BIN" -matches-manifest "$manifest" -since "$ELO_11E_SINCE" -out-json "$LEADER_11E" || return 1
+  if [[ -d /opt/boltermore-web/data ]]; then
+    mkdir -p "$WEB_ELO_DIR" "${WEB_HISTORY_DIR}-11e"
+    cp "$LEADER_11E" "${WEB_ELO_DIR}/leaderboard-11e.json"
+    echo "Synced 11e leaderboard → ${WEB_ELO_DIR}/leaderboard-11e.json"
+    "$BIN" -matches-manifest "$manifest" -since "$ELO_11E_SINCE" \
+      -out-web-dir "${WEB_HISTORY_DIR}-11e" -recent-n 15 -web-page-size 100 || return 1
+    echo "Synced 11e player history → ${WEB_HISTORY_DIR}-11e"
   fi
 }
 

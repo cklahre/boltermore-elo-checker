@@ -44,7 +44,21 @@ Check schedule: `systemctl list-timers eloevent-refresh-leaderboard.timer`
 
 ## Backfill after lowering MIN_PLAYERS
 
-Weekly pulls only look forward from the newest shard. After dropping the floor from 30 → 20, run a **one-shot** backfill that:
+### Incomplete mid-tournament exports
+
+Weekly pulls used to keep only `currentRound` games when an event was harvested early, then never revisit it. That left GTs like **WTC Warmaster** with 3 rounds on disk while BCP had 9. Fixes:
+
+1. Export now requests `max(numberOfRounds, currentRound)` (top cut included; unscored later rounds still skipped).
+2. `pull-matches.sh` also re-exports event IDs with games in the last **`REEXPORT_LOOKBACK_DAYS`** (default 21).
+3. One-shot heal for older incomplete events:
+
+```bash
+bash /opt/eloevent/scripts/heal-incomplete-events.sh
+# or force a single id:
+REEXPORT_EVENT_IDS=ChZP41nemm16 PULL_MATCHES=1 /opt/eloevent/scripts/refresh-leaderboard.sh
+```
+
+Weekly pulls only look forward from the newest shard for **new** discoveries. After dropping the floor from 30 → 20, run a **one-shot** backfill that:
 
 1. Finds the earliest match date already in `/opt/eloevent/data/` shards
 2. Harvests with **`MIN_PLAYERS=20`** (and the usual GT gates) from that day

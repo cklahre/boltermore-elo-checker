@@ -266,6 +266,9 @@ func WriteLeaderboardWebJSON(path string, asOf time.Time, snap []elo40k.Player, 
 		AsOfRFC3339: asOf.UTC().Format(time.RFC3339),
 		Players:     rows,
 	}
+	if through, err := LatestMatchTime(matchRows); err == nil && !through.IsZero() {
+		f.MatchesThroughRFC3339 = through.UTC().Format(time.RFC3339)
+	}
 	// Compact JSON — indented blobs of ~36k players OOMs small droplets at marshal time.
 	raw, err := json.Marshal(f)
 	if err != nil {

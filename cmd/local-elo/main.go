@@ -37,7 +37,13 @@ func main() {
 	webPageSize := flag.Int("web-page-size", 50, "with -out-web-dir, rankings per chunk file")
 	recentN := flag.Int("recent-n", 10, "recent games/events per player in web exports")
 	noMergeDedupe := flag.Bool("no-merge-dedupe", false, "when merging multiple -matches shards: skip pairing dedupe (overlap not recommended)")
+	sinceStr := flag.String("since", "", "only rate games on/after this UTC day (2006-01-02), e.g. 2026-06-20 for an 11th-edition ladder; everyone starts at baseline")
 	flag.Parse()
+
+	since, err := bcp.ParseSinceDay(*sinceStr)
+	if err != nil {
+		log.Fatalf("since: %v", err)
+	}
 
 	paths, err := bcp.ResolveMatchShardPaths(*matchesManifest, matchShards, "")
 	if err != nil {
@@ -54,6 +60,13 @@ func main() {
 	if err != nil {
 		log.Fatalf("matches merge: %v", err)
 	}
+	if since != nil {
+		fileRows, err = elodata.FilterRowsSince(fileRows, *since)
+		if err != nil {
+			log.Fatalf("since: %v", err)
+		}
+		fmt.Fprintf(os.Stderr, "since %s: %d games\n", since.Format("2006-01-02"), len(fileRows))
+	}
 
 	ms := make([]elo40k.Match, 0, len(fileRows))
 	for i := range fileRows {
@@ -62,6 +75,11 @@ func main() {
 			log.Fatalf("row %d: %v", i, err)
 		}
 		ms = append(ms, m)
+	}
+
+	matchesThrough, err := elodata.LatestMatchTime(fileRows)
+	if err != nil {
+		log.Fatalf("matches-through: %v", err)
 	}
 
 	e := elo40k.NewEngine()
@@ -92,10 +110,13 @@ func main() {
 		log.Fatal("use only one of -out-web-json or -out-web-dir")
 	}
 	if outPath != "" {
-		if err := elodata.WriteLeaderboardJSON(outPath, cutoff, rows); err != nil {
+		if err := elodata.WriteLeaderboardJSON(outPath, cutoff, rows, matchesThrough); err != nil {
 			log.Fatalf("out-json: %v", err)
 		}
 		fmt.Fprintf(os.Stderr, "wrote %d players → %s\n", len(rows), outPath)
+		if !matchesThrough.IsZero() {
+			fmt.Fprintf(os.Stderr, "matches through %s\n", matchesThrough.UTC().Format("2006-01-02"))
+		}
 	}
 	if webPath != "" || webDir != "" {
 		if webPath != "" {

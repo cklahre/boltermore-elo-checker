@@ -150,6 +150,22 @@ func ParseSinceDay(s string) (*time.Time, error) {
 	return &day, nil
 }
 
+// ExportRoundLimit is how many pairing rounds to request for an event.
+// maxRounds 0 means use max(numberOfRounds, currentRound); otherwise the smaller of that and maxRounds.
+func ExportRoundLimit(ev *Event, maxRounds int) int {
+	if ev == nil {
+		return 0
+	}
+	rounds := ev.NumberOfRounds
+	if ev.CurrentRound > rounds {
+		rounds = ev.CurrentRound
+	}
+	if maxRounds > 0 && (rounds == 0 || maxRounds < rounds) {
+		rounds = maxRounds
+	}
+	return rounds
+}
+
 // ExportEventMatches pulls all scored Swiss Pairing rows for one event into MatchFileRows.
 // maxRounds 0 means use heuristics from event metadata (currentRound vs numberOfRounds).
 func ExportEventMatches(c *Client, eventID string, maxRounds int) ([]MatchFileRow, ExportEventStats, error) {
@@ -189,22 +205,20 @@ func ExportMatchesForEvent(c *Client, ev *Event, maxRounds int) ([]MatchFileRow,
 		end = start
 	}
 
+	// Use the larger of scheduled vs current round. BCP top-cut often advances
+	// currentRound past numberOfRounds; capping at the smaller value (the old
+	// behavior) dropped championship games. Mid-event exports still only keep
+	// scored rows — empty/unscored later rounds are skipped below.
+	rounds := ExportRoundLimit(ev, maxRounds)
+	if rounds <= 0 {
+		return nil, st, fmt.Errorf("event %s: numberOfRounds=%d currentRound=%d", eventID, ev.NumberOfRounds, ev.CurrentRound)
+	}
+
 	opt := MatchExportOptions{
 		EventStart:        start,
 		EventEnd:          end,
-		TotalRounds:       ev.NumberOfRounds,
+		TotalRounds:       rounds,
 		TieBreakSameRound: 1,
-	}
-
-	rounds := ev.NumberOfRounds
-	if ev.CurrentRound > 0 && ev.CurrentRound < rounds {
-		rounds = ev.CurrentRound
-	}
-	if maxRounds > 0 && maxRounds < rounds {
-		rounds = maxRounds
-	}
-	if rounds <= 0 {
-		return nil, st, fmt.Errorf("event %s: numberOfRounds=%d currentRound=%d", eventID, ev.NumberOfRounds, ev.CurrentRound)
 	}
 
 	var rows []MatchFileRow
