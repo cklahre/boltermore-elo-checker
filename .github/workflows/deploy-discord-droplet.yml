@@ -94,6 +94,7 @@ jobs:
           rsync -avz scripts/droplet/refresh-leaderboard.sh \
             scripts/droplet/pull-matches.sh \
             scripts/droplet/backfill-min-players.sh \
+            scripts/droplet/heal-incomplete-events.sh \
             scripts/droplet/start-eloevent-discord-bot.sh \
             scripts/droplet/eloevent-refresh-leaderboard.service \
             scripts/droplet/eloevent-refresh-leaderboard.timer \
@@ -107,6 +108,7 @@ jobs:
             /opt/eloevent/bin/bcp-purge-matches-by-name /opt/eloevent/bin/bcp-repair-dates \
             /opt/eloevent/scripts/refresh-leaderboard.sh /opt/eloevent/scripts/pull-matches.sh \
             /opt/eloevent/scripts/backfill-min-players.sh \
+            /opt/eloevent/scripts/heal-incomplete-events.sh \
             /opt/eloevent/scripts/start-eloevent-discord-bot.sh
           chmod 644 /opt/eloevent/scripts/eloevent-discord-bot.service \
             /opt/eloevent/scripts/eloevent-refresh-leaderboard.service \
